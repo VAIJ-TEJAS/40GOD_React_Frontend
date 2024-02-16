@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import data from '../assets/data.json';
 import './../css/Button.css';
 import { NavLink } from "react-router-dom";
+import bg from "../assets/background/WhatsApp Image 2024-02-16 at 11.01.36 PM.jpeg"
 
 
 interface ImageData {
@@ -32,8 +33,11 @@ const ImageDetails: React.FC<ImageDetailsProps> = ({ addToBag }) => {
 
 
   return (
-    <div className="container h-screen flex justify-center items-center ">
-      <div className="w-max  flex justify-center items-center mt-40">
+    <div className="container h-screen relative flex justify-center items-center">
+<div className="absolute inset-0 z-10 bg-black opacity-10"></div>
+<img src={bg} alt='bg' className="absolute inset-0 object-cover w-full h-full z-0  opacity-20" />
+  
+       <div className="w-max  flex justify-center items-center z-10 mt-40">
         {imageDetails && (
           <table className="w-full table-auto p-4 max-w-none">
           <tbody>
