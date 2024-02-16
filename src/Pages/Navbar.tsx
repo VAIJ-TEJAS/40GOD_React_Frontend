@@ -61,7 +61,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                                 Login
                             </button>
                             <button className="bg-gray-800 dark:bg-white text-white dark:text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                              Sign Up
+                                Sign Up
                             </button>
                             <button className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={onClose}>
                                 Cancel
@@ -92,36 +92,36 @@ const NavBar: React.FC = () => {
 
     return (
         <div>
-        <nav className="fixed z-30 bg-transparent flex w-full justify-between p-6">
-          <div>
-            <NavLink to="/">  <img src={logo} alt="logo" onClick={toggleDropDown} className="slow-spin w-10 stop-spin sm:w-20 sm:h-20" /></NavLink>  
-          </div>
-          <div className="space-x-4">
-            <NavLink className="hidden sm:inline-block" to="/">
-              <div>
-                <button className="button my-text" onClick={openModal}>login</button>
-                <div className="drip-1"></div>
-                <div className="drip-2"></div>
-                <div className="drip-3"></div>
-              </div>
-            </NavLink>
-            <NavLink className="my-text text-xl text-gray-700" to="/Bag"> Bag </NavLink>
-          </div>
-        </nav>
-        <div className="absolute top-0 w-full bg-transparent z-10 flex justify-center items-center p-6">
-          <div className="flex items-center">
-            <NavLink to="/"> <img className="w-35 h-24" src={god} alt="40.GOD" /></NavLink>
-          </div>
+            <nav className="fixed z-30 bg-transparent flex w-full justify-between p-6">
+                <div>
+                    <NavLink to="/">  <img src={logo} alt="logo" onClick={toggleDropDown} className="slow-spin w-10 stop-spin sm:w-20 sm:h-20" /></NavLink>
+                </div>
+                <div className="space-x-4">
+                    <NavLink className="hidden sm:inline-block" to="/">
+                        <div>
+                            <button className="button my-text" onClick={openModal}>login</button>
+                            <div className="drip-1"></div>
+                            <div className="drip-2"></div>
+                            <div className="drip-3"></div>
+                        </div>
+                    </NavLink>
+                    <NavLink className="my-text text-xl text-gray-700" to="/Bag"> Bag </NavLink>
+                </div>
+            </nav>
+            <div className="absolute top-0 w-full bg-transparent z-10 flex justify-center items-center p-6">
+                <div className="flex items-center">
+                    <NavLink to="/"> <img className="w-35 h-24" src={god} alt="40.GOD" /></NavLink>
+                </div>
+            </div>
+            {isOpen && (
+                <div className="fixed z-10 mt-20 p-3 pt-12">
+                    <NavLink to="/Option1" className="my-text text-gray-700  block font-bold text-xl hover:text-gray-400 py-2">New</NavLink>
+                    <NavLink to="/Option2" className="my-text text-gray-700 block font-bold text-xl hover:text-gray-400 py-2">Dripped</NavLink>
+                    <NavLink to="/Option3" className="my-text text-gray-700 block font-bold text-xl hover:text-gray-400 py-2">All</NavLink>
+                </div>
+            )}
+            <Modal isOpen={isModalOpen} onClose={closeModal} />
         </div>
-        {isOpen && (
-          <div className="fixed z-10 mt-20 p-3 pt-12">
-            <NavLink to="/Option1" className="my-text text-gray-700  block font-bold text-xl hover:text-gray-400 py-2">New</NavLink>
-            <NavLink to="/Option2" className="my-text text-gray-700 block font-bold text-xl hover:text-gray-400 py-2">Dripped</NavLink>
-            <NavLink to="/Option3" className="my-text text-gray-700 block font-bold text-xl hover:text-gray-400 py-2">All</NavLink>
-          </div>
-        )}
-        <Modal isOpen={isModalOpen} onClose={closeModal} />
-      </div>
     );
 };
 

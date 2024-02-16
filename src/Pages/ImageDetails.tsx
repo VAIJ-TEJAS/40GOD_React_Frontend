@@ -6,26 +6,23 @@ import { NavLink } from "react-router-dom";
 
 
 interface ImageData {
-  tagName?: string; 
+  tagName?: string;
   id: number;
   url: string;
   name: string;
 }
 
 
-// Define the ImageDetailsProps interface
+
 interface ImageDetailsProps {
   addToBag: (item: ImageData) => void;
 }
 
-// Define the ImageDetails component
 const ImageDetails: React.FC<ImageDetailsProps> = ({ addToBag }) => {
   const { id } = useParams<{ id: string }>();
 
-  // Assuming data is of type ImageData[]
   const imageDetails = data.find(item => item.id.toString() === id);
 
-  // Define the handleAddToBag function
   const handleAddToBag = () => {
     if (imageDetails) {
       addToBag(imageDetails);

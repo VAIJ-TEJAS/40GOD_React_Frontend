@@ -4,7 +4,7 @@
   }
   
   .slow-spin {
-    animation: spin 10s linear infinite; /* Adjust the duration (10s) as needed */
+    animation: spin 10s linear infinite; 
   }
 
   .stop-spin:hover {

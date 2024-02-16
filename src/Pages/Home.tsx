@@ -1,6 +1,6 @@
 import  { useState } from 'react';
 import { Link } from 'react-router-dom';
-import data from '../assets/data.json'; // Assuming data is imported correctly
+import data from '../assets/data.json'; 
 
 interface ImageData {
   tagName?: string; 
@@ -11,8 +11,8 @@ interface ImageData {
 
 export const Home = () => {
     const newData = data
-    .filter((item: any) => item.tagName === "new") // Filter items by tagName
-    .slice(0, 4) as ImageData[]; // Take only the first four items
+    .filter((item: any) => item.tagName === "new") 
+    .slice(0, 4) as ImageData[]; 
     const [hoveredId, setHoveredId] = useState<number | null>(null);
   
 

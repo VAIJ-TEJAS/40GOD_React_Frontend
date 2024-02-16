@@ -6,7 +6,7 @@ import Option1 from './Pages/Option1';
 import Option2 from './Pages/Option2';
 import Option3 from './Pages/Option3';
 import Bag from './Pages/Bag';
-import ImageDetails from './Pages/ImageDetails'; // Import the new component
+import ImageDetails from './Pages/ImageDetails';
 
 interface ImageData {
   id: number;
@@ -17,7 +17,7 @@ interface ImageData {
 
 interface BagItem {
   id: number;
-  url:string;
+  url: string;
   name: string;
   quantity: number;
 }
@@ -33,7 +33,7 @@ const App: React.FC = () => {
       updatedBagItems[existingItemIndex].quantity++;
       setBagItems(updatedBagItems);
     } else {
-      setBagItems(prevBagItems => [...prevBagItems, { id: item.id, name: item.name, url:item.url, quantity: 1 }]);
+      setBagItems(prevBagItems => [...prevBagItems, { id: item.id, name: item.name, url: item.url, quantity: 1 }]);
     }
   };
 
@@ -49,7 +49,7 @@ const App: React.FC = () => {
           <Route path="/Option2/:id" element={<ImageDetails addToBag={addToBag} />} />
           <Route path="/Option3" element={<Option3 />} />
           <Route path="/Option3/:id" element={<ImageDetails addToBag={addToBag} />} />
-          <Route path="/Bag" element={<Bag bagItems={bagItems.map(item => ({ id: item.id, name: item.name, url:item.url, tagName: '' }))} />}/>
+          <Route path="/Bag" element={<Bag bagItems={bagItems.map(item => ({ id: item.id, name: item.name, url: item.url, tagName: '' }))} />} />
         </Routes>
       </Router>
     </>
