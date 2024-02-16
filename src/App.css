@@ -13,7 +13,7 @@
 
   @font-face {
     font-family: 'MyFont';
-    src: local('MyFont'), url('./assets/fonts/font.ttf') format('truetype');
+    src: local('MyFont'), url('./assets/fonts/font.otf') format('truetype');
   }
 
   .my-text {

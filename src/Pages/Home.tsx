@@ -11,7 +11,7 @@ interface ImageData {
 
 export const Home = () => {
     const newData = data
-    .filter((item: any) => item.tagName === "new") 
+    .filter((item: ImageData) => item.tagName === "new")
     .slice(0, 4) as ImageData[]; 
     const [hoveredId, setHoveredId] = useState<number | null>(null);
   

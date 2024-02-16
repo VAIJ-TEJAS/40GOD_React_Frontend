@@ -12,7 +12,7 @@ interface ImageData {
 
 
 const Option1: React.FC = () => {
-  const newData = data.filter((item: any) => item.tagName === "dripped") as ImageData[];
+  const newData = data.filter((item: ImageData) => item.tagName === "dripped") as ImageData[];
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
