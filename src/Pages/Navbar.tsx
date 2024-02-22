@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { NavLink } from "react-router-dom";
 import './../css/Button.css';
-import logo from "./../assets/ring.png";
-import god from "./../assets/Asset 10-8.png";
+import logo from "./../assets/logo.png";
+import god from "./../assets/logo1.png";
 import './../App.css';
 
 interface ModalProps {
@@ -94,28 +94,37 @@ const NavBar: React.FC = () => {
         <div>
             <nav className="fixed z-30 bg-transparent flex w-full justify-between p-6">
                 <div>
-                    <NavLink to="/">  <img src={logo} alt="logo" onClick={toggleDropDown} className="slow-spin w-10 stop-spin sm:w-20 sm:h-20" /></NavLink>
+                    <NavLink to="/"> <img src={logo} alt="Logo" onClick={toggleDropDown} className="slow-spin w-10 stop-spin sm:w-20 sm:h-20" /></NavLink>
                 </div>
                 <div className="space-x-4">
-                    <NavLink className="hidden sm:inline-block" to="/">
-                        <div>
-                            <button className="button my-text" onClick={openModal}>login</button>
-                            <div className="drip-1"></div>
-                            <div className="drip-2"></div>
-                            <div className="drip-3"></div>
-                        </div>
+
+                    <NavLink className="hidden sm:inline-block relative" to="/">
+                        <button
+                            className="button relative z-10 w-48 h-12 overflow-hidden"
+                            onClick={openModal}
+
+                        >
+                            <span className="absolute inset-0 flex items-center justify-center bg-black opacity-50"></span> {/* Dark overlay */}
+                            <span className="absolute inset-0 flex items-center justify-center z-20 text-white">Login</span> {/* Text */}
+                        </button>
+                        <div className="drip-1"></div>
+                        <div className="drip-2"></div>
+                        <div className="drip-3"></div>
                     </NavLink>
+
+
                     <NavLink className="my-text text-xl text-gray-700" to="/Bag"> Bag </NavLink>
+                    <NavLink className="my-text text-xl text-gray-700" to="/account"> Accn </NavLink>
                 </div>
             </nav>
             <div className="absolute top-0 w-full bg-transparent z-10 flex justify-center items-center p-6">
                 <div className="flex items-center">
-                    <NavLink to="/"> <img className="w-35 h-24" src={god} alt="40.GOD" /></NavLink>
+                    <NavLink to="/"> <img className="w-50 h-40" src={god} alt="God" /></NavLink>
                 </div>
             </div>
             {isOpen && (
                 <div className="fixed z-10 mt-20 p-3 pt-12">
-                    <NavLink to="/Option1" className="my-text text-gray-700  block font-bold text-xl hover:text-gray-400 py-2">New</NavLink>
+                    <NavLink to="/Option1" className="my-text text-gray-700 block font-bold text-xl hover:text-gray-400 py-2">New</NavLink>
                     <NavLink to="/Option2" className="my-text text-gray-700 block font-bold text-xl hover:text-gray-400 py-2">Dripped</NavLink>
                     <NavLink to="/Option3" className="my-text text-gray-700 block font-bold text-xl hover:text-gray-400 py-2">All</NavLink>
                 </div>

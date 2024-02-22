@@ -12,7 +12,7 @@ interface ImageData {
 
 
 const Option3: React.FC = () => {
-  const imageData = data as ImageData[]; // Remove filtering condition
+  const imageData = data as ImageData[]; 
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (

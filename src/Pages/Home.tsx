@@ -1,49 +1,52 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import data from '../assets/data.json'; 
+import data from '../assets/data.json';
+import bg from '../assets/background/WhatsApp Image 2024-02-16 at 11.01.36 PM.jpeg';
 
 interface ImageData {
-  tagName?: string; 
+  tagName?: string;
   id: number;
   url: string;
   name: string;
 }
 
 export const Home = () => {
-    const newData = data
+  const newData = data
     .filter((item: ImageData) => item.tagName === "new")
-    .slice(0, 4) as ImageData[]; 
-    const [hoveredId, setHoveredId] = useState<number | null>(null);
-  
+    .slice(0, 4) as ImageData[];
+  const [hoveredId, setHoveredId] = useState<number | null>(null);
 
-    return (
-        <div className="flex flex-col bg-gray-400">
-       
-        <div className="justify-center items-center mt-40 p-24">
-          <div className="grid grid-cols-2">
-            {newData.map((item) => (
-              <div
-                key={item.id}
-                className="flex flex-col items-center justify-center"
-                onMouseEnter={() => setHoveredId(item.id)}
-                onMouseLeave={() => setHoveredId(null)}
-              >
-                <Link to={`/Option1/${item.id}`}>
-                  <img
-                    src={item.url}
-                    alt={`Image ${item.id}`}
-                    style={{ width: '15rem', height: '15rem' }}
-                  />
-                </Link>
-                {hoveredId === item.id && newData.indexOf(item) < 4 && (
-  <p className="text-center my-text mt-2  py-1 px-2 transition-opacity duration-300 ease-in-out pb-8">
-    Name: {item.name}
-  </p>
-)}
-              </div>
-            ))}
-          </div>
+  return (
+    <div className="flex flex-col relative">
+      <div className="fixed inset-0 bg-black opacity-20">
+        <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
+      </div>
+      <div className="justify-center items-center mt-40 p-24 ">
+        <div className="grid grid-cols-2 gap-20">
+          {newData.map((item) => (
+            <div
+              key={item.id}
+              className="relative flex flex-col items-center justify-center shadow-lg transition-transform duration-300 transform hover:shadow-xl"
+              onMouseEnter={() => setHoveredId(item.id)}
+              onMouseLeave={() => setHoveredId(null)}
+              style={{ transform: hoveredId === item.id ? 'scale(1.05)' : 'scale(1)' }}
+            >
+              <Link to={`/Option1/${item.id}`}>
+                <img
+                  src={item.url}
+                  alt={`Image ${item.id}`}
+                  style={{ width: '25rem', height: '25rem' }}
+                  className="object-cover rounded-lg"
+                />
+              </Link>
+              <p className={`text-center my-text py-2 px-4 ${hoveredId !== item.id && 'invisible'}`}>
+                Name: {item.name}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
-    );
+    </div>
+
+  );
 };

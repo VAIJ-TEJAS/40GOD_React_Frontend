@@ -13,12 +13,15 @@
     font-weight: normal;
     font-size: 18px; /* Reduced font size */
     background: #0e0e0e;
-    border-radius: 25px; /* Reduced border-radius */
+    border-radius: 10px; /* Reduced border-radius */
     padding: 10px 25px; /* Reduced padding */
     border: none;
     transition: .5s ease;
     box-shadow: 0 15px 60px -5px rgba(0, 0, 0, .5);
+    background-image: url("./../assets/button.jpeg"); /* Adjust the URL accordingly */
+    background-size: cover;
 }
+
 
 .button:hover {
     box-shadow: none;
