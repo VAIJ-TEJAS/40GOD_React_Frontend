@@ -3,6 +3,10 @@ export interface IProduct {
     name: string;
     description: string;
     price: number;
+    category: {
+        id:number,
+        name:string
+    },
     images: Array<{
         id: number,
         path: string
