@@ -12,7 +12,7 @@ interface ImageData {
 
 export const Home = () => {
   const newData = data
-    .filter((item: ImageData) => item.tagName === "new")
+    .filter((item: ImageData) => item.tagName === "new") 
     .slice(0, 4) as ImageData[];
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
@@ -21,7 +21,7 @@ export const Home = () => {
       <div className="fixed inset-0 bg-black opacity-20">
         <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
       </div>
-      <div className="justify-center items-center mt-40 p-24 ">
+      <div className="mt-40 p-24 ">
         <div className="grid grid-cols-2 gap-20">
           {newData.map((item) => (
             <div
