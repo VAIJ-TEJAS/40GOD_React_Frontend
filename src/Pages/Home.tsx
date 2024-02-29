@@ -4,10 +4,12 @@ import data from '../assets/data.json';
 import bg from '../assets/background/WhatsApp Image 2024-02-16 at 11.01.36 PM.jpeg';
 
 interface ImageData {
-  tagName?: string;
   id: number;
   url: string;
-  name: string;
+  name?: string; // This is where the type mismatch is occurring
+  tagName?: string;
+  quantity?: number;
+  price?: number;
 }
 
 export const Home = () => {
@@ -26,7 +28,7 @@ export const Home = () => {
           {newData.map((item) => (
             <div
               key={item.id}
-              className="relative flex flex-col items-center justify-center shadow-lg transition-transform duration-300 transform hover:shadow-xl"
+              className="relative flex flex-col items-center justify-center transition-transform duration-300 transform"
               onMouseEnter={() => setHoveredId(item.id)}
               onMouseLeave={() => setHoveredId(null)}
               style={{ transform: hoveredId === item.id ? 'scale(1.05)' : 'scale(1)' }}
@@ -34,19 +36,20 @@ export const Home = () => {
               <Link to={`/Option1/${item.id}`}>
                 <img
                   src={item.url}
-                  alt={`Image ${item.id}`}
+                  alt={item.name} // Use item name as alt text
                   style={{ width: '25rem', height: '25rem' }}
                   className="object-cover rounded-lg"
                 />
               </Link>
-              <p className={`text-center my-text py-2 px-4 ${hoveredId !== item.id && 'invisible'}`}>
-                Name: {item.name}
-              </p>
+              {hoveredId !== null && (
+                <p className="text-center my-text py-2 px-4">Name: {item.name}</p>
+              )}
             </div>
           ))}
         </div>
       </div>
     </div>
-
   );
 };
+
+

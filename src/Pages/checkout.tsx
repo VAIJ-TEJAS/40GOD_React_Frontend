@@ -1,104 +1,143 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import bg2 from './../assets/background/b2.jpeg'
+import ShippingInfo from './shippingInfo'; // Corrected import statement
 import bg from '../assets/background/WhatsApp Image 2024-02-16 at 11.01.36 PM.jpeg';
+import b4 from '../assets/background/b4.jpeg';
 
-interface ImageData {
+// Define payment methods with logos and additional details
+const paymentMethods = [
+  { id: 1, name: 'Credit Card', logoUrl: 'credit-card-logo.png', requiresDetails: true, detailsLabel: 'Card Number' },
+  { id: 2, name: 'Debit Card', logoUrl: 'debit-card-logo.png', requiresDetails: true, detailsLabel: 'Card Number' },
+  { id: 3, name: 'Net Banking', logoUrl: 'net-banking-logo.png', requiresDetails: true, detailsLabel: 'Bank Name' },
+  { id: 4, name: 'UPI', logoUrl: 'upi-logo.png', requiresDetails: true, detailsLabel: 'UPI ID' },
+  // Add more payment methods as needed
+];
+
+interface ShippingInfoProps {
+  signUpData: SignUpForm | null;
+}
+
+interface SignUpForm {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  phoneNumber: string;
+}
+
+interface ImageData {                              
   id: number;
   url: string;
-  name: string;
+  name?: string;
   tagName?: string;
   quantity?: number;
+  price?: number;
 }
 
 interface CheckoutProps {
   checkoutItems: ImageData[];
+  addToHistory: (item: ImageData) => void;
+  userData: SignUpForm; // Define userData prop here
 }
 
-const Checkout: React.FC<CheckoutProps> = ({ checkoutItems }) => {
-  const [quantities, setQuantities] = useState<{ [key: number]: number }>(() => {
-    const quantitiesMap: { [key: number]: number } = {};
+const Checkout: React.FC<CheckoutProps> = ({ checkoutItems, addToHistory, userData }) => {
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<number | null>(null);
+  const [paymentDetails, setPaymentDetails] = useState<string>('');
+  const navigate = useNavigate();
+
+  const totalQuantity = checkoutItems.reduce((acc, item) => acc + (item.quantity || 0), 0);
+  const totalAmount = checkoutItems.reduce((acc, item) => acc + (item.quantity ?? 0) * (item.price ?? 0), 0);
+
+  const handleCheckout = () => {
+    if (selectedPaymentMethod === null) {
+      alert('Please select a payment method.');
+      return;
+    }
+
+    if (paymentMethods[selectedPaymentMethod - 1].requiresDetails && !paymentDetails.trim()) {
+      alert(`Please provide ${paymentMethods[selectedPaymentMethod - 1].detailsLabel}`);
+      return;
+    }
+
     checkoutItems.forEach(item => {
-      if (item.quantity !== undefined) {
-        quantitiesMap[item.id] = item.quantity;
-      }
+      addToHistory(item);
     });
-    return quantitiesMap;
-  });
-
-  const navigate = useNavigate(); // Use useNavigate hook for navigation
-
-  const handleIncrement = (id: number) => {
-    setQuantities(prevQuantities => ({
-      ...prevQuantities,
-      [id]: (prevQuantities[id] || 0) + 1,
-    }));
+    navigate('/checkout');
+    alert('Checked out successfully!');
   };
-
-  const handleDecrement = (id: number) => {
-    setQuantities(prevQuantities => ({
-      ...prevQuantities,
-      [id]: Math.max((prevQuantities[id] || 0) - 1, 0),
-    }));
-  };
-
-  const totalQuantity = Object.values(quantities).reduce((acc, val) => acc + val, 0);
-  const totalAmount = checkoutItems.reduce((acc, item) => acc + (item.quantity || 0), 0);
 
   return (
-    <div className="flex justify-center items-center min-h-screen ">
-      <div className="fixed inset-0 bg-black opacity-20">
+    <div className="container mx-auto px-4"> {/* Added px-4 for padding on the left and right */}
+      <div className="fixed inset-0 bg-black opacity-20 z-0">
         <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
       </div>
-      <div className="w-full max-w-md  p-8 mt-16 rounded-lg ">
-        <div className="relative z-10 p-8 bg-white rounded-lg shadow-lg">
-          <div className="absolute inset-0 bg-black opacity-30 rounded-lg shadow-lg">
-            <img src={bg2} alt='bg' className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-lg" />
-          </div>
-          <h1 className="text-3xl font-bold mb-4 text-center">Checkout</h1>
-          {checkoutItems.length === 0 ? (
-            <p className="text-center">Your checkout is empty.</p>
-          ) : (
-            <>
+      <div className='mt-36 relative z-10'>
+        <div className="my-8 w-full">
+          <h1 className="text-2xl font-semibold">Checkout</h1>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        
+          <ShippingInfo signUpData={userData} />
+
+       
+          <div className="p-4 rounded-lg shadow-md" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${b4})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+
+            <div className="mb-4">
+              <h2 className="text-lg font-semibold mb-2">Items</h2>
+
               {checkoutItems.map(item => (
-                <div className="border-b-2 border-black py-4 flex items-center justify-between" key={item.id}>
-                  <div className="flex items-center">
+                <div className="border-b-2 border-black py-4 flex items-center justify-between relative" key={item.id} style={{ backgroundImage: `url(${bg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+                  <div className="flex items-center" onClick={() => addToHistory(item)}>
                     <img src={item.url} alt="img" className="w-16 h-auto mr-4 shadow-md" />
                     <div>
                       <p>{item.name}</p>
                       <p className="text-gray-500">color</p>
                     </div>
                   </div>
-                  <div className="flex items-center">
-                    <button className="text-gray-500 hover:text-gray-700" onClick={() => handleDecrement(item.id)}>-</button>
-                    <span className="mx-2">{quantities[item.id]}</span>
-                    <button className="text-gray-500 hover:text-gray-700" onClick={() => handleIncrement(item.id)}>+</button>
-                  </div>
                   <div>
-                    <p>{quantities[item.id]}</p>
+                    <p>{item.quantity}</p>
                   </div>
                 </div>
               ))}
-              <div className="mt-4 flex justify-between border-t-2 border-black py-4">
-                <div className="text-xl">Total</div>
-                <div className="text-xl">{totalQuantity}</div>
-                <div className="text-xl">{totalAmount}</div>
-              </div>
-              <div className="mt-4 text-center">
-                <button className="button my-text pl-4 pr-4 ml-4" onClick={() => {
-                  navigate('/checkout');
-                  alert('Checked out successfully!');
-                }}>CheckOut</button>
-              </div>
-            </>
-          )}
+            </div>
+            <div>
+              <h2 className="text-lg font-semibold mb-2">Payment Method</h2>
+              {paymentMethods.map(method => (
+                <div key={method.id} className="mb-4">
+                  <label className="flex items-center cursor-pointer">
+                    <input
+                      type="radio"
+                      className="form-radio h-5 w-5 text-blue-600"
+                      name="paymentMethod"
+                      value={method.id}
+                      checked={selectedPaymentMethod === method.id}
+                      onChange={() => setSelectedPaymentMethod(method.id)}
+                    />
+                    <img src={method.logoUrl} alt={method.name} className="w-10 h-10 ml-2" />
+                  </label>
+                  {selectedPaymentMethod === method.id && method.requiresDetails && (
+                    <input
+                      type="text"
+                      placeholder={`Enter ${method.detailsLabel}`}
+                      className="mt-2 p-2 border border-gray-300 rounded-md w-full"
+                      value={paymentDetails}
+                      onChange={e => setPaymentDetails(e.target.value)}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        {/* Place Order Button */}
+        <div className="flex justify-end">
+          <button className="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 m-4 rounded" onClick={handleCheckout}>
+            Place Order
+          </button>
         </div>
       </div>
     </div>
-
-
-
-
   );
 };
 

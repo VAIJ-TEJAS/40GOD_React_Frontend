@@ -14,7 +14,7 @@
     font-size: 18px; /* Reduced font size */
     background: #0e0e0e;
     border-radius: 10px; /* Reduced border-radius */
-    padding: 10px 25px; /* Reduced padding */
+    padding:6px 25px; /* Reduced padding */
     border: none;
     transition: .5s ease;
     box-shadow: 0 15px 60px -5px rgba(0, 0, 0, .5);

@@ -9,18 +9,21 @@ import color from "../assets/logo.png"
 interface ImageData {
   id: number;
   url: string;
-  name: string;
+  name?: string;
   tagName?: string;
   quantity?: number;
+  price?: number;
 }
-
 
 interface ImageDetailsProps {
   addToBag: (item: ImageData) => void;
-  checkoutItems: ImageData[];
+  checkoutItems: ImageData[]; // Include checkoutItems in the interface
 }
 
-const ImageDetails: React.FC<ImageDetailsProps> = ({ addToBag }) => {
+
+const ImageDetails: React.FC<ImageDetailsProps> = ({  addToBag }) => {
+
+
 
   const { id } = useParams<{ id: string }>();
 
