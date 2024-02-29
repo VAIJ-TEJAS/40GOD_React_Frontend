@@ -13,9 +13,7 @@ const paymentMethods = [
   // Add more payment methods as needed
 ];
 
-interface ShippingInfoProps {
-  signUpData: SignUpForm | null;
-}
+
 
 interface SignUpForm {
   firstName: string;
@@ -45,8 +43,7 @@ const Checkout: React.FC<CheckoutProps> = ({ checkoutItems, addToHistory, userDa
   const [paymentDetails, setPaymentDetails] = useState<string>('');
   const navigate = useNavigate();
 
-  const totalQuantity = checkoutItems.reduce((acc, item) => acc + (item.quantity || 0), 0);
-  const totalAmount = checkoutItems.reduce((acc, item) => acc + (item.quantity ?? 0) * (item.price ?? 0), 0);
+  
 
   const handleCheckout = () => {
     if (selectedPaymentMethod === null) {

@@ -17,7 +17,7 @@ interface ImageData {
 
 interface ImageDetailsProps {
   addToBag: (item: ImageData) => void;
-  checkoutItems: ImageData[]; // Include checkoutItems in the interface
+  checkoutItems: ImageData[]; 
 }
 
 

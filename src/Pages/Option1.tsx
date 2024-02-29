@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import data from '../assets/data.json'; // Assuming data is imported correctly
+import data from '../assets/data.json'; 
 import bg2 from './../assets/background/b2.jpeg';
 import bg from '../assets/background/WhatsApp Image 2024-02-16 at 11.01.36 PM.jpeg';
 

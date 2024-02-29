@@ -21,10 +21,7 @@ interface ImageData {
   price?: number;
 }
 
-interface ImageDetailsProps {
-  addToBag: (item: ImageData) => void;
-  checkoutItems: ImageData[]; // Include checkoutItems in the interface
-}
+
 
 interface BagItem {
   id: number;
@@ -35,13 +32,6 @@ interface BagItem {
   price?: number;
 }
 
-interface CheckoutProps {
-  checkoutItems: ImageData[];
-}
-
-interface HistoryProps {
-  historyItems: ImageData[];
-}
 
 const App: React.FC = () => {
   const [bagItems, setBagItems] = useState<BagItem[]>([]);
