@@ -23,12 +23,12 @@ export const Home = () => {
       <div className="fixed inset-0 bg-black opacity-20">
         <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
       </div>
-      <div className="mt-40 p-24 ">
-        <div className="grid grid-cols-2 gap-20">
-          {newData.map((item) => (
+      <div className="mt-40 p-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+        {newData.map((item) => (
             <div
               key={item.id}
-              className="relative flex flex-col items-center justify-center  transition-transform duration-300 transform "
+              className="relative flex flex-col items-center justify-center transition-transform duration-300 transform"
               onMouseEnter={() => setHoveredId(item.id)}
               onMouseLeave={() => setHoveredId(null)}
               style={{ transform: hoveredId === item.id ? 'scale(1.05)' : 'scale(1)' }}
