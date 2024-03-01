@@ -3,7 +3,7 @@ function Footer() {
    
 
   return (
-    <footer className="fixed bottom-0 w-full z-50 text-center flex justify-between p-4  text-gray">
+    <footer className="relative bottom-0 w-full z-50 text-center flex justify-between p-4  text-gray">
     <div className="flex items-center space-x-4">
         <a href="#" className="hover:text-gray-400">Terms</a>
         <a href="#" className="hover:text-gray-400">Privacy</a>

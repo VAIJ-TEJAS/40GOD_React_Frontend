@@ -95,7 +95,7 @@ const Bag: React.FC<BagProps> = ({ bagItems = [] }) => {
           </div>
         )}
       </div>
-      <div className="flex item-center z-10 justify-center m-4">
+      <div className=" item-center z-10 justify-center m-4 ">
         <NavLink to="/">
           <button className="button my-text">Continue Shopping</button>
         </NavLink>

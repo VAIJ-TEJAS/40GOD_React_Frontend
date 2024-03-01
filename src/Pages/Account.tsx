@@ -3,10 +3,10 @@ import bg from '../assets/background/WhatsApp Image 2024-02-16 at 11.01.36 PM.jp
 
 export const Account = () => {
   const userProfile = {
-    firstName: 'Dheeraj',
-    lastName: 'Chingunde',
-    email: 'uchihaithachi340@gmail.com',
-    phone: '09890937685',
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
    
   };
 

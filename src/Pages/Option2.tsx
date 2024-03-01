@@ -24,11 +24,10 @@ const Option1: React.FC = () => {
       <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
     </div>
     <div className="w-full  inset-0 bg-black ">
-      <img src={bg2} alt='bg' className="w-full h-auto object-cover opacity-70 filter brightness-75" />
+      <img src={bg2} alt='bg' className="w-full h-full object-cover opacity-70 filter brightness-75" />
     </div>
-
-    <div className=" p-24 ">
-      <div className="grid grid-cols-2 gap-20">
+    <div className="mt-40 p-4 sm:p-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
         {newData.map((item) => (
           <div
             key={item.id}
@@ -37,7 +36,7 @@ const Option1: React.FC = () => {
             onMouseLeave={() => setHoveredId(null)}
             style={{ transform: hoveredId === item.id ? 'scale(1.05)' : 'scale(1)' }}
           >
-            <Link to={`/Option1/${item.id}`}>
+            <Link to={`/Option2/${item.id}`}>
               <img
                 src={item.url}
                 alt={`Image ${item.id}`}
@@ -46,7 +45,8 @@ const Option1: React.FC = () => {
               />
             </Link>
             <p className={`text-center my-text py-2 px-4 ${hoveredId !== item.id && 'invisible'}`}>
-              Name: {item.name}
+              Name: {item.name}<br/>
+                Price:   {item.price}
             </p>
           </div>
         ))}

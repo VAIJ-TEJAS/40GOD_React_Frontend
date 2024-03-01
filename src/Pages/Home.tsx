@@ -43,6 +43,8 @@ export const Home = () => {
               </Link>
               <p className={`text-center my-text py-2 px-4 ${hoveredId !== item.id && 'invisible'}`}>
                 Name: {item.name}
+                <br/>
+                Price:   {item.price}
               </p>
             </div>
           ))}

@@ -34,20 +34,20 @@ const NavBar: React.FC = () => {
                 <div className="ml-5 sm:ml-20">
                     <NavLink to="/">
                         {' '}
-                        <img className="w-24 sm:w-36 h-16 sm:h-25" src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 15px rgba(0, 0, 0, 1))' }} />
+                        <img className="w-24 sm:w-32 " src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 15px rgba(0, 0, 0, 1))' }} />
                     </NavLink>
                 </div>
-                <div className="space-x-4 ">
-                    <button className="my-text hidden sm:inline-block text-base sm:text-xl text-gray-700" onClick={openModal}>
+                <div className="space-x-6 ">
+                    <button className="my-text text-gray-700 hover:text-gray-400 font-bold hidden sm:inline-block text-base sm:text-xl text-gray-700" onClick={openModal}>
                         Login
                     </button>
-                    <NavLink className="my-text text-base sm:text-xl text-gray-700" to="/Bag">
-                        {' '}
-                        Bag{' '}
+                    <NavLink className="my-text font-bold text-gray-700 hover:text-gray-400 text-base sm:text-xl text-gray-700" to="/Bag">
+                       
+                        Bag
                     </NavLink>
-                    <NavLink className="my-text text-base sm:text-xl hidden sm:inline-block text-gray-700" to="/account">
-                        {' '}
-                        Accn{' '}
+                    <NavLink className="my-text text-gray-700 block hover:text-gray-400 font-bold sm:text-xl hidden sm:inline-block text-gray-700" to="/account">
+                       
+                        Accn
                     </NavLink>
                 </div>
             </nav>
