@@ -11,7 +11,7 @@ import Checkout from './Pages/checkout';
 import History from './Pages/history';
 import { Account } from './Pages/Account';
 import Footer from './Pages/footer';
-import  PrivacyPolicy  from './Pages/privacyPolicy';
+import PrivacyPolicy from './Pages/privacyPolicy';
 interface ImageData {
   id: number;
   url: string;
@@ -49,7 +49,6 @@ const App: React.FC = () => {
       setBagItems(prevBagItems => [...prevBagItems, { id: item.id, name: item.name, url: item.url, quantity: 1 }]);
     }
 
-    // Update checkoutItems state with the added item
     setCheckoutItems(prevCheckoutItems => [...prevCheckoutItems, item]);
   };
 
@@ -83,7 +82,6 @@ const App: React.FC = () => {
             path="/Bag"
             element={<Bag bagItems={bagItems.map(item => ({ id: item.id, name: item.name, url: item.url, tagName: '' }))} />}
           />
-          {/* Pass userData as prop to Checkout component */}
           <Route
             path="/checkout"
             element={<Checkout checkoutItems={checkoutItems} addToHistory={addToHistory} userData={{
@@ -98,7 +96,7 @@ const App: React.FC = () => {
           <Route path="/privacy" element={<PrivacyPolicy />} />
 
         </Routes>
-        <Footer/>
+        <Footer />
       </Router>
     </>
   );

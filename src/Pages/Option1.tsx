@@ -13,28 +13,25 @@ interface ImageData {
   price?: number;
 }
 
-
 const Option1: React.FC = () => {
   const newData = data.filter((item) => (item as ImageData).tagName === "new") as ImageData[];
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
     <div className="flex flex-col relative">
-
-
       <div className="fixed inset-0 bg-black opacity-20">
         <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
       </div>
-      <div className="w-full  inset-0 bg-black ">
+      <div className="w-full inset-0 bg-black ">
         <img src={bg2} alt='bg' className="w-full h-auto object-cover opacity-70 filter brightness-75" />
       </div>
 
-      <div className="mt-40 p-24 ">
-        <div className="grid grid-cols-2 gap-20">
+      <div className="mt-40 p-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
           {newData.map((item) => (
             <div
               key={item.id}
-              className="relative flex flex-col items-center justify-center  transition-transform duration-300 transform "
+              className="relative flex flex-col items-center justify-center transition-transform duration-300 transform"
               onMouseEnter={() => setHoveredId(item.id)}
               onMouseLeave={() => setHoveredId(null)}
               style={{ transform: hoveredId === item.id ? 'scale(1.05)' : 'scale(1)' }}
@@ -54,9 +51,7 @@ const Option1: React.FC = () => {
           ))}
         </div>
       </div>
-      </div>
-   
-
+    </div>
   );
 };
 
