@@ -42,10 +42,10 @@ const ImageDetails: React.FC<ImageDetailsProps> = ({  addToBag }) => {
   <div className="fixed flex z-0 justify-center inset-0 bg-black opacity-20">
   <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
   </div>
-  <div className="w-max  flex justify-center items-center z-10 ">
+  <div className="w-max   justify-center items-center z-10 ">
     {imageDetails && (
-    <div className="grid grid-cols-2 gap-4">
-  <div className="relative   flex items-center justify-center">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  <div className="relative  flex items-center justify-center">
   <Carousel image={imageDetails.url || ''} />
 </div>
 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import '../css/carousel.css'; // Import any necessary CSS files
+import '../css/carousel.css'; 
 
 interface CarouselProps {
-  image: string; // Define imageName prop as a string
+  image: string; 
 }
 
 const Carousel: React.FC<CarouselProps> = ({ image }) => {
