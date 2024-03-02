@@ -37,8 +37,8 @@ export const Home = () => {
                 <img
                   src={item.url}
                   alt={`Image ${item.id}`}
-                  style={{ width: '25rem', height: '25rem' }}
-                  className="object-cover rounded-lg"
+                 
+                  className="object-cover w-full rounded-lg"
                 />
               </Link>
               <p className={`text-center my-text py-2 px-4 ${hoveredId !== item.id && 'invisible'}`}>

@@ -11,9 +11,9 @@ export const Account = () => {
   };
 
   return (
-    <div className="flex ">
-      <div className="absolute inset-0 z-0">
-        <img src={bg} alt="bg" className="absolute inset-0 w-full h-full object-cover opacity-20 filter brightness-75" />
+<div className="flex flex-col min-h-screen">
+<div className="fixed z-5 inset-0 bg-black opacity-20">
+        <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
       </div>
       <div className="relative z-10 mt-40 p-24">
         <div className="flex justify-between items-center mb-8">

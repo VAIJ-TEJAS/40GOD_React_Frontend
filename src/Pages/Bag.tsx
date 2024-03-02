@@ -35,7 +35,7 @@ const Bag: React.FC<BagProps> = ({ bagItems = [] }) => {
   };
 
   return (
-    <div className="flex flex-col relative h-full justify-center items-center">
+    <div className="flex flex-col min-h-screen relative h-full justify-center items-center">
       <div className="fixed z-5 inset-0 bg-black opacity-20">
         <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
       </div>
