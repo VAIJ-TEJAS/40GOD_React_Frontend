@@ -1,7 +1,7 @@
 [
   { "tagName": "new", "id": 1, "url": "/products/p1.png", "price":2000, "name": "John" },
   { "tagName": "new", "id": 2, "url": "/products/p2.png", "price":2000,  "name": "Jane" },
-  { "tagName": "new", "id": 3, "url": "/products/p3.png", "price":2000,  "name": "Alice" },
+  { "tagName": "new", "id": 3, "url": "/products/p1.png", "price":2000,  "name": "Alice" },
   { "tagName": "new", "id": 4, "url": "/products/p4.png", "price":2000, "name": "Alice" },
   { "tagName": "new", "id": 5, "url": "/products/p5.png", "price":2000, "name": "Alice" },
   { "tagName": "new", "id": 6, "url": "/products/p6.png", "price":2000, "name": "Alice" },
@@ -10,7 +10,7 @@
   { "tagName": "dripped", "id": 8, "url": "/products/p8.png",   "price":3000,  "name": "Race" },
   { "tagName": "dripped", "id": 9, "url": "/products/p1.png",  "price":3000,  " name": "Racee" },
   { "tagName": "dripped", "id": 10, "url": "/products/p2.png", "price":3000,  "name": "Racee" },
-  { "tagName": "dripped", "id": 11, "url": "/products/p3.png", "price":3000,  "name": "Racee" },
+  { "tagName": "dripped", "id": 11, "url": "/products/p1.png", "price":3000,  "name": "Racee" },
   { "tagName": "dripped", "id": 12, "url": "/products/p4.png", "price":3000,  "name": "Racee" },
 
   { "id": 13, "url": "/products/p5.png", "name": "Jazy" , "price":4000 },

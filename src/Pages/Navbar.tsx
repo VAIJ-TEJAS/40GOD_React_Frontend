@@ -13,6 +13,10 @@ const NavBar: React.FC = () => {
     const toggleDropDown = () => {
         setIsOpen(!isOpen);
     };
+    const MtoggleDropDown = () => {
+        setIsOpen(true);
+    };
+    
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -28,7 +32,7 @@ const NavBar: React.FC = () => {
         <div>
             <nav className="fixed z-50 bg-transparent flex w-full justify-between p-3 sm:p-6">
                 <div className="relative flex items-center">
-                    <img src={logo} alt="Logo" onClick={toggleDropDown} className="slow-spin w-10 stop-spin sm:w-20 sm:h-20" style={{ filter: 'drop-shadow(0px 0px 20px rgba(0, 0, 0, 1))' }} />
+                    <img src={logo} alt="Logo" onMouseEnter={MtoggleDropDown} onClick={toggleDropDown} className="slow-spin w-10 stop-spin sm:w-20 sm:h-20" style={{ filter: 'drop-shadow(0px 0px 20px rgba(0, 0, 0, 1))' }} />
                     <img onClick={toggleDropDown} className="w-6 sm:w-10 h-6 sm:h-8 absolute z-0 ml-2 sm:ml-5" src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.5))' }} />
                 </div>
                 <div className="ml-5 sm:ml-20">
@@ -54,16 +58,34 @@ const NavBar: React.FC = () => {
             <div className={`fixed top-0 left-0 w-full h-full bg-black opacity-50 ${isModalOpen ? 'block' : 'hidden'}`} onClick={closeModal}></div>
 
             {isOpen && (
-                <div className="fixed z-10 mt-16 sm:mt-20 p-2 sm:p-3 pt-8 sm:pt-12">
-                    <NavLink to="/Option1" className="my-text text-gray-700 block font-bold text-base sm:text-xl hover:text-gray-400 py-1 sm:py-2">
-                        New
-                    </NavLink>
-                    <NavLink to="/Option2" className="my-text text-gray-700 block font-bold text-base sm:text-xl hover:text-gray-400 py-1 sm:py-2">
-                        Dripped
-                    </NavLink>
-                    <NavLink to="/Option3" className="my-text text-gray-700 block font-bold text-base sm:text-xl hover:text-gray-400 py-1 sm:py-2">
-                        All
-                    </NavLink>
+                <div 
+                className="fixed left-0 z-10 mt-16 sm:mt-20 p-2 sm:p-3 pt-8 sm:pt-12 rounded-md shadow-lg bg-trasparent ring-1 ring-black ring-opacity-5 divide-y divide-gray-100">
+                     <div
+          aria-orientation="vertical"
+          aria-labelledby="menu-button"
+        >
+          <NavLink
+            to="/Option1"
+            className="block px-4 py-2 my-text font-semibold text-lg  text-gray-700 hover:bg-gray-100 transition duration-300"
+            role="menuitem"
+          >
+            New
+          </NavLink>
+          <NavLink
+            to="/Option2"
+            className="block px-4 py-2 my-text font-semibold text-lg  text-gray-700 hover:bg-gray-100 transition duration-300"
+            role="menuitem"
+          >
+            Dripped
+          </NavLink>
+          <NavLink
+            to="/Option3"
+            className="block my-text font-semibold text-lg px-4 py-2  text-gray-700 hover:bg-gray-100 transition duration-300"
+            role="menuitem"
+          >
+            All
+          </NavLink>
+        </div>
                 </div>
             )}
             <Login isOpen={isModalOpen} onClose={closeModal} />

@@ -12,6 +12,7 @@ import History from './Pages/history';
 import { Account } from './Pages/Account';
 import Footer from './Pages/footer';
 import PrivacyPolicy from './Pages/privacyPolicy';
+import FortyGodTerms from './Pages/terms';
 interface ImageData {
   id: number;
   url: string;
@@ -94,6 +95,8 @@ const App: React.FC = () => {
           />
           <Route path="/history" element={<History historyItems={historyItems} />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<FortyGodTerms />} />
+
 
         </Routes>
         <Footer />

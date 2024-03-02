@@ -1,3 +1,6 @@
+import './../App.css';
+
+
 function Footer() {
 
    
@@ -5,15 +8,15 @@ function Footer() {
   return (
     <footer className="relative bottom-0 w-full z-50 text-center flex justify-between p-4  text-gray">
     <div className="flex items-center space-x-4">
-        <a href="#" className="hover:text-gray-400">Terms</a>
-        <a href="#" className="hover:text-gray-400">Privacy</a>
+        <a href="/terms" className="hover:text-gray-400 my-text">Terms</a>
+        <a href="/privacy" className="hover:text-gray-400 my-text">Privacy</a>
     </div>
     <div className="flex items-center space-x-4">
-        <a href="#" className="hover:text-gray-400">Socials</a>
+        <a href="#" className="hover:text-gray-400 my-text">Socials</a>
     </div>
     <div className="flex items-center">
-    <a href="#" className="hover:text-gray-400">General</a>
-    <a href="#" className="hover:text-gray-400">Contact</a>
+    <a href="/" className="hover:text-gray-400 my-text">General</a>
+    <a href="#" className="hover:text-gray-400 my-text">Contact</a>
     </div>
 </footer>
 
