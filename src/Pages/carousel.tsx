@@ -1,43 +1,38 @@
-import React, { useState } from 'react';
-import '../css/carousel.css'; 
+import React, { useState, useEffect } from 'react';
+import '../css/carousel.css'; // Assuming you have custom styles here
 
 interface CarouselProps {
-  image: string; 
+  images: { id: number; image: string; }[];
 }
 
-const Carousel: React.FC<CarouselProps> = ({ image }) => {
-  
-  const [isChecked, setIsChecked] = useState(true);
+const Carousel: React.FC<CarouselProps> = ({ images }) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide === images.length - 1 ? 0 : prevSlide + 1));
+    }, 5000); // Change slide every 5 seconds, adjust as needed
+
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  const handleSlideChange = (index: number) => {
+    setCurrentSlide(index);
   };
+
+  if (!images || !Array.isArray(images) || images.length === 0) {
+    return null; // or render a placeholder, or handle the case as needed
+  }
 
   return (
     <div>
-      <input type="radio" name="slider" id="item-1" checked={isChecked} onChange={handleCheckboxChange} />
-      <input type="radio" name="slider" id="item-2" checked={isChecked} onChange={handleCheckboxChange} />
-      <input type="radio" name="slider" id="item-3" checked={isChecked} onChange={handleCheckboxChange} />
-      <input type="radio" name="slider" id="item-4" checked={isChecked} onChange={handleCheckboxChange} />
-      <input type="radio" name="slider" id="item-5" checked={isChecked} onChange={handleCheckboxChange} />
-
       <div className="cards">
-        <label className="card" htmlFor="item-1" id="song-1">
-          <img src={image} alt="" />
-        </label>
-        <label className="card" htmlFor="item-2" id="song-2">
-          <img src={image} alt="" />
-        </label>
-        <label className="card" htmlFor="item-3" id="song-3">
-          <img src={image} alt="" />
-        </label>
-        <label className="card" htmlFor="item-4" id="song-4">
-          <img src={image} alt="" />
-        </label>
-        <label className="card" htmlFor="item-5" id="song-5">
-          <img src={image} alt="" />
-        </label>
-      
+        {images.map((image, index) => (
+          <label key={image.id} className="card" htmlFor={`item-${index + 1}`} id={`song-${index + 1}`}>
+            <input type="radio" name="slider" id={`item-${index + 1}`} checked={currentSlide === index} onChange={() => handleSlideChange(index)} />
+            <img src={image.image} alt="" />
+          </label>
+        ))}
       </div>
     </div>
   );

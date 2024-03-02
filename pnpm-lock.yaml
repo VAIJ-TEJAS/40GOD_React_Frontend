@@ -5,6 +5,12 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  pay:
+    specifier: ^0.0.1
+    version: 0.0.1
+  razor:
+    specifier: ^1.1.1
+    version: 1.1.1
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -1916,6 +1922,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /pay@0.0.1:
+    resolution: {integrity: sha512-zGpnmIyipoKM7hr3eeaRWiKLFgHgkLMWLUC0tW9lt7EjaMQkJznK/OV8wKAw4atnhqnyqo8XnJ7GsrwC/i6pkA==}
+    dev: false
+
   /picocolors@1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
     dev: true
@@ -2029,6 +2039,10 @@ packages:
   /queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
+
+  /razor@1.1.1:
+    resolution: {integrity: sha512-2D8Szv9Xt0dgtIM3AyyXhSIFHcABFgPqT5FTP7N/upIwtkRuntd0EMQYqqdBliXOAGSH7mShaBne7Z3uThdpQA==}
+    dev: false
 
   /react-dom@18.2.0(react@18.2.0):
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}

@@ -6,10 +6,9 @@ function Footer() {
    
 
   return (
-    <div>
-<div className='h-100'></div>
+    
 <footer className=" bottom-0 w-full z-50 text-center flex justify-between p-4 text-gray transition-all duration-300">
-    <div className="flex items-center space-x-4">
+    <div className=" z-20 flex items-center space-x-4">
         <a href="/terms" className="hover:text-gray-400 my-text">Terms</a>
         <a href="/privacy" className="hover:text-gray-400 my-text">Privacy</a>
     </div>
@@ -21,7 +20,7 @@ function Footer() {
         <a href="#" className="hover:text-gray-400 my-text">Contact</a>
     </div>
 </footer>
-</div>
+
 
 
   );

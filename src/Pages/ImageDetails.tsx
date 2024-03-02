@@ -24,7 +24,6 @@ const ImageDetails: React.FC<ImageDetailsProps> = ({  addToBag }) => {
 
 
 
-  const { id } = useParams<{ id: string }>();
 
   const imageDetails = data.find(item => item.id.toString() === id);
   console.log('Image Details:', imageDetails);
@@ -35,7 +34,17 @@ const ImageDetails: React.FC<ImageDetailsProps> = ({  addToBag }) => {
       console.log('Added to bag:', imageDetails);
     }
   };
- 
+  const { id } = useParams<{ id?: string }>(); // Add a question mark to make id optional
+
+  if (!id) {
+    return <div>No ID provided</div>; // Handle the case where id is not provided
+  }
+
+  const product = data.find(product => product.id === parseInt(id));
+
+  if (!product) {
+    return <div>Product not found</div>;
+  }
   return (
  
 <div className="h-screen relative flex justify-center items-center">
@@ -46,13 +55,21 @@ const ImageDetails: React.FC<ImageDetailsProps> = ({  addToBag }) => {
     {imageDetails && (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
   <div className="relative  flex items-center justify-center">
-  <Carousel image={imageDetails.url || ''} />
+  {/* <Carousel image={imageDetails.url || ''} /> */}
+  <div>
+        {product.colors.map(color => (
+          <div key={color.id}>
+            <h3>{color.display_name}</h3>
+            <img src={color.image_product[0].image} alt={color.display_name} />
+          </div>
+        ))}
+      </div>
 </div>
 
 
 
     <div className="font-bold my-text sm:w-1/2">
-      <h1 className="text-2xl mb-4">{imageDetails.name}</h1>
+      <h1 className="text-2xl mb-4">{product.name}</h1>
       <div className="flex gap-2">
         <button className="w-10 h-10 text-center rounded-full bg-gray-500 text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center">S</button>
         <button className="w-10 h-10 text-center rounded-full bg-gray-500 text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center">M</button>
@@ -67,11 +84,13 @@ const ImageDetails: React.FC<ImageDetailsProps> = ({  addToBag }) => {
       </div>
       <div className="w-68">
         <ul className="list-disc">
-          <li>Paragraphs are the building blocks of papers.</li>
-          <li>Many students define paragraphs in terms of length: a paragraph is a group of page long, etc.</li>
-          <li>In reality, though, the unity and coherence of ideas among sentences are what constitute a paragraph.</li>
+          <li> {product.description}.</li>
+          <li> {product.description}</li>
+          <li> {product.description}</li>
         </ul>
-        <p className='font-semibold my-text mt-4 sm:w-1/2'>{imageDetails.tagName}</p>
+        <p className='font-semibold my-text mt-4 sm:w-1/2'>{product.price}</p>
+        <p className='font-semibold my-text mt-4 sm:w-1/2'>{product.category}</p>
+
       </div>
       <div className="hidden sm:inline-block mt-4">
         <button className="button my-text" onClick={handleAddToBag}>Add to Bag</button>
