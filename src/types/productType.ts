@@ -3,12 +3,14 @@ export interface Product {
     sku?: string;
     name?: string;
     description?: string;
-    price?: string;
+   price:string;
     category?: number;
     similar_products?: any[]; 
     colors?: Color[];
     tags?: Tag[];
     quantity?:number;
+    url?:string;
+    size?:string;
    }
 
 export interface Color {

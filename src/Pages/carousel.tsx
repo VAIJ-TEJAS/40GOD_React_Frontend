@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../css/carousel.css'; // Assuming you have custom styles here
+import '../css/carousel.css'; 
 
 interface CarouselProps {
   images: { id: number; image: string; }[];
@@ -11,7 +11,7 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide === images.length - 1 ? 0 : prevSlide + 1));
-    }, 5000); // Change slide every 5 seconds, adjust as needed
+    }, 5000); 
 
     return () => clearInterval(interval);
   }, [images.length]);
@@ -21,7 +21,7 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
   };
 
   if (!images || !Array.isArray(images) || images.length === 0) {
-    return null; // or render a placeholder, or handle the case as needed
+    return null;
   }
 
   return (

@@ -16,7 +16,7 @@ const NavBar: React.FC = () => {
     const MtoggleDropDown = () => {
         setIsOpen(true);
     };
-    
+
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -46,11 +46,11 @@ const NavBar: React.FC = () => {
                         Login
                     </button>
                     <NavLink className="my-text font-bold text-gray-700 hover:text-gray-400 text-base sm:text-xl text-gray-700" to="/Bag">
-                       
+
                         Bag
                     </NavLink>
                     <NavLink className="my-text text-gray-700 block hover:text-gray-400 font-bold sm:text-xl hidden sm:inline-block text-gray-700" to="/account">
-                       
+
                         Accn
                     </NavLink>
                 </div>
@@ -58,34 +58,34 @@ const NavBar: React.FC = () => {
             <div className={`fixed top-0 left-0 w-full h-full bg-black opacity-50 ${isModalOpen ? 'block' : 'hidden'}`} onClick={closeModal}></div>
 
             {isOpen && (
-                <div 
-                className="fixed left-0 z-10 mt-16 sm:mt-20 p-2 sm:p-3 pt-8 sm:pt-12 rounded-md shadow-lg bg-trasparent ring-1 ring-black ring-opacity-5 divide-y divide-gray-100">
-                     <div
-          aria-orientation="vertical"
-          aria-labelledby="menu-button"
-        >
-          <NavLink
-            to="/Option1"
-            className="block px-4 py-2 my-text font-semibold text-lg  text-gray-700 hover:bg-gray-100 transition duration-300"
-            role="menuitem"
-          >
-            New
-          </NavLink>
-          <NavLink
-            to="/Option2"
-            className="block px-4 py-2 my-text font-semibold text-lg  text-gray-700 hover:bg-gray-100 transition duration-300"
-            role="menuitem"
-          >
-            Dripped
-          </NavLink>
-          <NavLink
-            to="/Option3"
-            className="block my-text font-semibold text-lg px-4 py-2  text-gray-700 hover:bg-gray-100 transition duration-300"
-            role="menuitem"
-          >
-            All
-          </NavLink>
-        </div>
+                <div
+                    className="fixed left-0 z-10 mt-16 sm:mt-20 p-2 sm:p-3 pt-8 sm:pt-12 rounded-md shadow-lg bg-trasparent ring-1 ring-black ring-opacity-5 divide-y divide-gray-100">
+                    <div
+                        aria-orientation="vertical"
+                        aria-labelledby="menu-button"
+                    >
+                        <NavLink
+                            to="/Option1"
+                            className="block px-4 py-2 my-text font-semibold text-lg  text-gray-700 hover:bg-gray-100 transition duration-300"
+                            role="menuitem"
+                        >
+                            New
+                        </NavLink>
+                        <NavLink
+                            to="/Option2"
+                            className="block px-4 py-2 my-text font-semibold text-lg  text-gray-700 hover:bg-gray-100 transition duration-300"
+                            role="menuitem"
+                        >
+                            Dripped
+                        </NavLink>
+                        <NavLink
+                            to="/Option3"
+                            className="block my-text font-semibold text-lg px-4 py-2  text-gray-700 hover:bg-gray-100 transition duration-300"
+                            role="menuitem"
+                        >
+                            All
+                        </NavLink>
+                    </div>
                 </div>
             )}
             <Login isOpen={isModalOpen} onClose={closeModal} />

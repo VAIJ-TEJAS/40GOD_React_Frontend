@@ -1,105 +1,100 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import './../css/Button.css';
-import { Link } from 'react-router-dom';
-import bg from '../assets/background/WhatsApp Image 2024-02-16 at 11.01.36 PM.jpeg';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-interface ImageData {
+interface ColorData {
   id: number;
-  url: string;
-  name?: string;
-  tagName?: string;
-  quantity?: number;
-  price?: number;
+  display_name: string;
+  color_name: string;
+  hex_code: string;
+  image_product: { id: number; image: string }[];
+}
+
+interface SizeData {
+  id: number;
+  text: string;
+}
+
+interface ProductVariant {
+  id: number;
+  color: ColorData;
+  size: SizeData;
+  quantity: number;
+}
+
+interface CartItem {
+  id: number;
+  product_varient: ProductVariant; 
+  quantity: number;
 }
 
 interface BagProps {
-  bagItems?: ImageData[];
+  bagItems?: CartItem[];
 }
 
 const Bag: React.FC<BagProps> = ({ bagItems = [] }) => {
-  const [itemCounts, setItemCounts] = useState<{ [key: number]: number }>({});
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const handleIncrement = (itemId: number) => {
-    setItemCounts(prevCounts => ({
-      ...prevCounts,
-      [itemId]: (prevCounts[itemId] || 0) + 1,
-    }));
-  };
+  useEffect(() => {
+    const token = localStorage.getItem('token');
 
-  const handleDecrement = (itemId: number) => {
-    setItemCounts(prevCounts => ({
-      ...prevCounts,
-      [itemId]: Math.max((prevCounts[itemId] || 0) - 1, 0),
-    }));
+    if (token) {
+      axios
+        .get('http://13.235.104.232:8000/cart-items/', {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Token ${token}`,
+          },
+        })
+        .then((response) => {
+          console.log('Cart Items:', response.data);
+          setCartItems(response.data); 
+        })
+        .catch((error) => {
+          console.error('Error fetching cart items:', error);
+        });
+    }
+  }, []);
+
+  const handleDelete = (itemId: number) => {
+    const token = localStorage.getItem('token');
+  
+    if (token) {
+      axios
+        .delete(`http://13.235.104.232:8000/cart-items/${itemId}/`, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Token ${token}`,
+          },
+        })
+        .then(() => {
+          console.log('Item deleted:', itemId);
+          // Update cart items after deletion
+          setCartItems(cartItems.filter(item => item.id !== itemId));
+        })
+        .catch((error) => {
+          console.error('Error deleting item:', error);
+        });
+    }
   };
+  
+  
+  
 
   return (
-    <div className="flex flex-col min-h-screen relative h-full justify-center items-center">
-      <div className="fixed z-5 inset-0 bg-black opacity-20">
-        <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
-      </div>
-      <div className="flex h-full z-10 item-center justify-center mt-40">
-        {bagItems.length === 0 ? (
-          <p>Your bag is empty.</p>
-        ) : (
-          <div>
-            {bagItems.map((item, index) => (
-              <div className="flex" key={index}>
-                <div className="w-full mr-4">
-                  <div className="grid grid-cols-5 grid-rows-1 gap-4 mt-40">
-                    <div className=" p-4 text-center">
-                      <img src={item.url} alt={`Image ${item.id}`} />
-                    </div>
-                    <div className=" p-4 text-center"><p>{item.name}</p></div>
-                    <div className=" p-4 text-center"><p>color</p></div>
-                    <div className=" p-4 text-center">
-                      <button onClick={() => handleDecrement(item.id)}>-</button>
-                      <span className="mx-2">{itemCounts[item.id] || 1}</span>
-                      <button onClick={() => handleIncrement(item.id)}>+</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-        {bagItems.length > 0 && (
-          <div>
-            <div className="w-full mt-40  mr-4">
-              <div className="bg-gray-300 p-6 text-center">
-                {bagItems.map((item, index) => (
-                  <div className="flex" key={index}>
-                    <div className="grid grid-cols-4 grid-rows-1 gap-4 ">
-                      <div className="text-center"><p>{item.name}</p></div>
-                      <div className="text-center"><p>color</p></div>
-                      <div className="text-center">
-                        <button onClick={() => handleDecrement(item.id)}>-</button>
-                        <span className="mx-2">{itemCounts[item.id] || 0}</span>
-                        <button onClick={() => handleIncrement(item.id)}>+</button>
-                      </div>
-                      <div className="text-center"><p>Amount</p></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="grid grid-cols-4 grid-rows-1 gap-4 border border-black">
-                <h1>Total</h1><div></div><>quantity</> <h1>Amount</h1>
-              </div>
-              <div className="flex item-center justify-center mt-4">
-                <Link to="/checkout">
-                  <button className="button my-text pl-40 pr-40">Checkout</button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-      <div className=" item-center z-10 justify-center m-4 ">
-        <NavLink to="/">
-          <button className="button my-text">Continue Shopping</button>
-        </NavLink>
-      </div>
+    <div>
+      {cartItems.map((item) => (
+        <div key={item.id}>
+          {item.product_varient && item.product_varient.color && (
+            <img src={item.product_varient.color.image_product[0].image} alt={item.product_varient.color.display_name} />
+          )}
+          <p>Color: {item.product_varient && item.product_varient.color && item.product_varient.color.display_name}</p>
+          <p>Color Name: {item.product_varient && item.product_varient.color && item.product_varient.color.color_name}</p>
+          <p>Hex Code: {item.product_varient && item.product_varient.color && item.product_varient.color.hex_code}</p>
+          <p>Size: {item.product_varient && item.product_varient.size && item.product_varient.size.text}</p>
+          <p>Quantity: {item.quantity}</p>
+          <button onClick={() => handleDelete(item.id)}>Delete</button>
+        </div>
+      ))}
     </div>
   );
 };

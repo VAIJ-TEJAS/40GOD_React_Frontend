@@ -13,6 +13,7 @@ import { Account } from './Pages/Account';
 import Footer from './Pages/footer';
 import PrivacyPolicy from './Pages/privacyPolicy';
 import FortyGodTerms from './Pages/terms';
+import MyComponent from './Pages/MyComponent';
 interface ImageData {
   id: number;
   url: string;
@@ -31,6 +32,7 @@ interface BagItem {
   name?: string;
   quantity: number;
   price?: number;
+  color: string;
 }
 
 
@@ -81,7 +83,7 @@ const App: React.FC = () => {
           />
           <Route
             path="/Bag"
-            element={<Bag bagItems={bagItems.map(item => ({ id: item.id, name: item.name, url: item.url, tagName: '' }))} />}
+            element={<Bag bagItems={bagItems.map(item => ({ id: item.id, name: item.name,price: item.price, color: item.color, url: item.url, tagName: '' }))} />}
           />
           <Route
             path="/checkout"
@@ -96,6 +98,7 @@ const App: React.FC = () => {
           <Route path="/history" element={<History historyItems={historyItems} />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<FortyGodTerms />} />
+          <Route path="/com" element={<MyComponent />} />
 
 
         </Routes>

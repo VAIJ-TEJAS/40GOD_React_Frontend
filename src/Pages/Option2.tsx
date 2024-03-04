@@ -1,15 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import data from '../assets/data.json'; 
 import bg2 from './../assets/background/b2.jpeg';
 import bg from '../assets/background/WhatsApp Image 2024-02-16 at 11.01.36 PM.jpeg';
 import { Product } from '../types/productType'; // Import Product type from your type file
-
+import axios from 'axios'
 const option2: React.FC = () => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [products, setProducts] = useState<Product[]>([]);
 
-  // Filter data based on tag name "New" and get the top 4 images
-  const newData: Product[] = data.filter((product: Product) =>
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://13.235.104.232:8000/product/');
+        setProducts(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const newData: Product[] = products.filter((product: Product) =>
     product.tags?.some(tag => tag.text === "Dripped")
   )
 
@@ -27,7 +39,7 @@ const option2: React.FC = () => {
             <div key={product.id}>
               {product.colors && product.colors.map((color) => (
                 <div key={color.id}>
-                  {color.image_product?.[0] && ( // Use optional chaining to check if image_product is defined and not empty
+                  {color.image_product?.[0] && (
                     <div
                       key={color.image_product[0].id}
                       className="relative flex flex-col items-center justify-center transition-transform duration-300 transform"
@@ -35,7 +47,7 @@ const option2: React.FC = () => {
                       onMouseLeave={() => setHoveredId(null)}
                       style={{ transform: hoveredId === color.image_product[0].id ? 'scale(1.05)' : 'scale(1)' }}
                     >
-                      <Link to={`/option2/${color.image_product[0].id}`}>
+                      <Link to={`/option2/${product.id}`}>
                         <img
                           src={color.image_product[0].image}
                           alt={`Image ${color.image_product[0].id}`}
@@ -44,7 +56,7 @@ const option2: React.FC = () => {
                       </Link>
                       <p className={`text-center my-text py-2 px-4 ${hoveredId !== color.image_product[0].id && 'invisible'}`}>
                         Name: {product.name}
-                        <br/>
+                        <br />
                         Price: {product.price}
                       </p>
                     </div>

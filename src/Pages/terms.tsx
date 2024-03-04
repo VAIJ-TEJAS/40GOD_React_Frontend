@@ -11,7 +11,7 @@ function FortyGodTerms() {
       <h1 className="text-2xl font-bold mb-4">Terms and Conditions</h1>
       <p className="text-lg font-bold mb-4">Last Revised on March 1 ,2024</p>
       
-      {/* Terms content */}
+     
       <div className="text-sm">
         <p>These Terms and Conditions (these “Terms”) apply to use access and use of the website, www.40god.com (the “Website”), operated on behalf of 40.GOD LLC (“Company”, “we” or “us”), and together with any online content, tools, features and functionality offered on or through our Website (the “Services”).</p>
 
@@ -41,7 +41,7 @@ function FortyGodTerms() {
                     <p>The Services may permit you to purchase certain physical products through the Services, (“Offerings”). You acknowledge and agree that all information you provide with regards to a purchase of Offerings, including, without limitation, credit card or other payment information, is accurate, current and complete. You represent and warrant that you have the legal right to use the payment method you provide to us or our payment processor, including, without limitation, any credit card you provide when completing a transaction. We reserve the right, with or without prior notice and in our sole and complete discretion, to (a) discontinue, modify, or limit the available quantity of, any Offerings, and (b) refuse to allow any user to purchase any Offering or deliver such Offerings to a user or a user designated address. When you purchase Offerings, you (a) agree to pay the price for such Offerings as set forth in the applicable Service, and all shipping and handling charges and all applicable taxes in connection with your purchase (the “Full Purchase Amount”), and (b) authorize us to charge your credit card or other payment method for the Full Purchase Amount. Unless otherwise noted, all currency references are in U.S. Dollars. All fees and charges are payable in accordance with payment terms in effect at the time the fee or the charge becomes payable. Payment can be made by credit card, debit card or other means that we may make available. Orders will not be processed until payment has been received in full, and any holds on your account by any payment processor are solely your responsibility.</p>
                 </div>
 
-                {/* Add more content sections here */}
+               
                 <div className="mb-4">
                     <h3 className="text-lg font-semibold mb-2">3.2. Promotional Codes</h3>
                     <p>We may offer certain promotional codes, referral codes, discount codes, coupon codes or similar offers (“Promotional Codes”) that may be redeemed for discounts on future Offerings, or other features or benefits related to the Services, subject to any additional terms that the Company establishes. You agree that Promotional Codes: (a) must be used in a lawful manner; (b) must be used for the intended audience and purpose; (c) may not be duplicated, sold or transferred in any manner, or made available by you to the general public (whether posted to a public forum, coupon collecting service, or otherwise), unless expressly permitted by the Company; (d) may be disabled or have additional conditions applied to them by the Company at any time for any reason without liability to the Company; (e) may only be used pursuant to the specific terms that the Company establishes for such Promotional Code; (f) are not valid for cash or other credits or points; and (g) may expire prior to your use.</p>
@@ -52,7 +52,7 @@ function FortyGodTerms() {
                     <p>We try to be as accurate as we can in our descriptions and display of the Offerings. However, we do not warrant or guarantee that Offering descriptions are accurate, complete, reliable, current, or error-free. The particular settings and technical specifications of your viewing device could affect the accuracy of its display of the Offerings and their colors. Any information regarding sizing and measurements are not exact and are provided for convenience only. If an Offering is not as described on the Services, your sole remedy is to return it in an unused condition.</p>
                 </div>
                 
-                {/* Add more content sections here */}
+              
                 
             </section>
             <section className="mb-8">

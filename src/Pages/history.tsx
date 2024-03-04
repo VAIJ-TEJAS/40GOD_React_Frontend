@@ -29,8 +29,8 @@ const History: React.FC<HistoryProps> = ({ historyItems }) => {
                     <img src={item.url} alt={`Image ${item.id}`} className="max-h-24 max-w-full" />
                   </div>
                   <div className="bg-gray-300 p-4 text-center flex items-center justify-center">{item.name}</div>
-                  <div className="bg-gray-300 p-4 text-center flex items-center justify-center">Color</div>
-                  <div className="bg-gray-300 p-4 text-center flex items-center justify-center">Color</div>
+                  <div className="bg-gray-300 p-10 text-center items-center justify-center"><p>Quatity-1</p><p>   </p>Navy-Blue</div>
+                  <div className="bg-gray-300 p-4 text-center flex items-center justify-center"><p>Price-10000</p></div>
                 </div>
               </div>
             </div>

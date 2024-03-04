@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ShippingInfo from './shippingInfo'; // Corrected import statement
+import ShippingInfo from './shippingInfo'; 
 import bg from '../assets/background/WhatsApp Image 2024-02-16 at 11.01.36 PM.jpeg';
 import b4 from '../assets/background/b4.jpeg';
 
-// Define payment methods with logos and additional details
+
 const paymentMethods = [
   { id: 1, name: 'Credit Card', logoUrl: 'credit-card-logo.png', requiresDetails: true, detailsLabel: 'Card Number' },
   { id: 2, name: 'Debit Card', logoUrl: 'debit-card-logo.png', requiresDetails: true, detailsLabel: 'Card Number' },
   { id: 3, name: 'Net Banking', logoUrl: 'net-banking-logo.png', requiresDetails: true, detailsLabel: 'Bank Name' },
   { id: 4, name: 'UPI', logoUrl: 'upi-logo.png', requiresDetails: true, detailsLabel: 'UPI ID' },
-  // Add more payment methods as needed
+
 ];
 
 
 
 interface SignUpForm {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  phoneNumber: string;
+  id: number;
+  first_name: string;
+  last_name: string;
+  username: string;
+  email:string;
 }
 
 interface ImageData {                              
@@ -32,10 +32,11 @@ interface ImageData {
   price?: number;
 }
 
+
 interface CheckoutProps {
   checkoutItems: ImageData[];
   addToHistory: (item: ImageData) => void;
-  userData: SignUpForm; // Define userData prop here
+  userData: SignUpForm;
 }
 
 const Checkout: React.FC<CheckoutProps> = ({ checkoutItems, addToHistory, userData }) => {
@@ -64,18 +65,18 @@ const Checkout: React.FC<CheckoutProps> = ({ checkoutItems, addToHistory, userDa
   };
 
   return (
-    <div className="container mx-auto px-4"> {/* Added px-4 for padding on the left and right */}
+    <div className="flex flex-col min-h-screen relative h-full justify-center items-center"> {/* Added px-4 for padding on the left and right */}
       <div className="fixed inset-0 bg-black opacity-20 z-0">
         <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
       </div>
-      <div className='mt-36 relative z-10'>
+      <div className='mt-36  relative z-10'>
         <div className="my-8 w-full">
           <h1 className="text-2xl font-semibold">Checkout</h1>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
         
-          <ShippingInfo signUpData={userData} />
+        <ShippingInfo signUpData={{ token: "yourTokenHere", user: userData }} />
 
        
           <div className="p-4 rounded-lg shadow-md" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${b4})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
@@ -89,12 +90,22 @@ const Checkout: React.FC<CheckoutProps> = ({ checkoutItems, addToHistory, userDa
                     <img src={item.url} alt="img" className="w-16 h-auto mr-4 shadow-md" />
                     <div>
                       <p>{item.name}</p>
-                      <p className="text-gray-500">color</p>
+                      <p className="text-gray-500">Navy blue</p>
+                    </div>
+                    <div className='ml-9'>
+                      
+                      <p className="text-gray-500">Description about jeans</p>
+                    </div>
+                    <div className='ml-9'>
+                      <p>size:M</p>
+                      <p className="text-gray-500">{item.quantity}</p>
+                    </div>
+                    <div className='ml-9'>
+                      <p>Amount to be paid</p>
+                      <p className="text-gray-500">10000</p>
                     </div>
                   </div>
-                  <div>
-                    <p>{item.quantity}</p>
-                  </div>
+                 
                 </div>
               ))}
             </div>
@@ -127,7 +138,7 @@ const Checkout: React.FC<CheckoutProps> = ({ checkoutItems, addToHistory, userDa
             </div>
           </div>
         </div>
-        {/* Place Order Button */}
+     
         <div className="flex justify-end">
           <button className="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 m-4 rounded" onClick={handleCheckout}>
             Place Order
