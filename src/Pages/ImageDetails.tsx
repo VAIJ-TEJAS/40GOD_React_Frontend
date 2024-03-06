@@ -119,26 +119,26 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
 
 
   return (
-    <div className="flex flex-col min-h-screen relative h-full justify-center items-center">
-      <div className="fixed flex z-0 justify-center inset-0 bg-black opacity-20">
+    <div className="flex flex-col relative  ">
+      <div className="fixed  inset-0 bg-black opacity-20">
         <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
       </div>
-      <div className="w-max mt-60 p-8 justify-center items-center z-10 ">
+      <div className=" mt-60 sm:p-8  z-10 ">
         {imageDetails && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-20 w-screen">
-            <div className="relative  flex items-center justify-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-20 w-screen">
+            <div className="flex items-center justify-center">
               <div>
                 {product.colors?.map(color => (
                   <div key={color.id}>
                     {color.image_product && color.image_product.length > 0 && color.image_product[0]?.image && (
-                      <img className='w-100' src={color.image_product[0].image} alt={color.display_name} />
+                      <img src={color.image_product[0].image} alt={color.display_name} />
                     )}
                   </div>
                 ))}
 
               </div>
             </div>
-            <div className="font-bold my-text w-screen ml-5 mt-12  " >
+            <div className="font-bold my-text w-screen sm:ml-5 mt-12  " >
               <h1 className="text-2xl mb-4">Name : {product.name}</h1>
               <div>
                 {product.colors?.map(color => (
