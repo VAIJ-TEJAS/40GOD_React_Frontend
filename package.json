@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/axios": "^0.14.0",
     "pay": "^0.0.1",
     "razor": "^1.1.1",
     "react": "^18.2.0",

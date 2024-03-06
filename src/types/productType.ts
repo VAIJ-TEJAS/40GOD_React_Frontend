@@ -5,7 +5,7 @@ export interface Product {
     description?: string;
    price:string;
     category?: number;
-    similar_products?: any[]; 
+    similar_products?: []; 
     colors?: Color[];
     tags?: Tag[];
     quantity?:number;
