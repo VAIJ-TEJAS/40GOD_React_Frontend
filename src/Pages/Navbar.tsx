@@ -5,7 +5,7 @@ import logo from './../assets/ring.png';
 import god from './../assets/logo1.png';
 import './../App.css';
 import Login from './Modal';
-
+import Logo from'../components/logo';
 const NavBar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,16 +31,14 @@ const NavBar: React.FC = () => {
     return (
         <div>
             <nav className="fixed z-50 bg-transparent flex w-full justify-between p-3 sm:p-6">
-                <div className="relative flex items-center">
-                    <img src={logo} alt="Logo" onMouseEnter={MtoggleDropDown} onClick={toggleDropDown} className="slow-spin w-10 stop-spin sm:w-20 sm:h-20" style={{ filter: 'drop-shadow(0px 0px 20px rgba(0, 0, 0, 1))' }} />
-                    <img onClick={toggleDropDown} className="w-6 sm:w-10 h-6 sm:h-8 absolute z-0 ml-2 sm:ml-5" src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.5))' }} />
+                <div className="relative flex items-center mb-60 ">
+                <img onClick={toggleDropDown} className="w-6 sm:w-10 h-6 sm:h-8 z-0 ml-2 sm:ml-5" src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 6px rgba(0, 0, 0, 1))' }} />
                 </div>
-                <div className="ml-5 sm:ml-20">
-                    <NavLink to="/">
-                        {' '}
-                        <img className="w-24 sm:w-32 " src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 15px rgba(0, 0, 0, 1))' }} />
-                    </NavLink>
-                </div>
+               <div>
+                 <Logo />
+               </div>
+                 
+              
                 <div className="space-x-6 ">
                     <button className="my-text text-gray-700 hover:text-gray-400 font-bold hidden sm:inline-block text-base sm:text-xl text-gray-700" onClick={openModal}>
                         Login
@@ -59,7 +57,7 @@ const NavBar: React.FC = () => {
 
             {isOpen && (
                 <div
-                    className="fixed left-0 z-10 mt-16 sm:mt-20 p-2 sm:p-3 pt-8 sm:pt-12 rounded-md shadow-lg bg-trasparent ring-1 ring-black ring-opacity-5 divide-y divide-gray-100">
+                    className="fixed left-0 z-50 mt-16 sm:mt-20 p-2 sm:p-3 pt-8 sm:pt-12 rounded-md shadow-lg bg-trasparent ring-1 ring-black ring-opacity-5 divide-y divide-gray-100">
                     <div
                         aria-orientation="vertical"
                         aria-labelledby="menu-button"

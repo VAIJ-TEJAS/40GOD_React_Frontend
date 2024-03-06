@@ -21,8 +21,11 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     useEffect(() => {
 
         const token = localStorage.getItem('token');
-        if (token) {
+        const userJson = localStorage.getItem('user');
 
+        if (token) {
+            const user = JSON.parse(userJson!);
+            console.log(user);
             console.log('User is already logged in with token:', token);
         }
     }, []);

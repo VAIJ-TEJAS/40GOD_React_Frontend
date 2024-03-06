@@ -55,11 +55,23 @@ const ImageDetails: React.FC<ImageDetailsProps> = ({ addToBag }) => {
   }
 
   const imageDetails = products.find(item => item?.id?.toString() === id) || null;
-
+  const varient = product.id;
   console.log('Image Details:', imageDetails);
-
   const handleAddToBag = async () => {
-    if (imageDetails && imageDetails.colors && imageDetails.colors.length > 0) {
+    try {
+      const token = localStorage.getItem('token');
+      const imageDetails = products.find(item => item?.id?.toString() === id);
+
+      if (!imageDetails) {
+        console.error("Image details not found.");
+        return;
+      }
+
+      if (!imageDetails.colors || imageDetails.colors.length === 0) {
+        console.error("No colors found for this product.");
+        return;
+      }
+
       const firstColor = imageDetails.colors[0];
 
       if (!firstColor || !firstColor.image_product || firstColor.image_product.length === 0) {
@@ -68,41 +80,37 @@ const ImageDetails: React.FC<ImageDetailsProps> = ({ addToBag }) => {
       }
 
       const imageProduct = firstColor.image_product[0];
-      const imageUrl = imageProduct?.image;
 
-      if (!imageUrl) {
-        console.error("Image URL not found.");
+      // Check if imageProduct is defined before accessing its properties
+      if (!imageProduct || !imageProduct.image) {
+        console.error("Image product or image URL not found for the first color.");
         return;
       }
 
+      const imageUrl = imageProduct.image;
       const numericPrice = parseFloat(imageDetails.price || "0"); // Convert price string to number
       const productWithQuantity = {
-        product_varient: 1, // Assuming 1 is the primary key value of the product variant
+        product_varient: product.id,
         quantity: 1
       };
 
+      const response = await fetch('http://13.235.104.232:8000/cart-items/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${token}`
+        },
+        body: JSON.stringify(productWithQuantity)
+      });
 
-
-      try {
-        const token = localStorage.getItem('token');
-        const response = await fetch('http://13.235.104.232:8000/cart-items/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Token ${token}`
-          },
-          body: JSON.stringify(productWithQuantity)
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to add item to bag');
-        }
-
-        const data = await response.json();
-        console.log('Added to bag:', data); 
-      } catch (error) {
-        console.error('Error adding item to bag:', error);
+      if (!response.ok) {
+        throw new Error('Failed to add item to bag');
       }
+
+      const data = await response.json();
+      console.log('Added to bag:', data);
+    } catch (error) {
+      console.error('Error adding item to bag:', error);
     }
   };
 
@@ -117,7 +125,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = ({ addToBag }) => {
       <div className="fixed flex z-0 justify-center inset-0 bg-black opacity-20">
         <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
       </div>
-      <div className="w-max mt-40 p-8 justify-center items-center z-10 ">
+      <div className="w-max mt-60 p-8 justify-center items-center z-10 ">
         {imageDetails && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-20 w-screen">
             <div className="relative  flex items-center justify-center">

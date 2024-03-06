@@ -9,7 +9,7 @@ import Bag from './Pages/Bag';
 import ImageDetails from './Pages/ImageDetails';
 import Checkout from './Pages/checkout';
 import History from './Pages/history';
-import { Account } from './Pages/Account';
+import Account  from './Pages/Account';
 import Footer from './Pages/footer';
 import PrivacyPolicy from './Pages/privacyPolicy';
 import FortyGodTerms from './Pages/terms';
@@ -52,6 +52,7 @@ const App: React.FC = () => {
       setBagItems(prevBagItems => [...prevBagItems, { id: item.id, name: item.name, url: item.url, quantity: 1 }]);
     }
 
+    
     setCheckoutItems(prevCheckoutItems => [...prevCheckoutItems, item]);
   };
 

@@ -4,7 +4,7 @@
   }
   
   .slow-spin {
-    animation: spin 10s linear infinite; 
+    animation: spin 30s linear infinite; 
   }
 
   .stop-spin:hover {
@@ -25,3 +25,21 @@
   .body{
     min-height: 100%;
   }
+
+  @keyframes pump {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .pump {
+    animation: pump 4s infinite;
+  }
+  
+  

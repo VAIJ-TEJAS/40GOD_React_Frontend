@@ -31,7 +31,7 @@ export const Home = () => {
         <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
       </div>
       <div className="mt-40 p-24">
-        <h1>{token}</h1>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
         {newData.map((product: Product) => (
             <div key={product.id}>
