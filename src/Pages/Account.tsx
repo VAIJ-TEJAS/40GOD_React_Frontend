@@ -60,7 +60,7 @@ const AddressBookComponent: React.FC = () => {
     }
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
 
     try {
@@ -96,7 +96,7 @@ const AddressBookComponent: React.FC = () => {
     } catch (error) {
       console.error('Error submitting form:', error);
     }
-  };
+  }
 
   const handleDelete = (itemId: number) => {
     const token: string | null = localStorage.getItem('token');
