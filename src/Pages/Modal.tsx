@@ -85,7 +85,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                     </p>
                     <div>
                         {!isSignUpOpen && (
-                            <>
+                            <form onSubmit={handleSubmit} >
                                 <div className="mb-4">
                                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="email">
                                         Email
@@ -116,14 +116,14 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                                         required
                                     />
                                 </div>
-                            </>
+                            </form>
                         )}
                         {isSignUpOpen && <SignUpPage onClose={() => setIsSignUpOpen(false)} />}
 
                         <div className="flex justify-between items-center">
                             {!isSignUpOpen && (
                                 <>
-                                    <button className="bg-gray-800 dark:bg-white text-white dark:text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={handleSubmit}>
+                                    <button className="bg-gray-800 dark:bg-white text-white dark:text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" >
                                         Login
                                     </button>
                                     <button className="bg-gray-800 dark:bg-white text-white dark:text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={handleSignUpClick}>
