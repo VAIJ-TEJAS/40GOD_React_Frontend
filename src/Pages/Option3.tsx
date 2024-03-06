@@ -9,14 +9,14 @@ const option3: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    async function fetchData() {
       try {
         const response = await axios.get('http://13.235.104.232:8000/product/');
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
-    };
+    }
 
     fetchData();
   }, []);

@@ -23,8 +23,8 @@ export const Home = () => {
   const newData: Product[] = products.filter((product: Product) =>
     product.tags?.some(tag => tag.text === "New")
   ).slice(0, 4);
-  const token = localStorage.getItem('token');
-  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  const newLocal = localStorage.getItem('token');
+  axios.defaults.headers.common['Authorization'] = `Bearer ${newLocal}`;
   return (
     <div className="flex flex-col relative">
       <div className="fixed inset-0 bg-black opacity-20">

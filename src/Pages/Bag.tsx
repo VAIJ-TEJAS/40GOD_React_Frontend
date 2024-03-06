@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, NavLink } from 'react-router-dom';
 import bg from '../assets/background/WhatsApp Image 2024-02-16 at 11.01.36 PM.jpeg'
@@ -28,11 +28,8 @@ interface CartItem {
   quantity: number;
 }
 
-interface BagProps {
-  bagItems?: CartItem[];
-}
 
-const Bag: React.FC<BagProps> = () => {
+function Bag() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   useEffect(() => {
@@ -48,7 +45,7 @@ const Bag: React.FC<BagProps> = () => {
         })
         .then((response) => {
           console.log('Cart Items:', response.data);
-          setCartItems(response.data); 
+          setCartItems(response.data);
         })
         .catch((error) => {
           console.error('Error fetching cart items:', error);
@@ -58,7 +55,7 @@ const Bag: React.FC<BagProps> = () => {
 
   const handleDelete = (itemId: number) => {
     const token = localStorage.getItem('token');
-  
+
     if (token) {
       axios
         .delete(`http://13.235.104.232:8000/cart-items/${itemId}/`, {
@@ -76,14 +73,14 @@ const Bag: React.FC<BagProps> = () => {
         });
     }
   };
-  
-  
-  
+
+
+
 
   return (
- 
 
-<div className="flex flex-col min-h-screen relative h-full justify-center items-center">
+
+    <div className="flex flex-col min-h-screen relative h-full justify-center items-center">
       <div className="fixed z-5 inset-0 bg-black opacity-20">
         <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
       </div>
@@ -92,20 +89,19 @@ const Bag: React.FC<BagProps> = () => {
           <p>Your bag is empty.</p>
         ) : (
           <div>
-      {cartItems.map((item) => (
+            {cartItems.map((item) => (
               <div className="flex" key={item.id}>
                 <div className="w-full mr-4">
                   <div className="grid grid-cols-5 grid-rows-1 gap-4 mt-40">
                     <div className=" p-4 text-center">
-                    {item.product_varient && item.product_varient.color && item.product_varient.color.image_product &&
-      item.product_varient.color.image_product[0] &&
-      <img src={item.product_varient.color.image_product[0].image} alt={item.product_varient.color.display_name} />
-    }
+                      {item.product_varient && item.product_varient.color && item.product_varient.color.image_product &&
+                        item.product_varient.color.image_product[0] &&
+                        <img src={item.product_varient.color.image_product[0].image} alt={item.product_varient.color.display_name} />}
                     </div>
                     <div className=" p-4 text-center"><p>Color Name: {item.product_varient && item.product_varient.color && item.product_varient.color.color_name}</p><p>{item.product_varient && item.product_varient.color && item.product_varient.color.hex_code}</p></div>
                     <div className=" p-4 text-center space-x-4"><p>Size: {item.product_varient && item.product_varient.size && item.product_varient.size.text}  Color: {item.product_varient && item.product_varient.color && item.product_varient.color.display_name}</p></div>
                     <div className=" p-4 text-center">
-                    <button onClick={() => handleDelete(item.id)}>Delete</button>
+                      <button onClick={() => handleDelete(item.id)}>Delete</button>
                     </div>
                   </div>
                 </div>
@@ -117,7 +113,7 @@ const Bag: React.FC<BagProps> = () => {
           <div>
             <div className="w-full mt-40  mr-4">
               <div className="bg-gray-300 p-6 text-center">
-              {cartItems.map((item) => (
+                {cartItems.map((item) => (
                   <div className="flex" key={item.id}>
                     <div className="grid grid-cols-5 grid-rows-1 gap-4 ">
                       <div className="text-center"><p>{item.product_varient && item.product_varient.color && item.product_varient.color.color_name} {item.quantity}</p></div>
@@ -125,7 +121,7 @@ const Bag: React.FC<BagProps> = () => {
 
                       <div className="text-center"><p>Navy blue</p></div>
                       <div className="text-center">
-                      <p>Quantity: {item.quantity}</p>
+                        <p>Quantity: {item.quantity}</p>
                       </div>
                       <div className="text-center"><p>amt:10000</p></div>
                     </div>
@@ -168,6 +164,6 @@ const Bag: React.FC<BagProps> = () => {
 
 
   );
-};
+}
 
 export default Bag;

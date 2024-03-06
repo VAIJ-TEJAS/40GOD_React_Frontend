@@ -4,7 +4,7 @@ import bg from '../assets/background/WhatsApp Image 2024-02-16 at 11.01.36 PM.jp
   const privacyPolicy=()=>{
 
     return (
-      <div className="flex flex-col relative p-20">
+      <div className={"flex flex-col relative p-20"}>
       <div className="fixed inset-0 bg-black opacity-20">
           <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
          </div>
