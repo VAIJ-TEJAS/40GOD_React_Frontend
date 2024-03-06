@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios ,{ AxiosResponse } from 'axios';
 
 interface AddressBookEntry {
   id: number;
@@ -21,7 +21,6 @@ interface AddressFormData {
 
 const AddressBookComponent: React.FC = () => {
   const [AddressBook, setAddressBook] = useState<AddressBookEntry[]>([]);
-
   const [formData, setFormData] = useState<AddressFormData>({
     name: '',
     phone_number: '',
@@ -40,23 +39,20 @@ const AddressBookComponent: React.FC = () => {
     }));
   };
 
-
-
-
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token: string | null = localStorage.getItem('token');
 
     if (token) {
       axios
-        .get('http://13.235.104.232:8000/address-book/', {
+        .get<AddressBookEntry[]>('http://13.235.104.232:8000/address-book/', {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`,
           },
         })
-        .then((response) => {
-          console.log('Adress Book:', response.data);
-          setAddressBook(response.data); 
+        .then((response: AxiosResponse<AddressBookEntry[]>) => {
+          console.log('Address Book:', response.data);
+          setAddressBook(response.data);
         })
         .catch((error) => {
           console.error('Error fetching cart items:', error);
@@ -66,17 +62,16 @@ const AddressBookComponent: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
     try {
-  
-      const token = localStorage.getItem('token');
-  
+      const token: string | null = localStorage.getItem('token');
+
       if (!token) {
         console.error('Error: Token not found in localStorage');
         return;
       }
-  
-      const response = await axios.post(
+
+      const response: AxiosResponse<AddressBookEntry> = await axios.post<AddressBookEntry>(
         'http://13.235.104.232:8000/address-book/',
         formData,
         {
@@ -86,10 +81,9 @@ const AddressBookComponent: React.FC = () => {
           }
         }
       );
-  
+
       console.log('Response:', response.data);
-  
-    
+
       setFormData({
         name: '',
         phone_number: '',
@@ -103,10 +97,10 @@ const AddressBookComponent: React.FC = () => {
       console.error('Error submitting form:', error);
     }
   };
-  
+
   const handleDelete = (itemId: number) => {
-    const token = localStorage.getItem('token');
-  
+    const token: string | null = localStorage.getItem('token');
+
     if (token) {
       axios
         .delete(`http://13.235.104.232:8000/address-book/${itemId}/`, {
@@ -115,9 +109,9 @@ const AddressBookComponent: React.FC = () => {
             Authorization: `Token ${token}`,
           },
         })
-        .then(() => {
-          console.log('Item deleted:', itemId);
-  
+        .then((response: AxiosResponse<void>) => {
+          console.log('Item deleted:', response.data);
+
           // Filter out the deleted item from the AddressBook array
           setAddressBook(AddressBook.filter(item => item.id !== itemId));
         })
@@ -126,7 +120,7 @@ const AddressBookComponent: React.FC = () => {
         });
     }
   };
-  
+
 
 
   return (

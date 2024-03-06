@@ -1,5 +1,5 @@
 import  { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios,{AxiosResponse} from 'axios';
 import { Link, NavLink } from 'react-router-dom';
 import bg from '../assets/background/WhatsApp Image 2024-02-16 at 11.01.36 PM.jpeg'
 interface ColorData {
@@ -33,17 +33,17 @@ function Bag() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token: string | null = localStorage.getItem('token');
 
     if (token) {
       axios
-        .get('http://13.235.104.232:8000/cart-items/', {
+        .get<CartItem[]>('http://13.235.104.232:8000/cart-items/', {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`,
           },
         })
-        .then((response) => {
+        .then((response: AxiosResponse<CartItem[]>) => {
           console.log('Cart Items:', response.data);
           setCartItems(response.data);
         })
@@ -54,7 +54,7 @@ function Bag() {
   }, []);
 
   const handleDelete = (itemId: number) => {
-    const token = localStorage.getItem('token');
+    const token: string | null = localStorage.getItem('token');
 
     if (token) {
       axios
@@ -66,13 +66,14 @@ function Bag() {
         })
         .then(() => {
           console.log('Item deleted:', itemId);
-          setCartItems(cartItems.filter(item => item.id !== itemId));
+          setCartItems((prevCartItems) => prevCartItems.filter(item => item.id !== itemId));
         })
         .catch((error) => {
           console.error('Error deleting item:', error);
         });
     }
   };
+
 
 
 
