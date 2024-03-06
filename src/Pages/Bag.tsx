@@ -32,7 +32,7 @@ interface BagProps {
   bagItems?: CartItem[];
 }
 
-const Bag: React.FC<BagProps> = ({ bagItems = [] }) => {
+const Bag: React.FC<BagProps> = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   useEffect(() => {

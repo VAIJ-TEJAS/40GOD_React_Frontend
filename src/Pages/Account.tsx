@@ -17,10 +17,7 @@ interface AddressFormData {
   postal_code: string;
   country: string;
 }
-const token = localStorage.getItem('token');
 
-const BASE_URL = '13.235.104.232:8000';
-const TOKEN = token;
 
 const AddressBookComponent: React.FC = () => {
   const [AddressBook, setAddressBook] = useState<AddressBookEntry[]>([]);

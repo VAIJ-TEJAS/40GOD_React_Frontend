@@ -11,7 +11,7 @@ interface ImageDetailsProps {
   checkoutItems: Product[];
 }
 
-const ImageDetails: React.FC<ImageDetailsProps> = ({ addToBag }) => {
+const ImageDetails: React.FC<ImageDetailsProps> = () => {
 
 
 
@@ -55,7 +55,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = ({ addToBag }) => {
   }
 
   const imageDetails = products.find(item => item?.id?.toString() === id) || null;
-  const varient = product.id;
+ 
   console.log('Image Details:', imageDetails);
   const handleAddToBag = async () => {
     try {
@@ -81,14 +81,12 @@ const ImageDetails: React.FC<ImageDetailsProps> = ({ addToBag }) => {
 
       const imageProduct = firstColor.image_product[0];
 
-      // Check if imageProduct is defined before accessing its properties
       if (!imageProduct || !imageProduct.image) {
         console.error("Image product or image URL not found for the first color.");
         return;
       }
 
-      const imageUrl = imageProduct.image;
-      const numericPrice = parseFloat(imageDetails.price || "0"); // Convert price string to number
+     
       const productWithQuantity = {
         product_varient: product.id,
         quantity: 1
@@ -133,14 +131,14 @@ const ImageDetails: React.FC<ImageDetailsProps> = ({ addToBag }) => {
                 {product.colors?.map(color => (
                   <div key={color.id}>
                     {color.image_product && color.image_product.length > 0 && color.image_product[0]?.image && (
-                      <img src={color.image_product[0].image} alt={color.display_name} />
+                      <img className='w-100' src={color.image_product[0].image} alt={color.display_name} />
                     )}
                   </div>
                 ))}
 
               </div>
             </div>
-            <div className="font-bold my-text w-1/2 sm:w-1/2" style={{ width: '50%' }}>
+            <div className="font-bold my-text w-screen ml-5 mt-12  " >
               <h1 className="text-2xl mb-4">Name : {product.name}</h1>
               <div>
                 {product.colors?.map(color => (
@@ -150,7 +148,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = ({ addToBag }) => {
                 ))}
 
               </div>
-              <div className="flex gap-2">
+              <div className="flex w-screen gap-2">
                 <button
                   className={`w-10 h-8 text-center rounded-full bg-gray-500 text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${selectedSize === 'S' ? 'bg-green-500' : ''}`}
                   onClick={() => handleSizeClick('S')}
@@ -174,7 +172,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = ({ addToBag }) => {
                   XL
                 </button>
               </div>
-              <div className="flex gap-2 mt-4 mb-4">
+              <div className="flex gap-2 mt-4 mb-4 w-screen">
                 <button
                   className={`w-10 text-center rounded-full bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${selectedColor === 'red' ? 'bg-red-800' : ''}`}
                   onClick={() => handleColorClick('red')}
@@ -188,14 +186,14 @@ const ImageDetails: React.FC<ImageDetailsProps> = ({ addToBag }) => {
                   <img src={color} alt='image' />
                 </button>
               </div>
-              <div className="w-68" >
+              <div className="w-screen sm:w-68" >
                 <ul className="list-disc">
                   <li> {product.description}.</li>
                 </ul>
                 <p className='font-semibold my-text mt-4 sm:w-1/2'>{product.price}</p>
                 <p className='font-semibold my-text mt-4 sm:w-1/2'>{product.category}</p>
               </div>
-              <div className="hidden sm:inline-block mt-4">
+              <div className=" sm:inline-block mt-4">
                 <button className="button my-text" onClick={handleAddToBag}>Add to Bag</button>
               </div>
             </div>

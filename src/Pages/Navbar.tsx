@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './../css/Button.css';
-import logo from './../assets/ring.png';
 import god from './../assets/logo1.png';
 import './../App.css';
 import Login from './Modal';
@@ -13,9 +12,7 @@ const NavBar: React.FC = () => {
     const toggleDropDown = () => {
         setIsOpen(!isOpen);
     };
-    const MtoggleDropDown = () => {
-        setIsOpen(true);
-    };
+    
 
 
     const openModal = () => {

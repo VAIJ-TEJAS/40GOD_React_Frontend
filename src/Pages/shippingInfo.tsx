@@ -14,19 +14,12 @@ interface ShippingInfoProps {
 
 
 
-interface SignUpForm {
-    id: number;
-    first_name: string;
-    last_name: string;
-    username: string;
-}
 
-const ShippingInfo: React.FC<ShippingInfoProps> = ({ signUpData }) => {
-    if (!signUpData) {
-        return <div>No sign-up data available.</div>;
-    }
 
-    const { username} = signUpData.user;
+const ShippingInfo: React.FC<ShippingInfoProps> = ({ }) => {
+   
+
+   
 
     return (
         <div className="p-4 rounded-lg shadow-md" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${b4})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>

@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import bg2 from './../assets/background/b7.jpg';
+import bg2 from './../assets/background/b4.jpeg';
 import bg from '../assets/background/WhatsApp Image 2024-02-16 at 11.01.36 PM.jpeg';
 import { Product } from '../types/productType'; 
 import axios from 'axios'
@@ -27,14 +27,14 @@ const Option1: React.FC = () => {
 
 
   return (
-    <div className="flex flex-col relative">
-      <div className="fixed inset-0 bg-black opacity-20">
-        <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
+    <div className="flex flex-col relative w-screen ">
+      <div className="fixed inset-0 bg-black opacity-20 w-screen">
+        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover opacity-70 filter brightness-75" />
       </div>
       <div className="w-full  inset-0 bg-black ">
-        <img src={bg2} alt='bg' className="w-full h-auto object-cover opacity-70 filter brightness-75" />
+        <img src={bg2} alt='bg' className="w-screen h-auto object-cover opacity-20 filter brightness-75" />
       </div>
-      <div className="mt-40 p-24">
+      <div className="mt-40 p-24 w-screen">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
           {newData.map((product: Product) => (
             <div key={product.id}>
