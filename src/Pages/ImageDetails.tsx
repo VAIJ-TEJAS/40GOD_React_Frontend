@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import './../css/Button.css';
-import bg from "../assets/background/WhatsApp Image 2024-02-16 at 11.01.36 PM.jpeg";
+import bg from "../assets/background/Backgroud.jpeg";
 import color from "../assets/logo.png";
 import { Product } from '../types/productType';
 import React, { useState, useEffect } from 'react';
@@ -120,8 +120,8 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
 
   return (
     <div className="flex flex-col relative  ">
-      <div className="fixed  inset-0 bg-black opacity-20">
-        <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
+      <div className="fixed inset-0 bg-black">
+        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
       </div>
       <div className=" mt-60 sm:p-8  z-10 ">
         {imageDetails && (
@@ -187,7 +187,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
                   <img src={color} alt='image' />
                 </button>
               </div>
-              <div className="w-screen sm:w-68" >
+              <div className="w-screen " >
                 <ul className="list-disc">
                   <li> {product.description}.</li>
                 </ul>

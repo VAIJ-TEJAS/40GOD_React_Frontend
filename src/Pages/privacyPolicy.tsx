@@ -1,13 +1,13 @@
 
-import bg from '../assets/background/WhatsApp Image 2024-02-16 at 11.01.36 PM.jpeg';
+import bg from '../assets/background/Backgroud.jpeg';
 
   const privacyPolicy=()=>{
 
     return (
       <div className={"flex flex-col relative p-20"}>
-      <div className="fixed inset-0 bg-black opacity-20">
-          <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
-         </div>
+     <div className="fixed inset-0 bg-black">
+        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
+      </div>
          <div className="mt-20 p-8">
       <h2 className="text-2xl font-bold mb-4">Last Revised on March 1, 2024</h2>
       <p className="text-lg leading-relaxed p-4 m-4" >

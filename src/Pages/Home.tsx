@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import bg from '../assets/background/WhatsApp Image 2024-02-16 at 11.01.36 PM.jpeg';
+import bg from '../assets/background/Backgroud.jpeg';
 import { Product } from '../types/productType';
 import axios from 'axios'
 export const Home = () => {
@@ -27,8 +27,8 @@ export const Home = () => {
   axios.defaults.headers.common['Authorization'] = `Bearer ${newLocal}`;
   return (
     <div className="flex flex-col relative">
-      <div className="fixed inset-0 bg-black opacity-20">
-        <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
+      <div className="fixed inset-0 bg-black">
+        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
       </div>
       <div className="mt-40 p-24">
         

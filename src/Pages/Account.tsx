@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios, { AxiosResponse } from 'axios';
-import bg from '../assets/background/WhatsApp Image 2024-02-16 at 11.01.36 PM.jpeg';
+import bg from '../assets/background/Backgroud.jpeg';
 import { NavLink } from 'react-router-dom';
 import b4 from '../assets/background/b4.jpeg'
 
@@ -135,8 +135,8 @@ const AddressBookComponent: React.FC = () => {
 
   return (
     <div className='flex relative min-h-screen '>
-      <div className="fixed z-5 inset-0 bg-black opacity-20">
-        <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
+    <div className="fixed inset-0 bg-black">
+        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
       </div>
       <div className="relative w-screen z-10 mt-60 sm:mt-40 p-4 sm:p-24">
         <div className="flex justify-between items-center mb-8">
@@ -263,17 +263,17 @@ const AddressBookComponent: React.FC = () => {
               </label></div>
             <label className="block">
               Phone Number:
-              <input type="text" name="phone_number" value={formData.phone_number} onChange={handleChange} className="block mt-1 w-full border border-gray-300 rounded-md" />
+              <input type="text" name="phone_number" value={formData.phone_number} onChange={handleChange} className="block p-2 mt-1 w-full border border-gray-300 rounded-md" />
             </label>
           </div>
           <div className="mb-4 grid gap-4 grid-cols-2">
             <label className="block">
               Country:
-              <input type="text" name="country" value={formData.country} onChange={handleChange} className="block mt-1 w-full border border-gray-300 rounded-md" />
+              <input type="text" name="country" value={formData.country} onChange={handleChange} className="block mt-1 p-2 w-full border border-gray-300 rounded-md" />
             </label>
             <label className="block">
               State:
-              <input type="text" name="state" value={formData.state} onChange={handleChange} className="block mt-1 w-full border border-gray-300 rounded-md" />
+              <input type="text" name="state" value={formData.state} onChange={handleChange} className="block mt-1 w-full p-2 border border-gray-300 rounded-md" />
             </label>
 
           </div>
@@ -281,17 +281,17 @@ const AddressBookComponent: React.FC = () => {
             <div>
               <label className="block">
                 City:
-                <input type="text" name="city" value={formData.city} onChange={handleChange} className="block mt-1 w-full border border-gray-300 rounded-md" />
+                <input type="text" name="city" value={formData.city} onChange={handleChange} className="block mt-1 w-full p-2 border border-gray-300 rounded-md" />
               </label></div>
             <label className="block">
               Postal Code:
-              <input type="text" name="postal_code" value={formData.postal_code} onChange={handleChange} className="block mt-1 w-full border border-gray-300 rounded-md" />
+              <input type="text" name="postal_code" value={formData.postal_code} onChange={handleChange} className="block p-2 mt-1 w-full border border-gray-300 rounded-md" />
             </label>
           </div>
           <div className="mb-4 grid grid-cols-1">
             <label className="block">
               Street Address:
-              <input type="text" name="street_address" value={formData.street_address} onChange={handleChange} className="block mt-1 w-full border border-gray-300 rounded-md" />
+              <input type="text" name="street_address" value={formData.street_address} onChange={handleChange} className="block p-2 mt-1 w-full border border-gray-300 rounded-md" />
             </label>
 
 

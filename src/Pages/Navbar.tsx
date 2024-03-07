@@ -34,7 +34,7 @@ const NavBar: React.FC = () => {
                 <div className="relative block sm:hidden flex items-center mb-60 ">
                 <img onClick={toggleDropDown} className="w-6 sm:w-10 h-6 sm:h-8 z-0 ml-2 sm:ml-5" src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 6px rgba(0, 0, 0, 1))' }} />
                 </div>
-               <div>
+               <div className='sm:ml-40'>
                  <Logo />
                </div>
                <div className="relative">
@@ -46,7 +46,7 @@ const NavBar: React.FC = () => {
       <h2 className="text-lg font-bold mt-4 mb-8  my-text">Menu</h2>
       <ul>
       <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={() => window.location.href = '/'}>Home</li>
-     <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={openModal}>Login</li>
+      <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={openModal}>Login</li>
         <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={() => window.location.href = '/account'}>Account</li>
         <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={() => window.location.href = '/Option1'}>New</li>
         <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={() => window.location.href = '/Option2'}>Dripped</li>

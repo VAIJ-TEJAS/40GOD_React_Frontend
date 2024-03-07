@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import bg2 from './../assets/background/b4.jpeg';
-import bg from '../assets/background/WhatsApp Image 2024-02-16 at 11.01.36 PM.jpeg';
+import bg from '../assets/background/Backgroud.jpeg';
 import { Product } from '../types/productType'; 
 import axios from 'axios'
 const Option1: React.FC = () => {
@@ -27,9 +27,10 @@ const Option1: React.FC = () => {
 
 
   const newLocal = <div className="flex flex-col relative w-screen ">
-    <div className="fixed inset-0 bg-black opacity-20 w-screen">
-      <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover opacity-70 filter brightness-75" />
-    </div>
+  <div className="fixed inset-0 bg-black">
+        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
+      </div>
+    
     <div className="w-full  inset-0 bg-black ">
       <img src={bg2} alt='bg' className="w-screen h-auto object-cover filter brightness-75" />
     </div>

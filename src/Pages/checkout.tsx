@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ShippingInfo from './shippingInfo'; 
-import bg from '../assets/background/WhatsApp Image 2024-02-16 at 11.01.36 PM.jpeg';
+import bg from '../assets/background/Backgroud.jpeg';
 import b4 from '../assets/background/b4.jpeg';
 
 
@@ -64,8 +64,8 @@ const Checkout: React.FC<CheckoutProps> = ({ checkoutItems, addToHistory, userDa
 
   return (
     <div className="flex flex-col min-h-screen relative h-full justify-center items-center"> {/* Added px-4 for padding on the left and right */}
-      <div className="fixed inset-0 bg-black opacity-20 z-0">
-        <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
+    <div className="fixed inset-0 bg-black">
+        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
       </div>
       <div className='mt-36  relative z-10'>
         <div className="my-8 w-full">
