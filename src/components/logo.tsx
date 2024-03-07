@@ -32,7 +32,7 @@ const Logo = () => {
     const isMobile = window.innerWidth <= 600;
     return (
         <div className={`ml-5 sm:ml-40 inset-0 relative flex`} style={{ transform: isMobile ? 'scale(0.4) translateY(-80%)' : 'scale(0.6) translateY(-30%)' }}>
-        <NavLink className='slow-spin' to="/">
+            <NavLink className='slow-spin' to="/">
                 <img className="z-10 w-68" src={ring} alt="Ring" style={{ filter: 'drop-shadow(0px 0px 30px rgba(0, 0, 0, 1))' }} />
                 <img className="z-10 w-20 pump absolute" src={A2} alt="Ring" style={{ filter: 'drop-shadow(0px 0px 15px rgba(0, 0, 0, 1))', marginTop: isSmallScreen ? '-13rem' : '-17rem', marginLeft:isSmallScreen ? '2rem' : '4rem',width:isSmallScreen ? '4rem':'4rem' }} />
                 <img className="z-10 w-20 pump absolute" src={A4} alt="Ring" style={{ filter: 'drop-shadow(0px 0px 15px rgba(0, 0, 0, 1))', marginTop:isSmallScreen ? '-15rem' : '-5rem', marginLeft:isSmallScreen ? '8rem' : '7rem',width:isSmallScreen ? '4rem':'4rem' }} />

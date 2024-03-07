@@ -31,10 +31,10 @@ const NavBar: React.FC = () => {
                 <div className="relative flex hidden sm:block items-center mb-60 ">
                 <img onClick={toggleDropDown} className="w-6 sm:w-10 h-6 sm:h-8 z-0 ml-2 sm:ml-5" src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 6px rgba(0, 0, 0, 1))' }} />
                 </div>
-                <div className="relative block sm:hidden flex  mb-60 ">
+                <div className="relative block sm:hidden flex items-center mb-60 ">
                 <img onClick={toggleDropDown} className="w-6 sm:w-10 h-6 sm:h-8 z-0 ml-2 sm:ml-5" src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 6px rgba(0, 0, 0, 1))' }} />
                 </div>
-               <div className=' sm:ml-40' >
+               <div>
                  <Logo />
                </div>
                <div className="relative">
@@ -80,7 +80,7 @@ const NavBar: React.FC = () => {
 
             {isOpen && (
                 <div 
-                    className="hidden  dropdown-animation sm:block fixed left-0 z-50 mt-16 sm:mt-20 p-2 sm:p-3 pt-8 sm:pt-12 rounded-md bg-trasparent ring-1 ring-black ring-opacity-5 divide-y divide-gray-100">
+                    className="hidden sm:block fixed left-0 z-50 mt-16 sm:mt-20 p-2 sm:p-3 pt-8 sm:pt-12 rounded-md shadow-lg bg-trasparent ring-1 ring-black ring-opacity-5 divide-y divide-gray-100">
                     <div
                         aria-orientation="vertical"
                         aria-labelledby="menu-button"
