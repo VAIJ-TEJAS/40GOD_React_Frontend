@@ -11,7 +11,7 @@ const option2: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://13.235.104.232:8000/product/');
+        const response = await axios.get('https://13.235.104.232/product/');
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -31,7 +31,7 @@ const option2: React.FC = () => {
         <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
       </div>
       <div className="w-full  inset-0 bg-black ">
-        <img src={bg2} alt='bg' className="w-full h-auto object-cover opacity-70 filter brightness-75" />
+        <img src={bg2} alt='bg' className="w-full h-auto object-cover  filter brightness-75" />
       </div>
       <div className="mt-40 p-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20">

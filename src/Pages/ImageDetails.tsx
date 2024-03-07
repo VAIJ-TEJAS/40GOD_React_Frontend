@@ -32,7 +32,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://13.235.104.232:8000/product/');
+        const response = await axios.get('https://13.235.104.232/product/');
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -92,7 +92,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
         quantity: 1
       };
 
-      const response = await fetch('http://13.235.104.232:8000/cart-items/', {
+      const response = await fetch('https://13.235.104.232/cart-items/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -138,7 +138,8 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
 
               </div>
             </div>
-            <div className="font-bold my-text w-screen sm:ml-5 mt-12  " >
+            <div className='max-w-screen  '>
+            <div className="font-bold my-text max-w-screen  sm:ml-5 mt-12  " >
               <h1 className="text-2xl mb-4">Name : {product.name}</h1>
               <div>
                 {product.colors?.map(color => (
@@ -196,7 +197,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
               <div className=" sm:inline-block mt-4">
                 <button className="button my-text" onClick={handleAddToBag}>Add to Bag</button>
               </div>
-            </div>
+            </div></div>
           </div>
         )}
       </div>

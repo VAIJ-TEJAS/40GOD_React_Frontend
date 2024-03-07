@@ -57,10 +57,8 @@ const Checkout: React.FC<CheckoutProps> = ({ checkoutItems, addToHistory, userDa
       return;
     }
 
-    checkoutItems.forEach(item => {
-      addToHistory(item);
-    });
-    navigate('/checkout');
+   
+    navigate('/history');
     alert('Checked out successfully!');
   };
 

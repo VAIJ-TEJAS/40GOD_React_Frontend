@@ -11,7 +11,7 @@ const option3: React.FC = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get('http://13.235.104.232:8000/product/');
+        const response = await axios.get('https://13.235.104.232/product/');
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -28,7 +28,7 @@ const option3: React.FC = () => {
       <div className="fixed inset-0 bg-black opacity-20">
         <img src={bg} alt='bg' className="absolute inset-0 w-full h-full object-cover opacity-70 filter brightness-75" />
       </div>
-      <div className="w-full inset-0 bg-black opacity-60" style={{ filter: 'grayscale(100%)' }}>
+      <div className="w-full inset-0 bg-black " style={{ filter: 'grayscale(100%)' }}>
         <img src={bg2} alt='bg' className="w-full h-auto object-cover opacity-60 filter brightness-75" />
       </div>
       <div className="mt-40 p-24">

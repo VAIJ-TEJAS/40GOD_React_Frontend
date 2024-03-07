@@ -36,7 +36,7 @@ const MyComponent: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://13.235.104.232:8000/product/');
+        const response = await axios.get('https://13.235.104.232/product/');
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);

@@ -37,7 +37,7 @@ function Bag() {
 
     if (token) {
       axios
-        .get<CartItem[]>('http://13.235.104.232:8000/cart-items/', {
+        .get<CartItem[]>('https://13.235.104.232/cart-items/', {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`,
@@ -58,7 +58,7 @@ function Bag() {
 
     if (token) {
       axios
-        .delete(`http://13.235.104.232:8000/cart-items/${itemId}/`, {
+        .delete(`https://13.235.104.232/cart-items/${itemId}/`, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`,
@@ -93,7 +93,7 @@ function Bag() {
               <div className="flex" key={item.id}>
                 <div className="w-full mr-4">
                   <div className="grid sm:grid-cols-5 grid-rows-1 sm:gap-4 mt-40">
-                    <div className=" p-4 text-center">
+                    <div className=" sm:p-4 text-center">
                       {item.product_varient && item.product_varient.color && item.product_varient.color.image_product &&
                         item.product_varient.color.image_product[0] &&
                         <img src={item.product_varient.color.image_product[0].image} alt={item.product_varient.color.display_name} />}
