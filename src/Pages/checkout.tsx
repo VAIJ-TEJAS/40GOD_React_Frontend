@@ -1,8 +1,8 @@
-import React, { useState,useEffect } from 'react';
-import ShippingInfo from './shippingInfo'; 
+import React, { useState, useEffect } from 'react';
+import ShippingInfo from './shippingInfo';
 import bg from '../assets/background/Backgroud.jpeg';
 import b4 from '../assets/background/b4.jpeg';
-import axios,{ AxiosResponse}  from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 
 interface ColorData {
@@ -46,38 +46,38 @@ interface AddressBookEntry {
 
 
 const Checkout: React.FC = () => {
- 
+
 
 
 
   const [selectedAddressId, setSelectedAddressId] = useState<number | null>(null);
 
   useEffect(() => {
-      const token: string | null = localStorage.getItem('token');
+    const token: string | null = localStorage.getItem('token');
 
-      if (token) {
-          axios
-              .get<AddressBookEntry[]>('/address-book/', {
-                  headers: {
-                      'Content-Type': 'application/json',
-                      Authorization: `Token ${token}`,
-                  },
-              })
-              .then((response: AxiosResponse<AddressBookEntry[]>) => {
-                  console.log('Address Book:', response.data);
-                
-                  if (response.data.length > 0) {
-                      setSelectedAddressId(response.data[0].id); // Select the first address entry by default
-                  }
-              })
-              .catch((error) => {
-                  console.error('Error fetching address book entries:', error);
-              });
-      }
+    if (token) {
+      axios
+        .get<AddressBookEntry[]>('/address-book/', {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Token ${token}`,
+          },
+        })
+        .then((response: AxiosResponse<AddressBookEntry[]>) => {
+          console.log('Address Book:', response.data);
+
+          if (response.data.length > 0) {
+            setSelectedAddressId(response.data[0].id); // Select the first address entry by default
+          }
+        })
+        .catch((error) => {
+          console.error('Error fetching address book entries:', error);
+        });
+    }
   }, []);
 
 
-console.log(selectedAddressId)
+  console.log(selectedAddressId)
 
 
 
@@ -125,7 +125,7 @@ console.log(selectedAddressId)
     }
   }, []);
 
-  
+
 
 
 
@@ -135,37 +135,41 @@ console.log(selectedAddressId)
   const postCartItems = async () => {
     try {
       const BASE_URL = '';
-      const token: string | null = localStorage.getItem('token');
+      const token = localStorage.getItem('token');
   
-    
-        const requestOptions: RequestInit = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Token ${token}`
-          },
-          body: JSON.stringify({
-            address_id : selectedAddressId
-          })
-        };
+      // Preparing the data payload for the POST request
+      const data = {
+        address_id: selectedAddressId
+      };
   
-        const response = await fetch(`${BASE_URL}/order/create_order/`, requestOptions);
-        const data = await response.json();
-        console.log('Response:', data);
-      
+      // Axios request configuration, including the headers
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${token}`
+        }
+      };
+  
+      // Performing the POST request using Axios
+      const response = await axios.post(`${BASE_URL}/order/create_order/`, data, config);
+  
+      // The response data is directly accessible
+      console.log('Response:', response.data);
+  
     } catch (error) {
       console.error('Error:', error);
     }
   };
   
 
-console.log('product_variants',cartItems.map((item)=>(item.product_varient.id)))
-console.log('quantyties',cartItems.map((item)=>(item.quantity)))
+
+  console.log('product_variants', cartItems.map((item) => (item.product_varient.id)))
+  console.log('quantyties', cartItems.map((item) => (item.quantity)))
 
 
   return (
     <div className="flex flex-col min-h-screen relative h-full justify-center items-center"> {/* Added px-4 for padding on the left and right */}
-    <div className="fixed inset-0 bg-black">
+      <div className="fixed inset-0 bg-black">
         <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
       </div>
       <div className='mt-36  relative z-10'>
@@ -174,10 +178,10 @@ console.log('quantyties',cartItems.map((item)=>(item.quantity)))
         </div>
         <div className="grid grid-cols-1 mt-10 md:grid-cols-2  gap-4">
 
-        
-        <ShippingInfo signUpData={null}  />
 
-       
+          <ShippingInfo signUpData={null} />
+
+
           <div className="p-4 rounded-lg shadow-md" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${b4})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
 
             <div className="mb-4">
@@ -186,18 +190,18 @@ console.log('quantyties',cartItems.map((item)=>(item.quantity)))
               {cartItems.map((item) => (
                 <div className="border-b-2 border-black py-4 flex items-center justify-between relative" key={item.id} >
                   <div className="flex items-center" >
-                  {item.product_varient &&
-                        item.product_varient.color &&
-                        item.product_varient.color.image_product &&
-                        item.product_varient.color.image_product[0] && (
-                          <img
-                            src={
-                              item.product_varient.color.image_product[0].image
-                            }
-                            alt={item.product_varient.color.display_name}
-                            className='w-16'
-                          />
-                        )}
+                    {item.product_varient &&
+                      item.product_varient.color &&
+                      item.product_varient.color.image_product &&
+                      item.product_varient.color.image_product[0] && (
+                        <img
+                          src={
+                            item.product_varient.color.image_product[0].image
+                          }
+                          alt={item.product_varient.color.display_name}
+                          className='w-16'
+                        />
+                      )}
                     <div>
                       <p>  Color Name:{' '}
                         {item.product_varient &&
@@ -206,7 +210,7 @@ console.log('quantyties',cartItems.map((item)=>(item.quantity)))
                       <p className="text-gray-500">Navy blue</p>
                     </div>
                     <div className='ml-9'>
-                      
+
                       <p className="text-gray-500">Description about jeans</p>
                     </div>
                     <div className='ml-9'>
@@ -218,22 +222,22 @@ console.log('quantyties',cartItems.map((item)=>(item.quantity)))
                       <p className="text-gray-500">10000</p>
                     </div>
                   </div>
-                 
+
                 </div>
               ))}
             </div>
             <div>
               <h2 className="text-lg font-semibold mb-2">Payment Method</h2>
-             
+
             </div>
           </div>
         </div>
-     
+
         <div className="flex justify-end">
           <button className="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 m-4 rounded" onClick={postCartItems}>
             Place Order
           </button>
-         
+
         </div>
       </div>
     </div>

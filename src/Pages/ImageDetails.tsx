@@ -92,21 +92,14 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
         quantity: 1
       };
 
-      const response = await fetch('/cart-items/', {
-        method: 'POST',
+      const response = await axios.post('/cart-items/', productWithQuantity, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Token ${token}`
-        },
-        body: JSON.stringify(productWithQuantity)
+        }
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to add item to bag');
-      }
-
-      const data = await response.json();
-      console.log('Added to bag:', data);
+  
+      console.log('Added to bag:', response.data);
     } catch (error) {
       console.error('Error adding item to bag:', error);
     }
