@@ -7,6 +7,7 @@ import axios, { AxiosResponse } from 'axios';
 import { RazorpayOptions } from '../types/razorpay';
 
 interface ColorData {
+  product: any;
   id: number;
   display_name: string;
   color_name: string;
@@ -218,7 +219,7 @@ const Checkout: React.FC = () => {
                     </div>
                     <div className='ml-9'>
                       <p>Amount to be paid</p>
-                      <p className="text-gray-500">10000</p>
+                      <p className="text-gray-500">{ item.quantity*  item.product_varient.color.product.price }</p>
                     </div>
                   </div>
 

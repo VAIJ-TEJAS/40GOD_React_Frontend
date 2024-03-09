@@ -13,6 +13,7 @@ interface ImageDetailsProps {
 }
 
 const ImageDetails: React.FC<ImageDetailsProps> = () => {
+  const [isAdded, setIsAdded] = useState(false);
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -71,6 +72,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
   const imageDetails = products.find(item => item?.id?.toString() === id) || null;
  
   console.log('Image Details:', imageDetails);
+
   const handleAddToBag = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -114,25 +116,27 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
       });
   
       console.log('Added to bag:', response.data);
+      setIsAdded(true);
+
     } catch (error) {
       console.error('Error adding item to bag:', error);
     }
   };
 
 
- 
+
 
 
 
 
   return (
-    <div className="flex flex-col relative  ">
+    <div className="flex flex-col   ">
       <div className="fixed inset-0 bg-black">
-        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
+        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full  object-cover  filter brightness-75" />
       </div>
       <div className=" mt-60 sm:p-8  z-10 ">
         {imageDetails && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-20 w-screen">
+          <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-20">
             <div className="flex items-center justify-center">
 
                
@@ -168,7 +172,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
                 ))}
 
               </div>
-              <div className="flex w-screen gap-2">
+              <div className="flex gap-2">
                 <button
                   className={`w-10 h-8 text-center rounded-full bg-gray-500 text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${selectedSize === 'S' ? 'bg-green-500' : ''}`}
                   onClick={() => handleSizeClick('S')}
@@ -192,7 +196,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
                   XL
                 </button>
               </div>
-              <div className="flex gap-2 mt-4 mb-4 w-screen">
+              <div className="flex gap-2 mt-4 mb-4 ">
                 <button
                   className={`w-10 text-center rounded-full bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${selectedColor === 'red' ? 'bg-red-800' : ''}`}
                   onClick={() => handleColorClick('red')}
@@ -206,16 +210,17 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
                   <img src={color} alt='image' />
                 </button>
               </div>
-              <div className="w-screen " >
+              <div >
                 <ul className="list-disc">
                   <li> {product.description}.</li>
                 </ul>
-                <p className='font-semibold my-text mt-4 sm:w-1/2'>{product.price}</p>
-                <p className='font-semibold my-text mt-4 sm:w-1/2'>{product.category}</p>
+                <p className='font-semibold my-text mt-4 '>{product.price}</p>
+                <p className='font-semibold my-text mt-4 '>{product.category}</p>
               </div>
               <div className=" sm:inline-block mt-4">
-                <button className="button my-text" onClick={handleAddToBag}>Add to Bag</button>
-              </div>
+              <button className={`bg-black shadow-3xl  text-white my-text hover:bg-white hover:text-black p-2 rounded-lg  ${isAdded ? 'added' : ''}`} onClick={handleAddToBag}>
+      {isAdded ? 'Added to Bag' : 'Add to Bag'}
+    </button>              </div>
             </div></div>
           </div>
         )}
