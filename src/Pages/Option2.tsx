@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import bg2 from './../assets/background/b8.jpeg';
 import bg from '../assets/background/Backgroud.jpeg';
-import { Product } from '../types/productType'; // Import Product type from your type file
+import { Product } from '../types/productType';
 import axios from 'axios'
 const option2: React.FC = () => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
@@ -53,16 +53,19 @@ const option2: React.FC = () => {
               >
               <Link to={`/Option2/${product.id}`}>
               <img
-                src={product.colors[0].image_product[0].image}
-                alt={`Image ${product.colors[0].image_product[0].id}`}
-                className="object-cover w-full rounded-lg"
-              />
-              </Link>
-              <p className={`text-center my-text py-2 px-4 ${hoveredId !== product.colors[0].image_product[0].id && 'invisible'}`}>
-                Name: {product.name}
-                <br />
-                Price: {product.price}
-              </p>
+                        src={product.colors[0].image_product[0].image}
+                        alt={`Image ${product.colors[0].image_product[0].id}`}
+                        className="object-cover blur w-full rounded-lg"
+                      />
+                      <p className='drop-shadow-text got-text '>Dropping Soon </p>
+
+                    </Link>
+                    <p className={`text-center my-text blur py-2 px-4 ${hoveredId !== product.colors[0].image_product[0].id && 'invisible'}`}>
+                      Name: {product.name}
+                      <br />
+                      Price: {product.price}
+                    </p>
+              
             </div>
           )}
         )

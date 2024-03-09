@@ -27,7 +27,9 @@ const Option1: React.FC = () => {
   );
 
 
-  const newLocal = <div className="flex flex-col relative">
+  
+  return (
+  <div className="flex flex-col relative">
     <div className="fixed inset-0 bg-black">
       <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
     </div>
@@ -83,8 +85,7 @@ const Option1: React.FC = () => {
       </div>
     </div>
   </div>
-  return (
-    newLocal
+ 
   );
 };
 
