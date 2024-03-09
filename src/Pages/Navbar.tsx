@@ -37,7 +37,7 @@ const NavBar: React.FC = () => {
                 <div className="relative block sm:hidden flex items-center mb-60 ">
                 <img onClick={toggleDropDown} className="w-6 sm:w-10 h-6 sm:h-8 z-0 ml-2 sm:ml-5" src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 6px rgba(0, 0, 0, 1))' }} />
                 </div>
-               <div className='ml-80'>
+               <div className='ml-60'>
                  <Logo />
                </div>
                <div className="relative">
