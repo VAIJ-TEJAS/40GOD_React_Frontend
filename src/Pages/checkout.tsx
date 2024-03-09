@@ -1,9 +1,8 @@
 import React, { useState,useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import ShippingInfo from './shippingInfo'; 
 import bg from '../assets/background/Backgroud.jpeg';
 import b4 from '../assets/background/b4.jpeg';
-import axios  from 'axios';
+import axios,{ AxiosResponse}  from 'axios';
 
 
 interface ColorData {
@@ -49,7 +48,16 @@ interface ImageData {
   price?: number;
 }
 
-
+interface AddressBookEntry {
+  id: number;
+  name: string;
+  phone_number: string;
+  street_address: string;
+  city: string;
+  state: string;
+  postal_code: string;
+  country: string;
+}
 interface CheckoutProps {
   checkoutItems: ImageData[];
   addToHistory: (item: ImageData) => void;
@@ -58,7 +66,60 @@ interface CheckoutProps {
 
 const Checkout: React.FC<CheckoutProps> = ({ userData }) => {
  
-  const navigate = useNavigate();
+
+
+
+  const [selectedAddressId, setSelectedAddressId] = useState<number | null>(null);
+
+  useEffect(() => {
+      const token: string | null = localStorage.getItem('token');
+
+      if (token) {
+          axios
+              .get<AddressBookEntry[]>('https://13.235.104.232/address-book/', {
+                  headers: {
+                      'Content-Type': 'application/json',
+                      Authorization: `Token ${token}`,
+                  },
+              })
+              .then((response: AxiosResponse<AddressBookEntry[]>) => {
+                  console.log('Address Book:', response.data);
+                
+                  if (response.data.length > 0) {
+                      setSelectedAddressId(response.data[0].id); // Select the first address entry by default
+                  }
+              })
+              .catch((error) => {
+                  console.error('Error fetching address book entries:', error);
+              });
+      }
+  }, []);
+
+
+console.log(selectedAddressId)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -83,23 +144,19 @@ const Checkout: React.FC<CheckoutProps> = ({ userData }) => {
     }
   }, []);
 
-  const handleCheckout = () => {
-    navigate('/history');
-    alert('Checked out successfully!');
-  };
+  
 
 
 
 
 
-  const [response, setResponse] = useState<any>(null);
 
   const postCartItems = async () => {
     try {
       const BASE_URL = 'https://13.235.104.232';
       const token: string | null = localStorage.getItem('token');
   
-      for (const item of cartItems) {
+    
         const requestOptions: RequestInit = {
           method: 'POST',
           headers: {
@@ -107,14 +164,14 @@ const Checkout: React.FC<CheckoutProps> = ({ userData }) => {
             'Authorization': `Token ${token}`
           },
           body: JSON.stringify({
-
+            address_id : selectedAddressId
           })
         };
   
         const response = await fetch(`${BASE_URL}/order/create_order/`, requestOptions);
         const data = await response.json();
         console.log('Response:', data);
-      }
+      
     } catch (error) {
       console.error('Error:', error);
     }

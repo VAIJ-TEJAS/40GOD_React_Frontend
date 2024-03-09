@@ -1,67 +1,65 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-interface CartItem {
-  quantity: number;
+interface Color {
+  product: any;
+  color_name: string;
+  display_name: string;
+  hex_code: string;
   id: number;
-  product_varient: {
-    color: {
-      display_name: string;
-      image_product: any;
-      product: any;
-      color_name: string;
-    };
-    image_product: {
-      id: number;
-      image: string;
-    }[];
-    product: {
-      name: string;
-      price: string;
-    };
+  image_product: { id: number; image: string }[];
+}
+
+interface Product {
+  id: number;
+  name: string;
+  price: string;
+  sku: string;
+}
+
+interface Size {
+  id: number;
+  text: string;
+}
+
+interface OrderItem {
+  cart_item: {
+    color: Color;
+    product: Product;
     quantity: number;
-    size: {
-      text: string;
-    };
-  };
-  user: {
-    email: string;
-    first_name: string;
-    last_name: string;
+    size: Size;
   };
 }
 
-interface HistoryProps {
-  historyItems: CartItem[];
+interface Order {
+  date: string;
+  id: number;
+  order_items: OrderItem[];
 }
 
-const History: React.FC<HistoryProps> = () => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const BASE_URL = 'https://13.235.104.232';
-  const token: string | null = localStorage.getItem('token');
+const History: React.FC = () => {
+  const [orders, setOrders] = useState<Order[]>([]);
+  const BASE_URL = "https://13.235.104.232";
+  const token: string | null = localStorage.getItem("token");
 
   useEffect(() => {
-    const fetchCartItems = async () => {
+    const fetchOrders = async () => {
       try {
         const response = await axios.get(`${BASE_URL}/order/`, {
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Token ${token}`
-          }
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
+          },
         });
-        setCartItems(response.data);
-        console.log('response', response.data);
+        setOrders(response.data);
+        console.log("response", response.data);
       } catch (error) {
-        console.error('Error:', error);
+        console.error("Error:", error);
       }
     };
 
-    fetchCartItems();
+    fetchOrders();
   }, []);
-
-  
-
-  
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-200">
@@ -69,35 +67,31 @@ const History: React.FC<HistoryProps> = () => {
         <div className="mb-8">
           <h1 className="text-3xl font-bold">History</h1>
         </div>
-        {cartItems && cartItems.length > 0 ? (
-  cartItems.map(item => (
-    <div className="flex" key={item.id}>
-      <div className="w-full">
-        <div className="grid grid-cols-4 grid-rows-1 gap-4">
-          <div className="bg-gray-300 p-4 flex items-center justify-center">
-          
-              <img src={item.product_varient.color.image_product[0].image} alt={`Image ${item.id}`} className="max-h-24 max-w-full" />
-         
-          </div>
-          <div className="bg-gray-300 p-4 text-center flex items-center justify-center">
-            { item.product_varient.color.display_name}
-          </div>
-          <div className="bg-gray-300 p-10 text-center items-center justify-center">
-            <p>Quantity-{item.quantity}</p>
-            <p>{item.product_varient.color && item.product_varient.color.color_name}</p>
-          </div>
-          <div className="bg-gray-300 p-4 text-center flex items-center justify-center">
-            <p>Price-{ item.product_varient.color.product.price}</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  ))
-) : (
-  <p>No items in history.</p>
-)}
-
+        {orders.length > 0 ? (
+          orders.map((order) => (
+            <div key={order.id}>
+              <p>Date: {order.date}</p>
+              <ul>
+                {order.order_items.map((item, index) => (
+                  <li key={index}>
+                    <p>Product: {item.cart_item.color.product.name}</p>
+                    <p>Quantity: {item.cart_item.quantity}</p>
+                    <p>Color: {item.cart_item.color.display_name}</p>
+                    <p>Price: {item.cart_item.color.product.price}</p>
+                    <p>Size: {item.cart_item.size.text}</p>
+                    <img
+                      src={item.cart_item.color.image_product[0].image}
+                      alt={`Image ${index}`}
+                      className="max-h-24 max-w-full"
+                    />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        ) : (
+          <p>No items in history.</p>
+        )}
       </div>
     </div>
   );

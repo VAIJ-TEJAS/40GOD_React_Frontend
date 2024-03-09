@@ -58,6 +58,7 @@ const ShippingInfo: React.FC<ShippingInfoProps> = ({ }) => {
         setSelectedAddressId(addressId);
     };
 console.log(selectedAddressId)
+
     return (
         <div className="p-4 rounded-lg shadow-md z-40"  style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${b4})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
            <h2 className="text-lg font-semibold mb-2">Select the address</h2>
