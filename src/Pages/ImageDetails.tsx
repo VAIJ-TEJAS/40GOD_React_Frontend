@@ -5,6 +5,7 @@ import color from "../assets/logo.png";
 import { Product } from '../types/productType';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
+import './../css/carousel.css';
 
 interface ImageDetailsProps {
   addToBag: (item: Product) => void;
@@ -13,8 +14,21 @@ interface ImageDetailsProps {
 
 const ImageDetails: React.FC<ImageDetailsProps> = () => {
 
+  const [currentSlide, setCurrentSlide] = useState(0);
 
+  const nextSlide = () => {
+    setCurrentSlide((prevSlide) =>
+      (prevSlide + 1) % (product?.colors?.[0]?.image_product?.length ?? 1)
+    );
+  };
 
+  const prevSlide = () => {
+    setCurrentSlide((prevSlide) =>
+      prevSlide === 0
+        ? (product?.colors?.[0]?.image_product?.length ?? 1) - 1
+        : prevSlide - 1
+    );
+  };
 
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
@@ -106,7 +120,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
   };
 
 
-
+ 
 
 
 
@@ -120,19 +134,31 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
         {imageDetails && (
           <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-20 w-screen">
             <div className="flex items-center justify-center">
-              <div>
-                {product.colors?.map(color => (
-                  <div key={color.id}>
-                    {color.image_product && color.image_product.length > 0 && color.image_product[0]?.image && (
-                      <img src={color.image_product[0].image} alt={color.display_name} />
-                    )}
-                  </div>
-                ))}
 
+               
+              
+      <div className="carousel">
+      <button className="prev" onClick={prevSlide}>
+        &lt;
+      </button>
+      <div className="carousel-inner">
+        {product.colors?.[0]?.image_product?.map((imageData, index) => (
+          <div
+            key={index}
+            className={`carousel-item ${index === currentSlide ? 'active' : ''}`}
+          >
+            <img src={imageData.image} alt={product.colors?.[0]?.display_name} />
+          </div>
+        ))}
+      </div>
+      <button className="next" onClick={nextSlide}>
+        &gt;
+      </button>      
               </div>
+
             </div>
-            <div className='max-w-screen  '>
-            <div className="font-bold my-text max-w-screen  sm:ml-5 mt-12  " >
+            <div className=''>
+            <div className="font-bold my-text sm:ml-5 mt-12  " >
               <h1 className="text-2xl mb-4">Name : {product.name}</h1>
               <div>
                 {product.colors?.map(color => (
