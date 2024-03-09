@@ -36,7 +36,7 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ onClose }) => {
         e.preventDefault(); 
 
         try {
-            const response = await axios.post('https://13.235.104.232/signup/', formData);
+            const response = await axios.post('/signup/', formData);
             const token = response.data.token; 
             localStorage.setItem('token', token); 
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;

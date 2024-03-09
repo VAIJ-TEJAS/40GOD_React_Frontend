@@ -35,7 +35,7 @@ const ShippingInfo: React.FC<ShippingInfoProps> = ({ }) => {
 
         if (token) {
             axios
-                .get<AddressBookEntry[]>('https://13.235.104.232/address-book/', {
+                .get<AddressBookEntry[]>('/address-book/', {
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Token ${token}`,

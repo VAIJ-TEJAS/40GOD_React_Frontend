@@ -46,7 +46,7 @@ function Bag() {
 
     if (token) {
       axios
-        .get<CartItem[]>('https://13.235.104.232/cart-items/', {
+        .get<CartItem[]>('/cart-items/', {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`,
@@ -67,7 +67,7 @@ function Bag() {
 
     if (token) {
       axios
-        .delete(`https://13.235.104.232/cart-items/${itemId}/`, {
+        .delete(`/cart-items/${itemId}/`, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`,
@@ -89,7 +89,7 @@ function Bag() {
     const token = localStorage.getItem('token');
   
     if (token) {
-      axios.get(`https://13.235.104.232/cart-items/${itemId}/`, {
+      axios.get(`/cart-items/${itemId}/`, {
         headers: {
           'Authorization': `Token ${token}`,
         },
@@ -103,7 +103,7 @@ function Bag() {
   
        
   
-        axios.put(`https://13.235.104.232/cart-items/${itemId}/`, {
+        axios.put(`/cart-items/${itemId}/`, {
           quantity: newQuantity,
         }, {
           headers: {
@@ -142,7 +142,7 @@ function Bag() {
 
     if (token) {
       axios
-        .get<CartItem[]>('https://13.235.104.232/cart-items/', {
+        .get<CartItem[]>('/cart-items/', {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`,

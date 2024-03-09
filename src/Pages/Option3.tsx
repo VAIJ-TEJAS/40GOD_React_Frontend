@@ -11,7 +11,7 @@ const option3: React.FC = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get('https://13.235.104.232/product/');
+        const response = await axios.get('/product/');
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
