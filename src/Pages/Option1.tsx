@@ -4,6 +4,7 @@ import bg2 from './../assets/background/b9.jpeg';
 import bg from '../assets/background/Backgroud.jpeg';
 import { Product } from '../types/productType'; 
 import axios from 'axios'
+import '../css/blur.css'
 const Option1: React.FC = () => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
@@ -53,10 +54,12 @@ const Option1: React.FC = () => {
           <img
             src={product.colors[0].image_product[0].image}
             alt={`Image ${product.colors[0].image_product[0].id}`}
-            className="object-cover w-full rounded-lg"
+            className="object-cover blur w-full rounded-lg"
           />
+          <p className='drop-shadow-text my-text'>Dropping Soon </p>
+
           </Link>
-          <p className={`text-center my-text py-2 px-4 ${hoveredId !== product.colors[0].image_product[0].id && 'invisible'}`}>
+          <p className={`text-center my-text blur py-2 px-4 ${hoveredId !== product.colors[0].image_product[0].id && 'invisible'}`}>
             Name: {product.name}
             <br />
             Price: {product.price}

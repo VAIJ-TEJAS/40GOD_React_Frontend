@@ -31,13 +31,13 @@ const NavBar: React.FC = () => {
     return (
         <div className='max-w-screen'>
             <nav className="fixed z-50 bg-transparent max-w-screen   flex w-full justify-between p-3 sm:p-6">
-                <div className="relative flex hidden sm:block items-center justify-center ">
+                <div className="relative flex hidden sm:block items-center justify-center fixed ">
                 <img onClick={toggleDropDown} className="w-6 sm:w-10 h-6 sm:h-8 z-0 ml-2 sm:ml-5" src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 6px rgba(0, 0, 0, 1))' }} />
                 </div>
                 <div className="relative block sm:hidden flex items-center mb-60 ">
                 <img onClick={toggleDropDown} className="w-6 sm:w-10 h-6 sm:h-8 z-0 ml-2 sm:ml-5" src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 6px rgba(0, 0, 0, 1))' }} />
                 </div>
-               <div className='sm:ml-60 sm:mr-60'>
+               <div className='sm:ml-60 sm:mr-60 '>
                  <Logo />
                </div>
                <div className="relative">
