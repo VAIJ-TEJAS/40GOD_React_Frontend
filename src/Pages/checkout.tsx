@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react';
 import ShippingInfo from './shippingInfo';
 import bg from '../assets/background/Backgroud.jpeg';
 import b4 from '../assets/background/b4.jpeg';
 import axios, { AxiosResponse } from 'axios';
-
+import { RazorpayOptions } from '../types/razorpay';
 
 interface ColorData {
   id: number;
@@ -31,8 +32,6 @@ interface CartItem {
   quantity: number;
 }
 
-
-
 interface AddressBookEntry {
   id: number;
   name: string;
@@ -44,13 +43,10 @@ interface AddressBookEntry {
   country: string;
 }
 
-
 const Checkout: React.FC = () => {
 
-
-
-
   const [selectedAddressId, setSelectedAddressId] = useState<number | null>(null);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   useEffect(() => {
     const token: string | null = localStorage.getItem('token');
@@ -76,34 +72,8 @@ const Checkout: React.FC = () => {
     }
   }, []);
 
-
   console.log(selectedAddressId)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   useEffect(() => {
     const token: string | null = localStorage.getItem('token');
 
@@ -125,23 +95,16 @@ const Checkout: React.FC = () => {
     }
   }, []);
 
-
-
-
-
-
-
-
   const postCartItems = async () => {
     try {
       const BASE_URL = '';
       const token = localStorage.getItem('token');
-  
+
       // Preparing the data payload for the POST request
       const data = {
         address_id: selectedAddressId
       };
-  
+
       // Axios request configuration, including the headers
       const config = {
         headers: {
@@ -149,23 +112,59 @@ const Checkout: React.FC = () => {
           'Authorization': `Token ${token}`
         }
       };
-  
+
       // Performing the POST request using Axios
-      const response = await axios.post(`${BASE_URL}/order/create_order/`, data, config);
-  
+      const orderResponse = await axios.get(`${BASE_URL}/order/calculate_order/`, {
+        headers: {
+          'Authorization': `Token ${token}`
+        }
+      });
+
+      const { order_id, razorpay_key_id } = orderResponse.data;
+
+      const options:RazorpayOptions = {
+        "key": razorpay_key_id,
+        "currency": "INR",
+        "name": "40.G.O.D",
+        "description": "",
+        "image": "logo1.png",
+        "order_id": order_id,
+        "handler": function (response: any) {
+
+          console.log(response);
+          axios.post(`${BASE_URL}/order/create_order/`, data, config);
+          // Handle payment success
+          // alert(response.razorpay_payment_id);
+          // alert(response.razorpay_order_id);
+          // alert(response.razorpay_signature)
+        },
+        "prefill": {
+          // "name": "Gaurav Kumar",
+          // "email": "gaurav.kumar@example.com",
+          // "contact": "9999999999"
+        },
+        "notes": {},
+        "theme": {
+          "color": "#f4dcab"
+        }
+      };
+
+      const rzp1 = new window.Razorpay(options);
+      rzp1.open()
+
+      // Performing the POST request using Axios
+      // const response = await axios.post(`${BASE_URL}/order/create_order/`, data, config);
+
       // The response data is directly accessible
-      console.log('Response:', response.data);
-  
+      // console.log('Response:', response.data);
+
     } catch (error) {
       console.error('Error:', error);
     }
   };
-  
-
 
   console.log('product_variants', cartItems.map((item) => (item.product_varient.id)))
   console.log('quantyties', cartItems.map((item) => (item.quantity)))
-
 
   return (
     <div className="flex flex-col min-h-screen relative h-full justify-center items-center"> {/* Added px-4 for padding on the left and right */}
@@ -228,7 +227,6 @@ const Checkout: React.FC = () => {
             </div>
             <div>
               <h2 className="text-lg font-semibold mb-2">Payment Method</h2>
-
             </div>
           </div>
         </div>
