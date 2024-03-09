@@ -47,7 +47,7 @@ const AddressBookComponent: React.FC = () => {
 
     if (token) {
       axios
-        .get<AddressBookEntry[]>('https://13.235.104.232/address-book/', {
+        .get<AddressBookEntry[]>('/address-book/', {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`,
@@ -75,7 +75,7 @@ const AddressBookComponent: React.FC = () => {
       }
 
       const response: AxiosResponse<AddressBookEntry> = await axios.post<AddressBookEntry>(
-        'https://13.235.104.232/address-book/',
+        '/address-book/',
         formData,
         {
           headers: {
@@ -106,7 +106,7 @@ const AddressBookComponent: React.FC = () => {
 
     if (token) {
       axios
-        .delete(`https://13.235.104.232/address-book/${itemId}/`, {
+        .delete(`/address-book/${itemId}/`, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`,

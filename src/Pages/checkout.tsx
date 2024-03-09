@@ -57,7 +57,7 @@ const Checkout: React.FC = () => {
 
       if (token) {
           axios
-              .get<AddressBookEntry[]>('https://13.235.104.232/address-book/', {
+              .get<AddressBookEntry[]>('/address-book/', {
                   headers: {
                       'Content-Type': 'application/json',
                       Authorization: `Token ${token}`,
@@ -109,7 +109,7 @@ console.log(selectedAddressId)
 
     if (token) {
       axios
-        .get<CartItem[]>('https://13.235.104.232/cart-items/', {
+        .get<CartItem[]>('/cart-items/', {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`,
@@ -134,7 +134,7 @@ console.log(selectedAddressId)
 
   const postCartItems = async () => {
     try {
-      const BASE_URL = 'https://13.235.104.232';
+      const BASE_URL = '';
       const token: string | null = localStorage.getItem('token');
   
     

@@ -39,7 +39,7 @@ interface Order {
 
 const History: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
-  const BASE_URL = "https://13.235.104.232";
+  const BASE_URL = "";
   const token: string | null = localStorage.getItem("token");
 
   useEffect(() => {

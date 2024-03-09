@@ -32,7 +32,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://13.235.104.232/product/');
+        const response = await axios.get('/product/');
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -92,7 +92,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
         quantity: 1
       };
 
-      const response = await fetch('https://13.235.104.232/cart-items/', {
+      const response = await fetch('/cart-items/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

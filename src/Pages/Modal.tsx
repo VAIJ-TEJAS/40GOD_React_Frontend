@@ -41,7 +41,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
         try {
             if (!isSignUpOpen) {
-                const response = await axios.post('https://13.235.104.232/auth/', formData);
+                const response = await axios.post('/auth/', formData);
                 const token = response.data.token;
                 localStorage.setItem('token', token);
                 console.log('Logged in successfully!', response.data);
