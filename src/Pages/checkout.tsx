@@ -31,22 +31,7 @@ interface CartItem {
   quantity: number;
 }
 
-interface SignUpForm {
-  id: number;
-  first_name: string;
-  last_name: string;
-  username: string;
-  email:string;
-}
 
-interface ImageData {                              
-  id: number;
-  url: string;
-  name?: string;
-  tagName?: string;
-  quantity?: number;
-  price?: number;
-}
 
 interface AddressBookEntry {
   id: number;
@@ -58,13 +43,9 @@ interface AddressBookEntry {
   postal_code: string;
   country: string;
 }
-interface CheckoutProps {
-  checkoutItems: ImageData[];
-  addToHistory: (item: ImageData) => void;
-  userData: SignUpForm;
-}
 
-const Checkout: React.FC<CheckoutProps> = ({ userData }) => {
+
+const Checkout: React.FC = () => {
  
 
 
@@ -194,7 +175,7 @@ console.log('quantyties',cartItems.map((item)=>(item.quantity)))
         <div className="grid grid-cols-1 mt-10 md:grid-cols-2  gap-4">
 
         
-        <ShippingInfo signUpData={{ token: "yourTokenHere", user: userData }} />
+        <ShippingInfo signUpData={null}  />
 
        
           <div className="p-4 rounded-lg shadow-md" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${b4})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>

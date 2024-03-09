@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './Pages/Navbar';
 import { Home } from './Pages/Home';
@@ -14,14 +14,7 @@ import Footer from './Pages/footer';
 import PrivacyPolicy from './Pages/privacyPolicy';
 import FortyGodTerms from './Pages/terms';
 import MyComponent from './Pages/MyComponent';
-interface ImageData {
-  id: number;
-  url: string;
-  name?: string;
-  tagName?: string;
-  quantity?: number;
-  price?: number;
-}
+
 
 
 
@@ -29,15 +22,7 @@ interface ImageData {
 
 
 const App: React.FC = () => {
-  const [checkoutItems, setCheckoutItems] = useState<ImageData[]>([]);
-  setCheckoutItems
-  const [historyItems, setHistoryItems] = useState<ImageData[]>([]);
-
-  
-
-  const addToHistory = (item: ImageData) => {
-    setHistoryItems(prevHistoryItems => [...prevHistoryItems, item]);
-  };
+ 
 
   return (
     <>
@@ -71,18 +56,8 @@ const App: React.FC = () => {
             path="/Bag"
             element={<Bag  />}
           />
-          <Route
-            path="/checkout"
-            element={<Checkout checkoutItems={checkoutItems} addToHistory={addToHistory} userData={{
-              id:2,
-              first_name: 'John',
-              last_name: 'Doe',
-              email: 'john.doe@example.com',
-              username: '1234567890',
-             
-            }} />}
-          />
-          <Route path="/history" element={<History historyItems={historyItems} />} />
+        <Route path="/checkout" element={<Checkout />} />
+          <Route path="/history" element={<History/>} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<FortyGodTerms />} />
           <Route path="/com" element={<MyComponent />} />
