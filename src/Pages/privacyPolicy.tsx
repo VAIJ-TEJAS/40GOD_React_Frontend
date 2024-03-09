@@ -8,7 +8,7 @@ import bg from '../assets/background/Backgroud.jpeg';
      <div className="fixed inset-0 bg-black">
         <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
       </div>
-         <div className="mt-20 p-8">
+         <div className="mt-20 p-8 z-10">
       <h2 className="text-2xl font-bold mb-4">Last Revised on March 1, 2024</h2>
       <p className="text-lg leading-relaxed p-4 m-4" >
       This Privacy Policy for Chrome Hearts LLC (“Company”, “we”, “us” “our”) describes how we collect, use and disclose information about users of the Company’s website (www.chromehearts.com), applications, services, tools and features (collectively, the “Services”).  For the purposes of this Privacy Policy, “you” and “your” means you as the user of the Services. We are committed to protecting and respecting your privacy. We are a limited liability company established in the United States of America with a registered office at 915 N Mansfield Avenue, Hollywood, CA 90038, United States and for the purpose of the General Data Protection Regulation (the “GDPR”), we are the data controller.

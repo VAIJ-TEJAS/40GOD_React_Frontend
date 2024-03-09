@@ -14,6 +14,7 @@ export interface Product {
    }
 
 export interface Color {
+    map(arg0: (color: any) => import("react/jsx-runtime").JSX.Element): import("react").ReactNode;
     id?: number;
     display_name?: string;
     color_name?: string;

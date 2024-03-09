@@ -2,6 +2,13 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, NavLink } from 'react-router-dom';
 import bg from '../assets/background/Backgroud.jpeg';
+interface productData {
+  id: number;
+  sku: string;
+  name: string;
+  price: number;
+ 
+}
 
 interface ColorData {
   id: number;
@@ -9,6 +16,7 @@ interface ColorData {
   color_name: string;
   hex_code: string;
   image_product: { id: number; image: string }[];
+  product:productData
 }
 
 interface SizeData {
@@ -27,6 +35,7 @@ interface CartItem {
   id: number;
   product_varient: ProductVariant;
   quantity: number;
+  price:number
 }
 
 function Bag() {
@@ -80,7 +89,6 @@ function Bag() {
     const token = localStorage.getItem('token');
   
     if (token) {
-      // Fetch the current cart item data from the backend to get the current quantity
       axios.get(`https://13.235.104.232/cart-items/${itemId}/`, {
         headers: {
           'Authorization': `Token ${token}`,
@@ -92,7 +100,9 @@ function Bag() {
   
         let newQuantity = currentQuantity + quantityDelta;
         newQuantity = Math.max(newQuantity, 1);
-
+  
+       
+  
         axios.put(`https://13.235.104.232/cart-items/${itemId}/`, {
           quantity: newQuantity,
         }, {
@@ -103,7 +113,7 @@ function Bag() {
         })
         .then(() => {
           console.log('Quantity updated for item:', itemId);
-          fetchCartItems(); // Fetch updated cart items after updating quantity
+          fetchCartItems(); // Assuming fetchCartItems is defined elsewhere
         })
         .catch(error => {
           console.error('Error updating quantity:', error);
@@ -115,14 +125,16 @@ function Bag() {
     }
   };
   
-  
+ 
 
   const handleIncreaseQuantity = (itemId: number) => {
     updateCartItemQuantity(itemId, 1); 
+
   };
 
   const handleDecreaseQuantity = (itemId: number) => {
     updateCartItemQuantity(itemId, -1); 
+
   };
 
   const fetchCartItems = () => {
@@ -145,13 +157,19 @@ function Bag() {
         });
     }
   };
-
+  const totalSum = cartItems.reduce((accumulator, item) => {
+    if (item.product_varient && item.product_varient.color && item.product_varient.color.product) {
+        const price = item.product_varient.color.product.price * item.quantity;
+        return accumulator + price;
+    }
+    return accumulator;
+}, 0);
   return (
     <div className="flex flex-col relative">
      <div className="fixed inset-0 bg-black">
         <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
       </div>
-      <div className="sm:flex h-full z-10 item-center justify-center mt-40">
+      <div className="sm:flex h-full z-10 item-center justify-center mt-60">
         {cartItems.length === 0 ? (
           <p>Your bag is empty.</p>
         ) : (
@@ -179,7 +197,9 @@ function Bag() {
                         {item.product_varient &&
                           item.product_varient.color &&
                           item.product_varient.color.color_name}
+                          
                       </p>
+                      
                       <p>
                         {item.product_varient &&
                           item.product_varient.color &&
@@ -251,7 +271,9 @@ function Bag() {
                         <p>Quantity: {item.quantity}</p>
                       </div>
                       <div className="text-center">
-                        <p>amt:10000</p>
+                        <p>Price:  {item.product_varient &&
+                          item.product_varient.color &&
+                          item.product_varient.color.product.price * item.quantity}</p>
                       </div>
                     </div>
                   </div>
@@ -259,12 +281,13 @@ function Bag() {
               </div>
 
               <>
-              <div className="grid grid-cols-4 grid-rows-1 sm:gap-4 border border-black">
+              <div className="grid grid-cols-2 grid-rows-1 sm:gap-64 border border-black">
                 <h1>Total</h1>
-                <div></div>
+           
                 <>
-                  <p></p>
-                  <h1>10000</h1>
+                 
+                  <h1>  {totalSum}
+                  </h1>
                 </>
               </div>
               <div className="flex item-center justify-center mt-4">

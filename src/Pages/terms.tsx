@@ -6,7 +6,7 @@ function FortyGodTerms() {
      <div className="fixed inset-0 bg-black">
         <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
       </div>
-         <div className="mt-20 p-8">
+         <div className="mt-20 p-8 z-10">
         
       <h1 className="text-2xl font-bold mb-4">Terms and Conditions</h1>
       <p className="text-lg font-bold mb-4">Last Revised on March 1 ,2024</p>

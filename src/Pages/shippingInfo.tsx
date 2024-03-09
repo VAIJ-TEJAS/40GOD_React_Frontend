@@ -19,29 +19,17 @@ interface AddressBookEntry {
     id: number;
     name: string;
     phone_number: string;
-}
-interface AddressFormData {
-    name: string;
-    phone_number: string;
     street_address: string;
     city: string;
     state: string;
     postal_code: string;
     country: string;
-  }
-  
+}
 
 const ShippingInfo: React.FC<ShippingInfoProps> = ({ }) => {
     const [addressBook, setAddressBook] = useState<AddressBookEntry[]>([]);
-    const [formData, setFormData] = useState<AddressFormData>({
-        name: '',
-        phone_number: '',
-        street_address: '',
-        city: '',
-        state: '',
-        postal_code: '',
-        country: ''
-      });
+    const [selectedAddressId, setSelectedAddressId] = useState<number | null>(null);
+
     useEffect(() => {
         const token: string | null = localStorage.getItem('token');
 
@@ -56,6 +44,9 @@ const ShippingInfo: React.FC<ShippingInfoProps> = ({ }) => {
                 .then((response: AxiosResponse<AddressBookEntry[]>) => {
                     console.log('Address Book:', response.data);
                     setAddressBook(response.data);
+                    if (response.data.length > 0) {
+                        setSelectedAddressId(response.data[0].id); // Select the first address entry by default
+                    }
                 })
                 .catch((error) => {
                     console.error('Error fetching address book entries:', error);
@@ -63,14 +54,33 @@ const ShippingInfo: React.FC<ShippingInfoProps> = ({ }) => {
         }
     }, []);
 
+    const handleAddressSelect = (addressId: number) => {
+        setSelectedAddressId(addressId);
+    };
+console.log(selectedAddressId)
     return (
-        <div className="p-4 rounded-lg shadow-md" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${b4})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
-            <h2>Address Book Entries:</h2>
+        <div className="p-4 rounded-lg shadow-md z-40"  style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${b4})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+           <h2 className="text-lg font-semibold mb-2">Select the address</h2>
             <ul>
                 {addressBook.map((entry) => (
-                    <li key={entry.id}>
-                        Name: {entry.name}, Phone: {entry.phone_number}
-                        
+                    <li key={entry.id} className='m-4 mb-8'>
+                        <input
+                            type="radio"
+                            id={`address_${entry.id}`}
+                            name="selectedAddress"
+                            value={entry.id}
+                            checked={selectedAddressId === entry.id}
+                            onChange={() => handleAddressSelect(entry.id)}
+                        />
+                        <label  htmlFor={`address_${entry.id}`}>
+                            <strong className='m-2'>Name:</strong> {entry.name}<br />
+                            <strong className='m-4'>Phone:</strong> {entry.phone_number}<br />
+                            <strong className='m-4'>Street Address:</strong> {entry.street_address}<br />
+                            <strong className='m-4'>City:</strong> {entry.city}<br />
+                            <strong className='m-4'>State:</strong> {entry.state}<br />
+                            <strong className='m-4'>Postal Code:</strong> {entry.postal_code}<br />
+                            <strong className='m-4'>Country:</strong> {entry.country}
+                        </label>
                     </li>
                 ))}
             </ul>

@@ -1,19 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ShippingInfo from './shippingInfo'; 
 import bg from '../assets/background/Backgroud.jpeg';
 import b4 from '../assets/background/b4.jpeg';
+import axios  from 'axios';
 
 
-const paymentMethods = [
-  { id: 1, name: 'Credit Card', logoUrl: 'credit-card-logo.png', requiresDetails: true, detailsLabel: 'Card Number' },
-  { id: 2, name: 'Debit Card', logoUrl: 'debit-card-logo.png', requiresDetails: true, detailsLabel: 'Card Number' },
-  { id: 3, name: 'Net Banking', logoUrl: 'net-banking-logo.png', requiresDetails: true, detailsLabel: 'Bank Name' },
-  { id: 4, name: 'UPI', logoUrl: 'upi-logo.png', requiresDetails: true, detailsLabel: 'UPI ID' },
+interface ColorData {
+  id: number;
+  display_name: string;
+  color_name: string;
+  hex_code: string;
+  image_product: { id: number; image: string }[];
+}
 
-];
+interface SizeData {
+  id: number;
+  text: string;
+}
 
+interface ProductVariant {
+  id: number;
+  color: ColorData;
+  size: SizeData;
+  quantity: number;
+}
 
+interface CartItem {
+  id: number;
+  product_varient: ProductVariant;
+  quantity: number;
+}
 
 interface SignUpForm {
   id: number;
@@ -39,28 +56,74 @@ interface CheckoutProps {
   userData: SignUpForm;
 }
 
-const Checkout: React.FC<CheckoutProps> = ({ checkoutItems, addToHistory, userData }) => {
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<number | null>(null);
-  const [paymentDetails, setPaymentDetails] = useState<string>('');
+const Checkout: React.FC<CheckoutProps> = ({ userData }) => {
+ 
   const navigate = useNavigate();
 
-  
+
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  useEffect(() => {
+    const token: string | null = localStorage.getItem('token');
+
+    if (token) {
+      axios
+        .get<CartItem[]>('https://13.235.104.232/cart-items/', {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Token ${token}`,
+          },
+        })
+        .then((response) => {
+          console.log('Cart Items:', response.data);
+          setCartItems(response.data);
+        })
+        .catch((error) => {
+          console.error('Error fetching cart items:', error);
+        });
+    }
+  }, []);
 
   const handleCheckout = () => {
-    if (selectedPaymentMethod === null) {
-      alert('Please select a payment method.');
-      return;
-    }
-
-    if (paymentMethods[selectedPaymentMethod - 1].requiresDetails && !paymentDetails.trim()) {
-      alert(`Please provide ${paymentMethods[selectedPaymentMethod - 1].detailsLabel}`);
-      return;
-    }
-
-   
     navigate('/history');
     alert('Checked out successfully!');
   };
+
+
+
+
+
+  const [response, setResponse] = useState<any>(null);
+
+  const postCartItems = async () => {
+    try {
+      const BASE_URL = 'https://13.235.104.232';
+      const token: string | null = localStorage.getItem('token');
+  
+      for (const item of cartItems) {
+        const requestOptions: RequestInit = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${token}`
+          },
+          body: JSON.stringify({
+
+          })
+        };
+  
+        const response = await fetch(`${BASE_URL}/order/create_order/`, requestOptions);
+        const data = await response.json();
+        console.log('Response:', data);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
+
+console.log('product_variants',cartItems.map((item)=>(item.product_varient.id)))
+console.log('quantyties',cartItems.map((item)=>(item.quantity)))
+
 
   return (
     <div className="flex flex-col min-h-screen relative h-full justify-center items-center"> {/* Added px-4 for padding on the left and right */}
@@ -68,10 +131,10 @@ const Checkout: React.FC<CheckoutProps> = ({ checkoutItems, addToHistory, userDa
         <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
       </div>
       <div className='mt-36  relative z-10'>
-        <div className="my-8 w-full">
+        <div className="my-8 w-full mt-28">
           <h1 className="text-2xl font-semibold">Checkout</h1>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 mt-10 md:grid-cols-2  gap-4">
 
         
         <ShippingInfo signUpData={{ token: "yourTokenHere", user: userData }} />
@@ -82,12 +145,26 @@ const Checkout: React.FC<CheckoutProps> = ({ checkoutItems, addToHistory, userDa
             <div className="mb-4">
               <h2 className="text-lg font-semibold mb-2">Items</h2>
 
-              {checkoutItems.map(item => (
-                <div className="border-b-2 border-black py-4 flex items-center justify-between relative" key={item.id} style={{ backgroundImage: `url(${bg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
-                  <div className="flex items-center" onClick={() => addToHistory(item)}>
-                    <img src={item.url} alt="img" className="w-16 h-auto mr-4 shadow-md" />
+              {cartItems.map((item) => (
+                <div className="border-b-2 border-black py-4 flex items-center justify-between relative" key={item.id} >
+                  <div className="flex items-center" >
+                  {item.product_varient &&
+                        item.product_varient.color &&
+                        item.product_varient.color.image_product &&
+                        item.product_varient.color.image_product[0] && (
+                          <img
+                            src={
+                              item.product_varient.color.image_product[0].image
+                            }
+                            alt={item.product_varient.color.display_name}
+                            className='w-16'
+                          />
+                        )}
                     <div>
-                      <p>{item.name}</p>
+                      <p>  Color Name:{' '}
+                        {item.product_varient &&
+                          item.product_varient.color &&
+                          item.product_varient.color.color_name}</p>
                       <p className="text-gray-500">Navy blue</p>
                     </div>
                     <div className='ml-9'>
@@ -109,38 +186,16 @@ const Checkout: React.FC<CheckoutProps> = ({ checkoutItems, addToHistory, userDa
             </div>
             <div>
               <h2 className="text-lg font-semibold mb-2">Payment Method</h2>
-              {paymentMethods.map(method => (
-                <div key={method.id} className="mb-4">
-                  <label className="flex items-center cursor-pointer">
-                    <input
-                      type="radio"
-                      className="form-radio h-5 w-5 text-blue-600"
-                      name="paymentMethod"
-                      value={method.id}
-                      checked={selectedPaymentMethod === method.id}
-                      onChange={() => setSelectedPaymentMethod(method.id)}
-                    />
-                    <img src={method.logoUrl} alt={method.name} className="w-10 h-10 ml-2" />
-                  </label>
-                  {selectedPaymentMethod === method.id && method.requiresDetails && (
-                    <input
-                      type="text"
-                      placeholder={`Enter ${method.detailsLabel}`}
-                      className="mt-2 p-2 border border-gray-300 rounded-md w-full"
-                      value={paymentDetails}
-                      onChange={e => setPaymentDetails(e.target.value)}
-                    />
-                  )}
-                </div>
-              ))}
+             
             </div>
           </div>
         </div>
      
         <div className="flex justify-end">
-          <button className="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 m-4 rounded" onClick={handleCheckout}>
+          <button className="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 m-4 rounded" onClick={postCartItems}>
             Place Order
           </button>
+         
         </div>
       </div>
     </div>

@@ -25,6 +25,9 @@ const NavBar: React.FC = () => {
         document.body.style.overflow = 'auto';
     };
 
+
+
+
     return (
         <div>
             <nav className="fixed z-50 bg-transparent flex w-full justify-between p-3 sm:p-6">
@@ -34,7 +37,7 @@ const NavBar: React.FC = () => {
                 <div className="relative block sm:hidden flex items-center mb-60 ">
                 <img onClick={toggleDropDown} className="w-6 sm:w-10 h-6 sm:h-8 z-0 ml-2 sm:ml-5" src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 6px rgba(0, 0, 0, 1))' }} />
                 </div>
-               <div className='sm:ml-40'>
+               <div className='ml-80'>
                  <Logo />
                </div>
                <div className="relative">
@@ -57,10 +60,7 @@ const NavBar: React.FC = () => {
     </div>
   </div>
 )}
-
-
-
-    </div>
+</div>
               
                 <div className="space-x-6 ">
                     <button className="my-text text-gray-700 hover:text-gray-400 font-bold hidden sm:inline-block text-base sm:text-xl text-gray-700" onClick={openModal}>
