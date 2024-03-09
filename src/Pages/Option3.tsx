@@ -70,10 +70,7 @@ const option3: React.FC = () => {
               )}
             </div>
           ))}
-
-
-
-        </div>
+     </div>
       </div>
     </div>
   );
