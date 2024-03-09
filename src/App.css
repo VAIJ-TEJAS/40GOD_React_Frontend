@@ -19,6 +19,18 @@
   .my-text {
     font-family: 'MyFont', sans-serif;
   }
+
+  @font-face {
+    font-family: 'Cloister';
+    src: local('Cloister'), url('./assets/fonts/CloisterBlack.ttf') format('truetype');
+  }
+
+  .got-text {
+    font-family: 'Cloister', sans-serif;
+  }
+
+
+
   html{
     height: 100%;
   }
