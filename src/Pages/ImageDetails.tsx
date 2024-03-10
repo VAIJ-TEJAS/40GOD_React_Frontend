@@ -5,7 +5,8 @@ import color from "../assets/logo.png";
 import { Product } from '../types/productType';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
-import './../css/carousel.css';
+import Modal from './Modal';
+import Login from './Modal';
 
 interface ImageDetailsProps {
   addToBag: (item: Product) => void;
@@ -14,6 +15,17 @@ interface ImageDetailsProps {
 
 const ImageDetails: React.FC<ImageDetailsProps> = () => {
   const [isAdded, setIsAdded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+    document.body.style.overflow = 'hidden';
+};
+const closeModal = () => {
+  setIsModalOpen(false);
+  document.body.style.overflow = 'auto';
+};
+
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -120,6 +132,9 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
 
     } catch (error) {
       console.error('Error adding item to bag:', error);
+      setIsModalOpen(true);
+      
+
     }
   };
 
@@ -197,6 +212,17 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
                 </button>
               </div>
               <div className="flex gap-2 mt-4 mb-4 ">
+              {product.colors?.map(color => (
+                  <div key={color.id}>
+                     <button
+                 style={{ backgroundColor:`${color.hex_code}`}}
+                  className={`w-10 h-8 text-center rounded-full bg-gray-500 text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${selectedSize === 'M' ? 'bg-green-500' : ''}`}
+                  onClick={() => handleSizeClick('M')}
+                >
+                  M
+                </button>
+                  </div>
+                ))}
                 <button
                   className={`w-10 text-center rounded-full bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${selectedColor === 'red' ? 'bg-red-800' : ''}`}
                   onClick={() => handleColorClick('red')}

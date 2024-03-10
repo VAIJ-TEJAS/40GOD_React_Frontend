@@ -14,7 +14,6 @@ const NavBar: React.FC = () => {
     };
 
 
-
     const openModal = () => {
         setIsModalOpen(true);
         document.body.style.overflow = 'hidden';
