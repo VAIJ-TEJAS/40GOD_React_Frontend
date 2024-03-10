@@ -218,7 +218,7 @@ function Bag() {
                           item.product_varient.color.display_name}
                           <p>Quantity: </p>
                       </p>
-                      <div className='flex items-center justify-center mr-4'>
+                      <div className='flex items-center justify-center sm:mr-4'>
                       <button className='bg-gray-900 hover:bg-white border border-gray-300 shadow-xl m-4  text-white hover:text-black p-2 rounded-full' onClick={() => handleIncreaseQuantity(item.id)}>
                      +
                       </button>

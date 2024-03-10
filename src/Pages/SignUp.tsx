@@ -43,8 +43,11 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ onClose }) => {
 
             console.log(response.data); 
             navigate('/Account', { state: formData });
+            onClose();
         } catch (error) {
             console.error('Error signing up:', error);
+            alert('Error signing up');
+
         }
 
         setFormData({

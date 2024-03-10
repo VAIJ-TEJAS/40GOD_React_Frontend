@@ -5,7 +5,6 @@ import color0 from "../assets/logo.png";
 import { Product } from '../types/productType';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
-import Modal from './Modal';
 import Login from './Modal';
 
 interface ImageDetailsProps {

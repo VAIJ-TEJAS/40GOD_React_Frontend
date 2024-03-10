@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from 'axios';
 import bg from '../assets/background/Backgroud.jpeg';
 import { NavLink } from 'react-router-dom';
 import b4 from '../assets/background/b4.jpeg'
-
+import'../App.css'
 interface AddressBookEntry {
   id: number;
   name: string;
@@ -142,7 +142,7 @@ const AddressBookComponent: React.FC = () => {
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-xl font-semibold">My Account</h2>
           <button className="font-bold py-2 px-4 rounded">
-            Edit
+            
           </button>  </div>
           <ul className="flex space-x-2">
           <li>
@@ -153,42 +153,24 @@ const AddressBookComponent: React.FC = () => {
         <div className="my-4">
           <h3 className="text-lg font-semibold mb-4">Profile</h3>
         </div>
+        {AddressBook.map((entry: any) => (
+          <div key={entry.id}>
         <div className="mb-4 grid grid-cols-2">
-          <label className="block mb-2">User Name</label>
-          <input
-            type="text"
-            className="w-full p-2 border border-gray-300 rounded-md"
-            value="XYZ"
-
-          />
+          <label className="block mb-2">User Name : {entry.user.username}</label>
+        
         </div>
         <div className="mb-4 grid grid-cols-2">
-          <label className="block mb-2">Email Address</label>
-          <input
-            type="text"
-            className="w-full p-2 border border-gray-300 rounded-md"
-            value="XYZ"
-
-          />
+          <label className="block mb-2">Email Address : {entry.user.email}</label>
+          
         </div>
-        <div className="mb-4 grid grid-cols-2">
-          <label className="block mb-2">Phone number</label>
-          <input
-            type="text"
-            className="w-full p-2 border border-gray-300 rounded-md"
-            value="XYZ"
-          />
-        </div>
-
+     
+</div>))}
         {AddressBook.map((entry: any) => (
           <div key={entry.id}>
             <div className="mb-4 grid grid-cols-2">
-              <label className="block mb-2">Name</label>
-              <input
-                type="text"
-                className="w-full p-2 border border-gray-300 rounded-md"
-                value={entry.name}
-              />
+              <label className="block mb-2 font-bold my-text">Name : {entry.name}</label>
+              
+
             </div>
 
             <div className="p-4 z-10 rounded-lg shadow-md" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${b4})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
@@ -196,51 +178,25 @@ const AddressBookComponent: React.FC = () => {
               <h2 className="text-lg  font-semibold mb-4">Shipping Information</h2>
 
 
-              <div className="mb-4 gap-4 grid grid-cols-2">
+              <div className="mb-2 gap-4 grid grid-cols-2">
                 <div>
-                  <label className="block mb-2">Country </label>
-                  <input
-                    type="text"
-                    className="w-full p-2 border border-gray-300 rounded-md"
-                    value={entry.country}
-                  /></div>
+                  <label className="block font-semibold  mb-2">Country : {entry.country} </label>
+                  </div>
                 <div>
-                  <label className="block mb-2">City </label>
-                  <input
-                    type="text"
-                    className="w-full p-2 border border-gray-300 rounded-md"
-                    value={entry.state}
-
-                  /></div>
+                  <label className="block font-semibold  mb-2">State : {entry.state} </label>
+                 </div>
               </div>
-              <div className="mb-4 grid grid-cols-2">
-
-              </div>
-              <div className="mb-4 grid gap-4 grid-cols-2">
+             
+              <div className="mb-2 font-semibold  grid gap-4 grid-cols-2">
                 <div>
-                  <label className="block mb-2">Town/city </label>
-                  <input
-                    type="text"
-                    className="w-full p-2 border border-gray-300 rounded-md"
-                    value={entry.city}
-
-                  /></div>
-                <div>
-                  <label className="block mb-2">Postal Code </label>
-                  <input
-                    type="text"
-                    className="w-full p-2 border border-gray-300 rounded-md"
-                    value={entry.postal_code}
-
-                  /></div>
+                  <label className="block font-semibold  mb-2">Town/city : {entry.city} </label>
               </div>
-              <div className="mb-4 grid grid-cols-1">
-                <label className="block mb-2">street </label>
-                <input
-                  type="text"
-                  className="w-full p-2 border border-gray-300 rounded-md"
-                  value={entry.street_address}
-                />
+                <div>
+                  <label className="block font-semibold  mb-2">Postal Code : {entry.postal_code}</label>
+                  </div>
+              </div>
+              <div className="mb-2 grid grid-cols-1">
+                <label className="block font-semibold  mb-2">street : {entry.street_address} </label>
               </div>
             </div>
 

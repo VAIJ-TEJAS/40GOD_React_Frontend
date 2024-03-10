@@ -24,14 +24,14 @@ const option3: React.FC = () => {
   const newData: Product[] = products
 
   return (
-    <div className="flex flex-col relative">
+    <div className=" relative">
       <div className="fixed inset-0 bg-black">
         <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
       </div>
-      <div className="relative w-full h-screen">
-        <img src={bg2} alt='bg' className="absolute inset-0 w-full h-full object-cover filter brightness-75" />
+      <div className="relative w-full min-h-screen">
+        <img src={bg2} alt='bg' className=" inset-0 w-full h-1/2 object-cover filter brightness-75" />
         <div className="absolute inset-x-0 inset-y-0 flex flex-col justify-center items-center">
-          <p className="text-white text-center font-bold got-text text-3xl lg:text-9xl">Getting Out Drippin</p>
+          <p className="text-white bottom-50 font-bold got-text text-3xl lg:text-9xl">Getting Out Drippin</p>
         </div></div>
       <div className="mt-40 p-24">
 

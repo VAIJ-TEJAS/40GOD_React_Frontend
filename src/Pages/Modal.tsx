@@ -18,17 +18,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     });
 
 
-    useEffect(() => {
-
-        const token = localStorage.getItem('token');
-        const userJson = localStorage.getItem('user');
-
-        if (token) {
-            const user = JSON.parse(userJson!);
-            console.log(user);
-            console.log('User is already logged in with token:', token);
-        } 
-    }, []);
+   
 
     const handleSignUpClick = () => {
         setIsSignUpOpen(true);
@@ -37,7 +27,6 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        onClose();
 
         e.preventDefault();
 
@@ -47,6 +36,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 const token = response.data.token;
                 localStorage.setItem('token', token);
                 console.log('Logged in successfully!', response.data);
+                onClose()
             } else {
 
             }
@@ -68,6 +58,17 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             [name]: value
         }));
     };
+    useEffect(() => {
+
+        const token = localStorage.getItem('token');
+        const userJson = localStorage.getItem('user');
+
+        if (token) {
+            const user = JSON.parse(userJson!);
+            console.log(user);
+            console.log('User is already logged in with token:', token);
+        } 
+    }, []);
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
@@ -88,45 +89,46 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                     </p>
                     <div>
                         {!isSignUpOpen && (
-                            <form onSubmit={handleSubmit} >
-                                <div className="mb-4">
-                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="email">
-                                        Email
-                                    </label>
-                                    <input
-                                        className="w-full border border-gray-300 dark:border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:border-indigo-500"
-                                        type="text"
-                                        id="username"
-                                        name="username"
-                                        placeholder="Username"
-                                        value={formData.username}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </div>
-                                <div className="mb-6">
-                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="password">
-                                        Password
-                                    </label>
-                                    <input
-                                        className="w-full border border-gray-300 dark:border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:border-indigo-500"
-                                        type="password"
-                                        id="password"
-                                        name="password"
-                                        placeholder="Password"
-                                        value={formData.password}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </div>
-                            </form>
+                          <form onSubmit={handleSubmit}>
+                          <div className="mb-4">
+                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="email">
+                                  Email
+                              </label>
+                              <input
+                                  className="w-full border border-gray-300 dark:border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:border-indigo-500"
+                                  type="text"
+                                  id="username"
+                                  name="username"
+                                  placeholder="Username"
+                                  value={formData.username}
+                                  onChange={handleChange}
+                                  required // Marking email field as required
+                              />
+                          </div>
+                          <div className="mb-6">
+                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="password">
+                                  Password
+                              </label>
+                              <input
+                                  className="w-full border border-gray-300 dark:border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:border-indigo-500"
+                                  type="password"
+                                  id="password"
+                                  name="password"
+                                  placeholder="Password"
+                                  value={formData.password}
+                                  onChange={handleChange}
+                                  required // Already marked as required
+                              />
+                          </div>
+                      </form>
+                      
                         )}
                         {isSignUpOpen && <SignUpPage onClose={() => setIsSignUpOpen(false)} />}
 
                         <div className="flex justify-between items-center">
                             {!isSignUpOpen && (
                                 <>
-                                    <button className="bg-gray-800 dark:bg-white text-white dark:text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" >
+                                    <button className="bg-gray-800 dark:bg-white text-white dark:text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={handleSubmit} >
                                         Login
                                     </button>
                                     <button className="bg-gray-800 dark:bg-white text-white dark:text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={handleSignUpClick}>

@@ -8,11 +8,14 @@ import Logo from '../components/logo';
 const NavBar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isShopOpen, setIsShopOpen]=useState(false)
 
     const toggleDropDown = () => {
         setIsOpen(!isOpen);
     };
-
+    const toggleShopDropDown = () => {
+        setIsShopOpen(!isShopOpen);
+    };
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -48,13 +51,18 @@ const NavBar: React.FC = () => {
                             <div className="dropdown-content">
                                 <h2 className="text-lg font-bold mt-4 mb-8  my-text">Menu</h2>
                                 <ul>
-                                    <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={() => window.location.href = '/'}>Home</li>
                                     <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={openModal}>Login</li>
                                     <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={() => window.location.href = '/account'}>Account</li>
+                                    <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={toggleShopDropDown}>Shop</li>
+
+                                    {isShopOpen && (
+                                        <div className='ml-4'>
                                     <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={() => window.location.href = '/Option1'}>New</li>
                                     <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={() => window.location.href = '/Option2'}>Dripped</li>
                                     <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={() => window.location.href = '/Option3'}>All</li>
+                                    </div>)}
                                     <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={() => window.location.href = '/bag'}>Bag</li>
+
                                 </ul>
                             </div>
                         </div>

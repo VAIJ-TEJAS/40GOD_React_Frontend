@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import bg from '../assets/background/Backgroud.jpeg';
 interface Color {
   product: any;
   color_name: string;
@@ -23,6 +23,7 @@ interface Size {
 }
 
 interface OrderItem {
+  quantity: number;
   cart_item: {
     color: Color;
     product: Product;
@@ -32,6 +33,7 @@ interface OrderItem {
 }
 
 interface Order {
+  status: string;
   date: string;
   id: number;
   order_items: OrderItem[];
@@ -62,38 +64,63 @@ const History: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-200">
-      <div className="w-full p-8 bg-white rounded-lg shadow-lg">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold">History</h1>
-        </div>
-        {orders.length > 0 ? (
-          orders.map((order) => (
-            <div key={order.id}>
-              <p>Date: {order.date}</p>
-              <ul>
-                {order.order_items.map((item, index) => (
-                  <li key={index}>
-                    <p>Product: {item.cart_item.color.product.name}</p>
-                    <p>Quantity: {item.cart_item.quantity}</p>
-                    <p>Color: {item.cart_item.color.display_name}</p>
-                    <p>Price: {item.cart_item.color.product.price}</p>
-                    <p>Size: {item.cart_item.size.text}</p>
-                    <img
-                      src={item.cart_item.color.image_product[0].image}
-                      alt={`Image ${index}`}
-                      className="max-h-24 max-w-full"
-                    />
-                  </li>
-                ))}
-              </ul>
+    <div className="flex flex-col relative min-h-screen">
+    <div className="fixed inset-0 bg-black">
+      <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover filter brightness-75" />
+    </div>  
+  
+    <div className="mb-8 mt-60 z-20  ml-5">
+      <h1 className="text-3xl font-bold">History</h1>
+    </div>    
+  
+    <div className=" gap-4 p-8 flex items-center justify-center rounded-lg z-10 shadow-lg">
+      {orders.length > 0 ? (
+        orders.map((order) => (
+          <div key={order.id} className="grid sm:grid-cols-4 gap-4  ">
+             <div>
+            <ul>
+              {order.order_items.map((item, index) => (
+                <li key={index}>
+                  <img
+                    src={item.cart_item.color.image_product[0].image}
+                    alt={`Image ${index}`}
+                    className="max-h-24 max-w-full"
+                  />
+                </li>
+              ))}
+            </ul>
             </div>
-          ))
-        ) : (
-          <p>No items in history.</p>
-        )}
-      </div>
+            <div>
+            <p>Date: {order.date}</p>
+            <p>Status: {order.status}</p>
+            </div>
+            <div>
+            <ul>
+              {order.order_items.map((item, index) => (
+                <li key={index}>
+                  <p>Product: {item.cart_item.color.product.name}</p>
+                  <p>Color: {item.cart_item.color.display_name}</p>
+                  <p>Size: {item.cart_item.size.text}</p>
+                </li>
+              ))}
+            </ul>
+            </div><div>
+            <ul>
+              {order.order_items.map((item, index) => (
+                <li key={index}>
+                  <p>Quantity: {item.quantity}</p>
+                  <p>Price: {item.cart_item.color.product.price * item.quantity}</p>
+                </li>
+              ))}
+            </ul></div>
+          </div>
+        ))
+      ) : (
+        <p>No items in history.</p>
+      )}
     </div>
+  </div>
+  
   );
 };
 

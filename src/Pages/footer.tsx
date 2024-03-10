@@ -12,11 +12,13 @@ function Footer() {
         <a href="/terms" className="hover:text-gray-400 my-text">Terms</a>
         <a href="/privacy" className="hover:text-gray-400 my-text">Privacy</a>
     </div>
-    <div className="flex items-center space-x-4">
-        <a href="#" className="hover:text-gray-400 my-text">Socials</a>
+    <div className=" z-20 items-center space-x-4">
+        <a href="#" className="hover:text-gray-400 my-text">Socials</a><br/>
+        <p>2024 © 40.G.O.D all rights reserved</p>
+        
     </div>
-    <div className="flex items-center">
-        <a href="/" className="hover:text-gray-400 my-text">General</a>
+    <div className="flex  z-20 items-center">
+        <a href="/" className="hover:text-gray-400 my-text mr-4">General</a>
         <a href="#" className="hover:text-gray-400 my-text">Contact</a>
     </div>
 </footer>
