@@ -128,7 +128,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                         <div className="flex justify-between items-center">
                             {!isSignUpOpen && (
                                 <>
-                                    <button className="bg-gray-800 dark:bg-white text-white dark:text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={handleSubmit} >
+                                    <button className="bg-gray-800 dark:bg-white text-white dark:text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit"  >
                                         Login
                                     </button>
                                     <button className="bg-gray-800 dark:bg-white text-white dark:text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={handleSignUpClick}>
