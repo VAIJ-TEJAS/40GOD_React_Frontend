@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import bg2 from './../assets/background/b10.jpeg';
+import bg2 from './../assets/background/b11.jpeg';
 import bg from '../assets/background/Backgroud.jpeg';
 import { Product } from '../types/productType';
 import axios from 'axios'

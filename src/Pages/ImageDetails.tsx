@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import './../css/Button.css';
 import bg from "../assets/background/Backgroud.jpeg";
-import color from "../assets/logo.png";
+import color0 from "../assets/logo.png";
 import { Product } from '../types/productType';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
@@ -44,13 +44,13 @@ const closeModal = () => {
   };
 
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const [selectedColor, setSelectedColor] = useState(0);
 
   const handleSizeClick = (size: string) => {
     setSelectedSize(size);
   };
 
-  const handleColorClick = (color: string) => {
+  const handleColorClick = (color: number) => {
     setSelectedColor(color);
   };
 
@@ -131,8 +131,9 @@ const closeModal = () => {
       setIsAdded(true);
 
     } catch (error) {
-      console.error('Error adding item to bag:', error);
       setIsModalOpen(true);
+
+      console.error('Error adding item to bag:', error);
       
 
     }
@@ -161,12 +162,12 @@ const closeModal = () => {
         &lt;
       </button>
       <div className="carousel-inner">
-        {product.colors?.[0]?.image_product?.map((imageData, index) => (
+        {product.colors?.[selectedColor]?.image_product?.map((imageData, index) => (
           <div
             key={index}
             className={`carousel-item ${index === currentSlide ? 'active' : ''}`}
           >
-            <img src={imageData.image} alt={product.colors?.[0]?.display_name} />
+            <img src={imageData.image} alt={product.colors?.[selectedColor]?.display_name} />
           </div>
         ))}
       </div>
@@ -212,29 +213,18 @@ const closeModal = () => {
                 </button>
               </div>
               <div className="flex gap-2 mt-4 mb-4 ">
-              {product.colors?.map(color => (
+              {product.colors?.map((color, index) => (
                   <div key={color.id}>
                      <button
                  style={{ backgroundColor:`${color.hex_code}`}}
-                  className={`w-10 h-8 text-center rounded-full bg-gray-500 text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${selectedSize === 'M' ? 'bg-green-500' : ''}`}
-                  onClick={() => handleSizeClick('M')}
+                  className={`w-10 h-10 text-center rounded-full bg-gray-500 text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${selectedSize === 'M' ? 'bg-green-500' : ''}`}
+                  onClick={() => handleColorClick(index)}
                 >
-                  M
+                 <img src={color0} alt='image' />
+
                 </button>
                   </div>
                 ))}
-                <button
-                  className={`w-10 text-center rounded-full bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${selectedColor === 'red' ? 'bg-red-800' : ''}`}
-                  onClick={() => handleColorClick('red')}
-                >
-                  <img src={color} alt='image' />
-                </button>
-                <button
-                  className={`w-10 text-center rounded-full bg-green-600 text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${selectedColor === 'green' ? 'bg-green-800' : ''}`}
-                  onClick={() => handleColorClick('green')}
-                >
-                  <img src={color} alt='image' />
-                </button>
               </div>
               <div >
                 <ul className="list-disc">
@@ -251,6 +241,8 @@ const closeModal = () => {
           </div>
         )}
       </div>
+      <Login isOpen={isModalOpen} onClose={closeModal} />
+
     </div>
   );
 }

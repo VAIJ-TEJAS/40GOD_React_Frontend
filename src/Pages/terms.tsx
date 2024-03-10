@@ -31,7 +31,7 @@ function FortyGodTerms() {
         <section className="mb-8">
             <h2 className="text-xl font-semibold mb-2">2. USER ACCOUNTS, SUBSCRIPTIONS AND FREE TRIALS</h2>
             <h3 className="text-lg font-semibold mb-2">2.1. Creating and Safeguarding your Account</h3>
-            <p>To use certain of the Services, you have the option to create an account (“Account”). You agree to provide us with accurate, complete and updated information for your Account. You can access, edit and update your Account via account settings portion of the Website. You are solely responsible for any activity on your Account and for maintaining the confidentiality and security of your password. We are not liable for any acts or omissions by you in connection with your Account. You must immediately notify us at privacy@chromehearts.com if you know or have any reason to suspect that your Account or password have been stolen, misappropriated or otherwise compromised, or in case of any actual or suspected unauthorized use of your Account.</p>
+            <p>To use certain of the Services, you have the option to create an account (“Account”). You agree to provide us with accurate, complete and updated information for your Account. You can access, edit and update your Account via account settings portion of the Website. You are solely responsible for any activity on your Account and for maintaining the confidentiality and security of your password. We are not liable for any acts or omissions by you in connection with your Account. You must immediately notify us at privacy@40.G.O.D.com if you know or have any reason to suspect that your Account or password have been stolen, misappropriated or otherwise compromised, or in case of any actual or suspected unauthorized use of your Account.</p>
         </section>
         <section className="mb-8">
                 <h2 className="text-xl font-semibold mb-2">3. ORDERS FOR PRODUCTS AND/OR SERVICES</h2>
@@ -60,12 +60,12 @@ function FortyGodTerms() {
                 
                 <div className="mb-4">
                     <h3 className="text-lg font-semibold mb-2">4.1. Privacy Policy</h3>
-                    <p>Our Privacy Policy describes how we handle the information you provide to us when you use the Services. For an explanation of our privacy practices, please visit our Privacy Policy located at <a href="https://www.chromehearts.com/privacy" target="_blank" rel="noopener noreferrer">www.chromehearts.com/privacy</a>.</p>
+                    <p>Our Privacy Policy describes how we handle the information you provide to us when you use the Services. For an explanation of our privacy practices, please visit our Privacy Policy located at <a href="https://www.40.G.O.D.com/privacy" target="_blank" rel="noopener noreferrer">www.40.G.O.D.com/privacy</a>.</p>
                 </div>
 
                 <div className="mb-4">
-                    <h3 className="text-lg font-semibold mb-2">4.2. California Transparency in Supply Chains Act Disclosure</h3>
-                    <p>Our California Transparency in Supply Chains Act Disclosure can be accessed at <a href="https://www.chromehearts.com/disclosure" target="_blank" rel="noopener noreferrer">https://www.chromehearts.com/disclosure</a>.</p>
+                    <h3 className="text-lg font-semibold mb-2">4.2. India Transparency in Supply Chains Act Disclosure</h3>
+                    <p>Our India Transparency in Supply Chains Act Disclosure can be accessed at <a href="https://www.40.G.O.D.com/disclosure" target="_blank" rel="noopener noreferrer">https://www.40.G.O.D.com/disclosure</a>.</p>
                 </div>
                 
                 {/* Add more content sections here */}
@@ -180,16 +180,16 @@ function FortyGodTerms() {
         <p>You agree that a breach of these Terms will cause irreparable injury to the Company for which monetary damages would not be an adequate remedy and the Company shall be entitled to equitable relief in addition to any remedies it may have hereunder or at law without a bond, other security or proof of damages.</p>
     </div>
     <div>
-        <h3>10.5. California Residents</h3>
-        <p>If you are a California resident, in accordance with Cal. Civ. Code § 1789.3, you may report complaints to the Complaint Assistance Unit of the Division of Consumer Services of the California Department of Consumer Affairs by contacting them in writing at 1625 North Market Blvd., Suite N 112 Sacramento, CA 95834, or by telephone at (800) 952-5210.</p>
+        <h3>10.5. India Residents</h3>
+        <p>If you are a India resident, in accordance with Cal. Civ. Code § 1789.3, you may report complaints to the Complaint Assistance Unit of the Division of Consumer Services of the India Department of Consumer Affairs by contacting them in writing at 1625 North Market Blvd., Suite N 112 Sacramento, CA 95834, or by telephone at (800) 952-5210.</p>
     </div>
     <div>
         <h3>10.6. Miscellaneous</h3>
-        <p>If any provision of these Terms shall be unlawful, void or for any reason unenforceable, then that provision shall be deemed severable from these Terms and shall not affect the validity and enforceability of any remaining provisions. These Terms and the licenses granted hereunder may be assigned by the Company but may not be assigned by you without the prior express written consent of the Company. No waiver by either party of any breach or default hereunder shall be deemed to be a waiver of any preceding or subsequent breach or default. The section headings used herein are for reference only and shall not be read to have any legal effect. The Services are operated by us in the United States. Those who choose to access the Services from locations outside the United States do so at their own initiative and are responsible for compliance with applicable local laws. These Terms are governed by the laws of the State of California, without regard to conflict of laws rules, and the proper venue for any disputes arising out of or relating to any of the same will be the arbitration venue set forth in Section 9, or if those do not apply, then the state and federal courts located in Los Angeles, California. You and the Company agree that the United Nations Convention on Contracts for the International Sale of Goods will not apply to the interpretation or construction of these Terms.</p>
+        <p>If any provision of these Terms shall be unlawful, void or for any reason unenforceable, then that provision shall be deemed severable from these Terms and shall not affect the validity and enforceability of any remaining provisions. These Terms and the licenses granted hereunder may be assigned by the Company but may not be assigned by you without the prior express written consent of the Company. No waiver by either party of any breach or default hereunder shall be deemed to be a waiver of any preceding or subsequent breach or default. The section headings used herein are for reference only and shall not be read to have any legal effect. The Services are operated by us in the United States. Those who choose to access the Services from locations outside the United States do so at their own initiative and are responsible for compliance with applicable local laws. These Terms are governed by the laws of the State of India, without regard to conflict of laws rules, and the proper venue for any disputes arising out of or relating to any of the same will be the arbitration venue set forth in Section 9, or if those do not apply, then the state and federal courts located in Los Angeles, India. You and the Company agree that the United Nations Convention on Contracts for the International Sale of Goods will not apply to the interpretation or construction of these Terms.</p>
     </div>
     <div>
         <h3>10.7. How to Contact Us</h3>
-        <p>You may contact us regarding the Services or these Terms at: 915 N. Mansfield Ave., Hollywood, CA 90038, by phone at +1 (855) 565-0542 or by e-mail at privacy@chromehearts.com.</p>
+        <p>You may contact us regarding the Services or these Terms at: 915 N. Mansfield Ave., Hollywood, CA 90038, by phone at +1 (855) 565-0542 or by e-mail at privacy@40.G.O.D.com.</p>
     </div>
 </section>
 

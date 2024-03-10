@@ -11,7 +11,7 @@ import bg from '../assets/background/Backgroud.jpeg';
          <div className="mt-20 p-8 z-10">
       <h2 className="text-2xl font-bold mb-4">Last Revised on March 1, 2024</h2>
       <p className="text-lg leading-relaxed p-4 m-4" >
-      This Privacy Policy for Chrome Hearts LLC (“Company”, “we”, “us” “our”) describes how we collect, use and disclose information about users of the Company’s website (www.chromehearts.com), applications, services, tools and features (collectively, the “Services”).  For the purposes of this Privacy Policy, “you” and “your” means you as the user of the Services. We are committed to protecting and respecting your privacy. We are a limited liability company established in the United States of America with a registered office at 915 N Mansfield Avenue, Hollywood, CA 90038, United States and for the purpose of the General Data Protection Regulation (the “GDPR”), we are the data controller.
+      This Privacy Policy for Chrome Hearts LLC (“Company”, “we”, “us” “our”) describes how we collect, use and disclose information about users of the Company’s website (www.40.G.O.D.com), applications, services, tools and features (collectively, the “Services”).  For the purposes of this Privacy Policy, “you” and “your” means you as the user of the Services. We are committed to protecting and respecting your privacy. We are a limited liability company established in the United States of America with a registered office at 915 N Mansfield Avenue, Hollywood, CA 90038, United States and for the purpose of the General Data Protection Regulation (the “GDPR”), we are the data controller.
       </p>
       <h2 className="text-2xl font-semibold mb-4 p-4 m-4"> 
 PLEASE READ THIS PRIVACY POLICY CAREFULLY. BY USING, ACCESSING, OR DOWNLOADING ANY OF THE SERVICES, YOU AGREE TO THE USE OF INFORMATION ABOUT YOU IT DESCRIBES AND TO THE OTHER TERMS OF THIS PRIVACY POLICY. IF YOU DO NOT AGREE TO THIS PRIVACY POLICY, PLEASE DO NOT ACCESS AND USE THE SERVICES.</h2>
@@ -196,14 +196,12 @@ PLEASE READ THIS PRIVACY POLICY CAREFULLY. BY USING, ACCESSING, OR DOWNLOADING A
     Once we receive information about you, we take appropriate technical and organizational measures, reasonable precautions, and follow industry best practices to safeguard information about you against loss, theft, and unauthorized use, access, or modification. These safeguards help us prevent fraud and unauthorized access and maintain data accuracy. We also take reasonable precautions to limit access to information about you within our internal systems.
   </p>
 </div>
-{/* Section 11: California */}
 <div className="mt-8">
-  <h2 className="text-2xl font-bold mb-2">11. CALIFORNIA</h2>
+  <h2 className="text-2xl font-bold mb-2">11. India</h2>
   <p className="mb-4">
-    This Section 11 applies to California residents in certain situations. Terms used in this section and not otherwise defined have the meaning given to such terms under the California Consumer Privacy Act of 2018 (CCPA).
+    This Section 11 applies to India residents in certain situations. Terms used in this section and not otherwise defined have the meaning given to such terms under the India Consumer Privacy Act of 2018 (CCPA).
   </p>
   
-  {/* Subsection A: Disclosure of Collected Categories of Personal Information */}
   <div className="mb-4">
     <h3 className="text-xl font-bold mb-2">A. Disclosure of Collected Categories of Personal Information</h3>
     <table className="w-full border-collapse border border-gray-400">
@@ -222,7 +220,6 @@ PLEASE READ THIS PRIVACY POLICY CAREFULLY. BY USING, ACCESSING, OR DOWNLOADING A
           <td className="border border-gray-400 p-2">Yes</td>
           <td className="border border-gray-400 p-2">Yes</td>
         </tr>
-        {/* Add more rows for other categories */}
       </tbody>
     </table>
     <p className="mt-2">
@@ -234,11 +231,10 @@ PLEASE READ THIS PRIVACY POLICY CAREFULLY. BY USING, ACCESSING, OR DOWNLOADING A
     We do not and have not in the last twelve (12) months sold personal information about you. We may share your information in the future with advertisers, but we will not “sell” your information as defined in the CCPA.
   </p>
 </div>
-{/* California Privacy Rights */}
 <div className="mt-8">
-  <h3 className="text-xl font-bold mb-4">B. California Privacy Rights</h3>
+  <h3 className="text-xl font-bold mb-4">B. India Privacy Rights</h3>
   <p className="mb-4">
-    The CCPA provides California residents with the additional rights listed below in certain circumstances.
+    The CCPA provides India residents with the additional rights listed below in certain circumstances.
   </p>
   <ul className="list-disc list-inside mb-4">
     <li>Right to Know. You may have the right to know and see what certain details regarding what information you submit or we have collected about you over the past twelve months, including:</li>
@@ -253,7 +249,6 @@ PLEASE READ THIS PRIVACY POLICY CAREFULLY. BY USING, ACCESSING, OR DOWNLOADING A
       </ul>
   </ul>
 </div>
-   {/* Privacy Rights in the European Economic Area */}
 <div className="mt-8">
   <h3 className="text-xl font-bold mb-4">Privacy Rights in the European Economic Area</h3>
   <p className="mb-4">
@@ -285,7 +280,7 @@ PLEASE READ THIS PRIVACY POLICY CAREFULLY. BY USING, ACCESSING, OR DOWNLOADING A
     For international orders managed by our global e-commerce partner, eShopWorld, please refer to their Privacy Policy for additional information.
   </p>
   <p className="mb-4">
-    For customers of Chrome Hearts retail locations in Japan, please refer to the Japan Privacy Policy.
+    For customers of Chrome Hearts retail locations in India, please refer to the India Privacy Policy.
   </p>
 </div>
 

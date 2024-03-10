@@ -27,7 +27,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             const user = JSON.parse(userJson!);
             console.log(user);
             console.log('User is already logged in with token:', token);
-        }
+        } 
     }, []);
 
     const handleSignUpClick = () => {
@@ -37,6 +37,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        onClose();
+
         e.preventDefault();
 
         try {
@@ -56,6 +58,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             username: '',
             password: ''
         });
+
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -165,11 +165,11 @@ function Bag() {
     return accumulator;
 }, 0);
   return (
-    <div className="flex flex-col relative">
+    <div className="flex flex-col relative min-h-screen">
      <div className="fixed inset-0 bg-black">
         <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
       </div>
-      <div className="sm:flex h-full z-10 item-center justify-center mt-60">
+      <div className="sm:flex h-full  z-10 item-center justify-center mt-60">
         {cartItems.length === 0 ? (
           <p>Your bag is empty.</p>
         ) : (
@@ -304,7 +304,7 @@ function Bag() {
       </div>
       <div className="flex item-center z-10 justify-center m-4">
         <NavLink to="/">
-          <button className="button my-text">Continue Shopping</button>
+          <button className="button my-text ">Continue Shopping</button>
         </NavLink>
       </div>
     </div>
