@@ -2,18 +2,18 @@ import bg from '../assets/background/Backgroud.jpeg';
 
 function FortyGodTerms() {
   return (
-    <div className="flex flex-col relative p-20">
+    <div className="flex flex-col relative sm:p-20">
      <div className="fixed inset-0 bg-black">
         <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
       </div>
-         <div className="mt-20 p-8 z-10">
+         <div className="mt-60 p-8 z-10">
         
       <h1 className="text-2xl font-bold mb-4">Terms and Conditions</h1>
-      <p className="text-lg font-bold mb-4">Last Revised on March 1 ,2024</p>
+      <p className="text-lg font-bold mb-4 p-2">Last Revised on March 1 ,2024</p>
       
      
       <div className="text-sm">
-        <p>These Terms and Conditions (these “Terms”) apply to use access and use of the website, www.40god.com (the “Website”), operated on behalf of 40.GOD LLC (“Company”, “we” or “us”), and together with any online content, tools, features and functionality offered on or through our Website (the “Services”).</p>
+        <p>These Terms and Conditions (these “Terms”) apply to use access and use of the website, 40god.in (the “Website”), operated on behalf of 40.GOD LLC (“Company”, “we” or “us”), and together with any online content, tools, features and functionality offered on or through our Website (the “Services”).</p>
 
         <p>These Terms govern your access to and use of the Services, including any purchases you make through the Services. Please read these Terms carefully, as they include important information about your legal rights. By accessing and/or using the Services, you are agreeing to these Terms. If you do not understand or agree to these Terms, please do not use the Services.</p>
 
@@ -25,20 +25,20 @@ function FortyGodTerms() {
        
         <section className="mb-8">
             <h2 className="text-xl font-semibold mb-2">1. WHO MAY USE THE SERVICES</h2>
-            <p>You must be 13 years of age or older and reside in the United States or any of its territories to use the Services. Minors under the age of majority in their jurisdiction but that are at least 13 years of age are only permitted to use the Services if the minor’s parent or guardian accepts these Terms on the minor’s behalf prior to use of the Services. Children under the age of 13 are not permitted to use the Services. By using the Services, you represent and warrant that you meet these requirements.</p>
+            <p>You must be 13 years of age or older and reside in the India or any of its territories to use the Services. Minors under the age of majority in their jurisdiction but that are at least 13 years of age are only permitted to use the Services if the minor’s parent or guardian accepts these Terms on the minor’s behalf prior to use of the Services. Children under the age of 13 are not permitted to use the Services. By using the Services, you represent and warrant that you meet these requirements.</p>
         </section>
 
         <section className="mb-8">
             <h2 className="text-xl font-semibold mb-2">2. USER ACCOUNTS, SUBSCRIPTIONS AND FREE TRIALS</h2>
             <h3 className="text-lg font-semibold mb-2">2.1. Creating and Safeguarding your Account</h3>
-            <p>To use certain of the Services, you have the option to create an account (“Account”). You agree to provide us with accurate, complete and updated information for your Account. You can access, edit and update your Account via account settings portion of the Website. You are solely responsible for any activity on your Account and for maintaining the confidentiality and security of your password. We are not liable for any acts or omissions by you in connection with your Account. You must immediately notify us at privacy@40.G.O.D.com if you know or have any reason to suspect that your Account or password have been stolen, misappropriated or otherwise compromised, or in case of any actual or suspected unauthorized use of your Account.</p>
+            <p>To use certain of the Services, you have the option to create an account (“Account”). You agree to provide us with accurate, complete and updated information for your Account. You can access, edit and update your Account via account settings portion of the Website. You are solely responsible for any activity on your Account and for maintaining the confidentiality and security of your password. We are not liable for any acts or omissions by you in connection with your Account. You must immediately notify us at privacy40god.in if you know or have any reason to suspect that your Account or password have been stolen, misappropriated or otherwise compromised, or in case of any actual or suspected unauthorized use of your Account.</p>
         </section>
         <section className="mb-8">
                 <h2 className="text-xl font-semibold mb-2">3. ORDERS FOR PRODUCTS AND/OR SERVICES</h2>
                 
                 <div className="mb-4">
                     <h3 className="text-lg font-semibold mb-2">3.1. Payment</h3>
-                    <p>The Services may permit you to purchase certain physical products through the Services, (“Offerings”). You acknowledge and agree that all information you provide with regards to a purchase of Offerings, including, without limitation, credit card or other payment information, is accurate, current and complete. You represent and warrant that you have the legal right to use the payment method you provide to us or our payment processor, including, without limitation, any credit card you provide when completing a transaction. We reserve the right, with or without prior notice and in our sole and complete discretion, to (a) discontinue, modify, or limit the available quantity of, any Offerings, and (b) refuse to allow any user to purchase any Offering or deliver such Offerings to a user or a user designated address. When you purchase Offerings, you (a) agree to pay the price for such Offerings as set forth in the applicable Service, and all shipping and handling charges and all applicable taxes in connection with your purchase (the “Full Purchase Amount”), and (b) authorize us to charge your credit card or other payment method for the Full Purchase Amount. Unless otherwise noted, all currency references are in U.S. Dollars. All fees and charges are payable in accordance with payment terms in effect at the time the fee or the charge becomes payable. Payment can be made by credit card, debit card or other means that we may make available. Orders will not be processed until payment has been received in full, and any holds on your account by any payment processor are solely your responsibility.</p>
+                    <p>The Services may permit you to purchase certain physical products through the Services, (“Offerings”). You acknowledge and agree that all information you provide with regards to a purchase of Offerings, including, without limitation, credit card or other payment information, is accurate, current and complete. You represent and warrant that you have the legal right to use the payment method you provide to us or our payment processor, including, without limitation, any credit card you provide when completing a transaction. We reserve the right, with or without prior notice and in our sole and complete discretion, to (a) discontinue, modify, or limit the available quantity of, any Offerings, and (b) refuse to allow any user to purchase any Offering or deliver such Offerings to a user or a user designated address. When you purchase Offerings, you (a) agree to pay the price for such Offerings as set forth in the applicable Service, and all shipping and handling charges and all applicable taxes in connection with your purchase (the “Full Purchase Amount”), and (b) authorize us to charge your credit card or other payment method for the Full Purchase Amount. Unless otherwise noted, all currency references are in India. Dollars. All fees and charges are payable in accordance with payment terms in effect at the time the fee or the charge becomes payable. Payment can be made by credit card, debit card or other means that we may make available. Orders will not be processed until payment has been received in full, and any holds on your account by any payment processor are solely your responsibility.</p>
                 </div>
 
                
@@ -60,12 +60,12 @@ function FortyGodTerms() {
                 
                 <div className="mb-4">
                     <h3 className="text-lg font-semibold mb-2">4.1. Privacy Policy</h3>
-                    <p>Our Privacy Policy describes how we handle the information you provide to us when you use the Services. For an explanation of our privacy practices, please visit our Privacy Policy located at <a href="https://www.40.G.O.D.com/privacy" target="_blank" rel="noopener noreferrer">www.40.G.O.D.com/privacy</a>.</p>
+                    <p>Our Privacy Policy describes how we handle the information you provide to us when you use the Services. For an explanation of our privacy practices, please visit our Privacy Policy located at <a href="https://40god.in/privacy" target="_blank" rel="noopener noreferrer">40god.in/privacy</a>.</p>
                 </div>
 
                 <div className="mb-4">
                     <h3 className="text-lg font-semibold mb-2">4.2. India Transparency in Supply Chains Act Disclosure</h3>
-                    <p>Our India Transparency in Supply Chains Act Disclosure can be accessed at <a href="https://www.40.G.O.D.com/disclosure" target="_blank" rel="noopener noreferrer">https://www.40.G.O.D.com/disclosure</a>.</p>
+                    <p>Our India Transparency in Supply Chains Act Disclosure can be accessed at <a href="https://40god.in/disclosure" target="_blank" rel="noopener noreferrer">https://40god.in/disclosure</a>.</p>
                 </div>
                 
                 {/* Add more content sections here */}
@@ -133,7 +133,7 @@ function FortyGodTerms() {
     </div>
     <div>
         <h3>8.2. Limitations of Liability</h3>
-        <p>TO THE EXTENT NOT PROHIBITED BY LAW, YOU AGREE THAT IN NO EVENT WILL THE COMPANY ENTITIES BE LIABLE (A) FOR DAMAGES OF ANY KIND, INCLUDING DIRECT, INDIRECT, SPECIAL, EXEMPLARY, INCIDENTAL, CONSEQUENTIAL OR PUNITIVE DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES, LOSS OF USE, DATA OR PROFITS, BUSINESS INTERRUPTION OR ANY OTHER DAMAGES OR LOSSES, ARISING OUT OF OR RELATED TO YOUR USE OR INABILITY TO USE THE SERVICES), HOWEVER CAUSED AND UNDER ANY THEORY OF LIABILITY, WHETHER UNDER THESE TERMS OR OTHERWISE ARISING IN ANY WAY IN CONNECTION WITH THE SERVICES OR THESE TERMS AND WHETHER IN CONTRACT, STRICT LIABILITY OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) EVEN IF THE COMPANY ENTITIES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE, OR (B) FOR ANY OTHER CLAIM, DEMAND OR DAMAGES WHATSOEVER RESULTING FROM OR ARISING OUT OF OR IN CONNECTION WITH THESE TERMS OR THE DELIVERY, USE OR PERFORMANCE OF THE SERVICES. SOME JURISDICTIONS (SUCH AS THE STATE OF NEW JERSEY) DO NOT ALLOW THE EXCLUSION OR LIMITATION OF INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THE ABOVE EXCLUSION OR LIMITATION MAY NOT APPLY TO YOU. THE COMPANY ENTITIES’ TOTAL LIABILITY TO YOU FOR ANY DAMAGES FINALLY AWARDED SHALL NOT EXCEED THE AMOUNT OF ONE HUNDRED DOLLARS ($100.00), OR THE AMOUNT YOU PAID THE COMPANY ENTITIES, IF ANY, IN THE PAST SIX (6) MONTHS FOR THE SERVICES (OR PRODUCTS PURCHASED ON THE SERVICES) GIVING RISE TO THE CLAIM. THE FOREGOING LIMITATIONS WILL APPLY EVEN IF THE ABOVE STATED REMEDY FAILS OF ITS ESSENTIAL PURPOSE.</p>
+        <p>TO THE EXTENT NOT PROHIBITED BY LAW, YOU AGREE THAT IN NO EVENT WILL THE COMPANY ENTITIES BE LIABLE (A) FOR DAMAGES OF ANY KIND, INCLUDING DIRECT, INDIRECT, SPECIAL, EXEMPLARY, INCIDENTAL, CONSEQUENTIAL OR PUNITIVE DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES, LOSS OF USE, DATA OR PROFITS, BUSINESS INTERRUPTION OR ANY OTHER DAMAGES OR LOSSES, ARISING OUT OF OR RELATED TO YOUR USE OR INABILITY TO USE THE SERVICES), HOWEVER CAUSED AND UNDER ANY THEORY OF LIABILITY, WHETHER UNDER THESE TERMS OR OTHERWISE ARISING IN ANY WAY IN CONNECTION WITH THE SERVICES OR THESE TERMS AND WHETHER IN CONTRACT, STRICT LIABILITY OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) EVEN IF THE COMPANY ENTITIES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE, OR (B) FOR ANY OTHER CLAIM, DEMAND OR DAMAGES WHATSOEVER RESULTING FROM OR ARISING OUT OF OR IN CONNECTION WITH THESE TERMS OR THE DELIVERY, USE OR PERFORMANCE OF THE SERVICES. SOME JURISDICTIONS  DO NOT ALLOW THE EXCLUSION OR LIMITATION OF INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THE ABOVE EXCLUSION OR LIMITATION MAY NOT APPLY TO YOU. THE COMPANY ENTITIES’ TOTAL LIABILITY TO YOU FOR ANY DAMAGES FINALLY AWARDED SHALL NOT EXCEED THE AMOUNT OF ONE HUNDRED DOLLARS ($100.00), OR THE AMOUNT YOU PAID THE COMPANY ENTITIES, IF ANY, IN THE PAST SIX (6) MONTHS FOR THE SERVICES (OR PRODUCTS PURCHASED ON THE SERVICES) GIVING RISE TO THE CLAIM. THE FOREGOING LIMITATIONS WILL APPLY EVEN IF THE ABOVE STATED REMEDY FAILS OF ITS ESSENTIAL PURPOSE.</p>
     </div>
     <div>
         <h3>8.3. Indemnification</h3>
@@ -156,7 +156,7 @@ function FortyGodTerms() {
     </div>
     <div>
         <h3>9.4. Opt-Out</h3>
-        <p>You have the right to opt-out and not be bound by the arbitration provisions set forth in these Terms by sending written notice of your decision to the U.S. mailing address or email address listed in the “How to Contact Us” section of these Terms. The notice must be sent to the Company within thirty (30) days of your registering to use the Services or agreeing to these Terms, otherwise you shall be bound to arbitrate disputes in accordance with these Terms. If you opt-out of these arbitration provisions, the Company also will not be bound by them.</p>
+        <p>You have the right to opt-out and not be bound by the arbitration provisions set forth in these Terms by sending written notice of your decision to the India. mailing address or email address listed in the “How to Contact Us” section of these Terms. The notice must be sent to the Company within thirty (30) days of your registering to use the Services or agreeing to these Terms, otherwise you shall be bound to arbitrate disputes in accordance with these Terms. If you opt-out of these arbitration provisions, the Company also will not be bound by them.</p>
     </div>
 </section>
 
@@ -181,15 +181,15 @@ function FortyGodTerms() {
     </div>
     <div>
         <h3>10.5. India Residents</h3>
-        <p>If you are a India resident, in accordance with Cal. Civ. Code § 1789.3, you may report complaints to the Complaint Assistance Unit of the Division of Consumer Services of the India Department of Consumer Affairs by contacting them in writing at 1625 North Market Blvd., Suite N 112 Sacramento, CA 95834, or by telephone at (800) 952-5210.</p>
+        <p>If you are a India resident,  you may report complaints to the Complaint Assistance Unit of the Division of Consumer Services of the India Department of Consumer Affairs by contacting them .</p>
     </div>
     <div>
         <h3>10.6. Miscellaneous</h3>
-        <p>If any provision of these Terms shall be unlawful, void or for any reason unenforceable, then that provision shall be deemed severable from these Terms and shall not affect the validity and enforceability of any remaining provisions. These Terms and the licenses granted hereunder may be assigned by the Company but may not be assigned by you without the prior express written consent of the Company. No waiver by either party of any breach or default hereunder shall be deemed to be a waiver of any preceding or subsequent breach or default. The section headings used herein are for reference only and shall not be read to have any legal effect. The Services are operated by us in the United States. Those who choose to access the Services from locations outside the United States do so at their own initiative and are responsible for compliance with applicable local laws. These Terms are governed by the laws of the State of India, without regard to conflict of laws rules, and the proper venue for any disputes arising out of or relating to any of the same will be the arbitration venue set forth in Section 9, or if those do not apply, then the state and federal courts located in Los Angeles, India. You and the Company agree that the United Nations Convention on Contracts for the International Sale of Goods will not apply to the interpretation or construction of these Terms.</p>
+        <p>If any provision of these Terms shall be unlawful, void or for any reason unenforceable, then that provision shall be deemed severable from these Terms and shall not affect the validity and enforceability of any remaining provisions. These Terms and the licenses granted hereunder may be assigned by the Company but may not be assigned by you without the prior express written consent of the Company. No waiver by either party of any breach or default hereunder shall be deemed to be a waiver of any preceding or subsequent breach or default. The section headings used herein are for reference only and shall not be read to have any legal effect. The Services are operated by us in the India. Those who choose to access the Services from locations outside the India do so at their own initiative and are responsible for compliance with applicable local laws. These Terms are governed by the laws of the State of India, without regard to conflict of laws rules, and the proper venue for any disputes arising out of or relating to any of the same will be the arbitration venue set forth in Section 9, or if those do not apply, then the state and federal courts located in  India. You and the Company agree that the India Convention on Contracts for the International Sale of Goods will not apply to the interpretation or construction of these Terms.</p>
     </div>
     <div>
         <h3>10.7. How to Contact Us</h3>
-        <p>You may contact us regarding the Services or these Terms at: 915 N. Mansfield Ave., Hollywood, CA 90038, by phone at +1 (855) 565-0542 or by e-mail at privacy@40.G.O.D.com.</p>
+        <p>You may contact us https://www.instagram.com/40.g.o.d/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D</p>
     </div>
 </section>
 

@@ -102,7 +102,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                                   placeholder="Username"
                                   value={formData.username}
                                   onChange={handleChange}
-                                  required // Marking email field as required
+                                  required 
                               />
                           </div>
                           <div className="mb-6">
@@ -117,7 +117,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                                   placeholder="Password"
                                   value={formData.password}
                                   onChange={handleChange}
-                                  required // Already marked as required
+                                  required 
                               />
                           </div>
                       </form>

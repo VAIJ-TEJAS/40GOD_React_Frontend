@@ -32,7 +32,7 @@ const NavBar: React.FC = () => {
 
     return (
         <div className='max-w-screen'>
-            <nav className="fixed z-50 max-w-screen flex w-full justify-between p-3 sm:p-6">
+            <nav className="fixed z-50 max-w-screen flex w-full justify-between p-3 ">
                 <div className="relative flex z-20 hidden sm:block items-center justify-center ">
                     <img onClick={toggleDropDown} className="w-6 z-50 sm:w-16 h-6 sm:h-12 z-0 ml-2 sm:ml-5" src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 6px rgba(0, 0, 0, 1))' }} />
                 </div>
@@ -86,7 +86,7 @@ const NavBar: React.FC = () => {
 
             {isOpen && (
                 <div
-                    className="hidden sm:block fixed left-0 z-50 mt-16 sm:mt-20 p-2 sm:p-3 pt-8 sm:pt-12 rounded-md shadow-lg bg-trasparent ring-1 ring-black ring-opacity-5 divide-y divide-gray-100">
+                    className="hidden sm:block fixed left-0 z-50 mt-16 sm:mt-20 p-2 sm:p-3 pt-8 sm:pt-12  bg-trasparent ring-1 ring-black ring-opacity-5 divide-y divide-gray-100">
                     <div
                         aria-orientation="vertical"
                         aria-labelledby="menu-button"
