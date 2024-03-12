@@ -2,17 +2,17 @@ import bg from '../assets/background/Backgroud.jpeg';
 
 function FortyGodTerms() {
   return (
-    <div className="flex flex-col relative sm:p-20">
-     <div className="fixed inset-0 bg-black">
+    <div className={"flex flex-col relative  sm:p-20"}>
+    <div className="fixed inset-0 bg-black">
         <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
       </div>
-         <div className="mt-60 p-8 z-10">
+         <div className="mt-60 sm:p-8 z-10">
         
       <h1 className="text-2xl font-bold mb-4">Terms and Conditions</h1>
       <p className="text-lg font-bold mb-4 p-2">Last Revised on March 1 ,2024</p>
       
      
-      <div className="text-sm">
+      <div className="text-sm ">
         <p>These Terms and Conditions (these “Terms”) apply to use access and use of the website, 40god.in (the “Website”), operated on behalf of 40.GOD LLC (“Company”, “we” or “us”), and together with any online content, tools, features and functionality offered on or through our Website (the “Services”).</p>
 
         <p>These Terms govern your access to and use of the Services, including any purchases you make through the Services. Please read these Terms carefully, as they include important information about your legal rights. By accessing and/or using the Services, you are agreeing to these Terms. If you do not understand or agree to these Terms, please do not use the Services.</p>
@@ -68,7 +68,6 @@ function FortyGodTerms() {
                     <p>Our India Transparency in Supply Chains Act Disclosure can be accessed at <a href="https://40god.in/disclosure" target="_blank" rel="noopener noreferrer">https://40god.in/disclosure</a>.</p>
                 </div>
                 
-                {/* Add more content sections here */}
                 
             </section>
             <section className="mb-8">
@@ -101,7 +100,7 @@ function FortyGodTerms() {
             </section>
 
 
-            <section>
+            <section className="mb-4">
     <h2>6. OWNERSHIP AND CONTENT</h2>
     <div>
         <h3>6.1. Ownership of the Services</h3>
@@ -118,80 +117,18 @@ function FortyGodTerms() {
         <p>We welcome feedback, comments and suggestions for improvements to the Services (“Feedback”). You acknowledge and expressly agree that any contribution of Feedback does not and will not give or grant you any right, title or interest in the Services or in any such Feedback. All Feedback becomes the sole and exclusive property of the Company, and the Company may use and disclose Feedback in any manner and for any purpose whatsoever without further notice or compensation to you and without retention by you of any proprietary or other right or claim. You hereby assign to the Company any and all right, title and interest (including, but not limited to, any patent, copyright, trade secret, trademark, show-how, know-how, moral rights and any and all other intellectual property right) that you may have in and to any and all Feedback.</p>
     </div>
 </section>
-<section>
+<section className='mb-4'>
     <h2>7. THIRD PARTY SERVICES AND MATERIALS</h2>
     <div>
         <h3>7.1. Use of Third Party Materials in the Services</h3>
         <p>Certain Services may display, include or make available content, data, information, applications or materials from third parties (“Third Party Materials”) or provide links to certain third party websites. By using the Services, you acknowledge and agree that the Company is not responsible for examining or evaluating the content, accuracy, completeness, availability, timeliness, validity, copyright compliance, legality, decency, quality or any other aspect of such Third Party Materials or websites. We do not warrant or endorse and do not assume and will not have any liability or responsibility to you or any other person for any third-party services, Third Party Materials or third-party websites, or for any other materials, products, or services of third parties. Third Party Materials and links to other websites are provided solely as a convenience to you. If you have any complaints in connection with any Third Party Materials or third-party website, please contact such third party directly, or contact your state Attorney General or the Federal Trade Commission at <a href="https://www.ftc.gov">www.ftc.gov</a>.</p>
     </div>
 </section>
-<section>
-    <h2>8. DISCLAIMERS, LIMITATIONS OF LIABILITY AND INDEMNIFICATION</h2>
-    <div>
-        <h3>8.1. Disclaimers</h3>
-        <p>Your access to and use of the Services are at your own risk. You understand and agree that the Services are provided to you on an “AS IS” and “AS AVAILABLE” basis. WITHOUT LIMITING THE FOREGOING, TO THE MAXIMUM EXTENT PERMITTED UNDER APPLICABLE LAW, THE COMPANY, ITS PARENTS, AFFILIATES, RELATED COMPANIES, OFFICERS, DIRECTORS, EMPLOYEES, AGENTS, REPRESENTATIVES, PARTNERS AND LICENSORS (THE “THE COMPANY ENTITIES”) DISCLAIM ALL WARRANTIES AND CONDITIONS, WHETHER EXPRESS OR IMPLIED, OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT. THE COMPANY ENTITIES MAKE NO WARRANTY OR REPRESENTATION AND DISCLAIM ALL RESPONSIBILITY AND LIABILITY FOR: (A) THE COMPLETENESS, ACCURACY, AVAILABILITY, TIMELINESS, SECURITY OR RELIABILITY OF THE SERVICES; (B) ANY HARM TO YOUR COMPUTER SYSTEM, LOSS OF DATA, OR OTHER HARM THAT RESULTS FROM YOUR ACCESS TO OR USE OF THE SERVICES; (C) THE OPERATION OR COMPATIBILITY WITH ANY OTHER APPLICATION OR ANY PARTICULAR SYSTEM OR DEVICE; AND (D) WHETHER THE SERVICES WILL MEET YOUR REQUIREMENTS OR BE AVAILABLE ON AN UNINTERRUPTED, SECURE OR ERROR-FREE BASIS. No advice or information, whether oral or written, obtained from the Company Entities or through the Services, will create any warranty or representation not expressly made herein.</p>
-    </div>
-    <div>
-        <h3>8.2. Limitations of Liability</h3>
-        <p>TO THE EXTENT NOT PROHIBITED BY LAW, YOU AGREE THAT IN NO EVENT WILL THE COMPANY ENTITIES BE LIABLE (A) FOR DAMAGES OF ANY KIND, INCLUDING DIRECT, INDIRECT, SPECIAL, EXEMPLARY, INCIDENTAL, CONSEQUENTIAL OR PUNITIVE DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES, LOSS OF USE, DATA OR PROFITS, BUSINESS INTERRUPTION OR ANY OTHER DAMAGES OR LOSSES, ARISING OUT OF OR RELATED TO YOUR USE OR INABILITY TO USE THE SERVICES), HOWEVER CAUSED AND UNDER ANY THEORY OF LIABILITY, WHETHER UNDER THESE TERMS OR OTHERWISE ARISING IN ANY WAY IN CONNECTION WITH THE SERVICES OR THESE TERMS AND WHETHER IN CONTRACT, STRICT LIABILITY OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) EVEN IF THE COMPANY ENTITIES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE, OR (B) FOR ANY OTHER CLAIM, DEMAND OR DAMAGES WHATSOEVER RESULTING FROM OR ARISING OUT OF OR IN CONNECTION WITH THESE TERMS OR THE DELIVERY, USE OR PERFORMANCE OF THE SERVICES. SOME JURISDICTIONS  DO NOT ALLOW THE EXCLUSION OR LIMITATION OF INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THE ABOVE EXCLUSION OR LIMITATION MAY NOT APPLY TO YOU. THE COMPANY ENTITIES’ TOTAL LIABILITY TO YOU FOR ANY DAMAGES FINALLY AWARDED SHALL NOT EXCEED THE AMOUNT OF ONE HUNDRED DOLLARS ($100.00), OR THE AMOUNT YOU PAID THE COMPANY ENTITIES, IF ANY, IN THE PAST SIX (6) MONTHS FOR THE SERVICES (OR PRODUCTS PURCHASED ON THE SERVICES) GIVING RISE TO THE CLAIM. THE FOREGOING LIMITATIONS WILL APPLY EVEN IF THE ABOVE STATED REMEDY FAILS OF ITS ESSENTIAL PURPOSE.</p>
-    </div>
-    <div>
-        <h3>8.3. Indemnification</h3>
-        <p>By entering into these Terms and accessing or using the Services, you agree that you shall defend, indemnify and hold the Company Entities harmless from and against any and all claims, costs, damages, losses, liabilities and expenses (including attorneys’ fees and costs) incurred by the Company Entities arising out of or in connection with: (a) your violation or breach of any term of these Terms or any applicable law or regulation; (b) your violation of any rights of any third party; (c) your access to or use of the Services; or (d) your negligence or willful misconduct.</p>
-    </div>
-</section>
-<section>
-    <h2>9. ARBITRATION AND CLASS ACTION WAIVER</h2>
-    <div>
-        <h3>9.1. Informal Process First</h3>
-        <p>You agree that in the event of any dispute between you and the Company Entities, you will first contact the Company and make a good faith sustained effort to resolve the dispute before resorting to more formal means of resolution, including without limitation, any court action.</p>
-    </div>
-    <div>
-        <h3>9.2. Arbitration Agreement and Class Action Waiver</h3>
-        <p>After the informal dispute resolution process, any remaining dispute, controversy, or claim (collectively, “Claim”) relating in any way to your use of the Company’s services and/or products, including the Services, will be resolved by arbitration, including threshold questions of arbitrability of the Claim. You and the Company agree that any Claim will be settled by final and binding arbitration, using the English language, administered by JAMS under its Comprehensive Arbitration Rules and Procedures (the “JAMS Rules”) then in effect (those rules are deemed to be incorporated by reference into this section, and as of the date of these Terms). Arbitration will be handled by a sole arbitrator in accordance with the JAMS Rules. Judgment on the arbitration award may be entered in any court that has jurisdiction. Any arbitration under these Terms will take place on an individual basis – class arbitrations and class actions are not permitted. You understand that by agreeing to these Terms, you and the Company are each waiving the right to trial by jury or to participate in a class action or class arbitration. Notwithstanding the foregoing, you and the Company will have the right to bring an action in a court of proper jurisdiction for injunctive or other equitable or conservatory relief, pending a final decision by the arbitrator. You may instead assert your claim in “small claims” court, but only if your claim qualifies, your claim remains in such court and your claim remains on an individual, non-representative and non-class basis.</p>
-    </div>
-    <div>
-        <h3>9.3. Costs of Arbitration</h3>
-        <p>Payment for any and all reasonable JAMS filing, administrative and arbitrator fees will be in accordance with the JAMS Rules. If the value of your claim does not exceed $10,000, the Company will pay for the reasonable filing, administrative and arbitrator fees associated with the arbitration, unless the arbitrator finds that either the substance of your claim or the relief sought was frivolous or brought for an improper purpose.</p>
-    </div>
-    <div>
-        <h3>9.4. Opt-Out</h3>
-        <p>You have the right to opt-out and not be bound by the arbitration provisions set forth in these Terms by sending written notice of your decision to the India. mailing address or email address listed in the “How to Contact Us” section of these Terms. The notice must be sent to the Company within thirty (30) days of your registering to use the Services or agreeing to these Terms, otherwise you shall be bound to arbitrate disputes in accordance with these Terms. If you opt-out of these arbitration provisions, the Company also will not be bound by them.</p>
-    </div>
-</section>
 
 
-<section>
-    <h2>10. ADDITIONAL PROVISIONS</h2>
-    <div>
-        <h3>10.1. SMS Messaging and Phone Calls</h3>
-        <p>Certain portions of the Services may allow us to contact you via telephone or text messages. You agree that the Company may contact you via telephone or text messages (including by an automatic telephone dialing system) at any of the phone numbers provided by you or on your behalf in connection with your use of the Services, including for marketing purposes. You understand that you are not required to provide this consent as a condition of purchasing any Products. You also understand that you may opt out of receiving text messages from us at any time, either by texting the word “STOP” back to the number that sent you the message, or by contacting us as set forth in the “How to Contact Us” section of these Terms below. If you do not choose to opt out, we may contact you as outlined in our Privacy Policy.</p>
-    </div>
-    <div>
-        <h3>10.2. Updating These Terms</h3>
-        <p>We may modify these Terms from time to time in which case we will update the “Last Revised” date at the top of these Terms. If we make changes that are material, we will use reasonable efforts to attempt to notify you, such as by e-mail and/or by placing a prominent notice on the first page of the Website. However, it is your sole responsibility to review these Terms from time to time to view any such changes. The updated Terms will be effective as of the time of posting, or such later date as may be specified in the updated Terms. Your continued access or use of the Services after the modifications have become effective will be deemed your acceptance of the modified Terms.</p>
-    </div>
-    <div>
-        <h3>10.3. Termination of License and Your Account</h3>
-        <p>If you breach any of the provisions of these Terms, all licenses granted by the Company will terminate automatically. Additionally, the Company may suspend, disable, or delete your Account and/or the Services (or any part of the foregoing) with or without notice, for any or no reason. If the Company deletes your Account for any suspected breach of these Terms by you, you are prohibited from re-registering for the Services under a different name. All sections which by their nature should survive the termination of these Terms shall continue in full force and effect subsequent to and notwithstanding any termination of this Agreement by the Company or you. Termination will not limit any of the Company’s other rights or remedies at law or in equity.</p>
-    </div>
-    <div>
-        <h3>10.4. Injunctive Relief</h3>
-        <p>You agree that a breach of these Terms will cause irreparable injury to the Company for which monetary damages would not be an adequate remedy and the Company shall be entitled to equitable relief in addition to any remedies it may have hereunder or at law without a bond, other security or proof of damages.</p>
-    </div>
-    <div>
-        <h3>10.5. India Residents</h3>
-        <p>If you are a India resident,  you may report complaints to the Complaint Assistance Unit of the Division of Consumer Services of the India Department of Consumer Affairs by contacting them .</p>
-    </div>
-    <div>
-        <h3>10.6. Miscellaneous</h3>
-        <p>If any provision of these Terms shall be unlawful, void or for any reason unenforceable, then that provision shall be deemed severable from these Terms and shall not affect the validity and enforceability of any remaining provisions. These Terms and the licenses granted hereunder may be assigned by the Company but may not be assigned by you without the prior express written consent of the Company. No waiver by either party of any breach or default hereunder shall be deemed to be a waiver of any preceding or subsequent breach or default. The section headings used herein are for reference only and shall not be read to have any legal effect. The Services are operated by us in the India. Those who choose to access the Services from locations outside the India do so at their own initiative and are responsible for compliance with applicable local laws. These Terms are governed by the laws of the State of India, without regard to conflict of laws rules, and the proper venue for any disputes arising out of or relating to any of the same will be the arbitration venue set forth in Section 9, or if those do not apply, then the state and federal courts located in  India. You and the Company agree that the India Convention on Contracts for the International Sale of Goods will not apply to the interpretation or construction of these Terms.</p>
-    </div>
-    <div>
-        <h3>10.7. How to Contact Us</h3>
-        <p>You may contact us https://www.instagram.com/40.g.o.d/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D</p>
-    </div>
-</section>
+
+
+
 
       </div>
     </div>
