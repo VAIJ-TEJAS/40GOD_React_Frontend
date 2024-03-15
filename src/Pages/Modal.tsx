@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import SignUpPage from './SignUp';
 import bg2 from '../assets/background/b2.jpeg';
 import axios from 'axios';
@@ -17,28 +17,22 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         password: ''
     });
 
-
-   
-
     const handleSignUpClick = () => {
         setIsSignUpOpen(true);
     };
 
-
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
+alert ('button tudum')
         try {
             if (!isSignUpOpen) {
                 const response = await axios.post('/auth/', formData);
                 const token = response.data.token;
                 localStorage.setItem('token', token);
                 console.log('Logged in successfully!', response.data);
-                onClose()
+                onClose();
             } else {
-
+                // Handle sign-up logic
             }
         } catch (error) {
             console.error('Error logging in:', error);
@@ -48,18 +42,17 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             username: '',
             password: ''
         });
-
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
             ...prevState,
             [name]: value
         }));
     };
-    useEffect(() => {
 
+    useEffect(() => {
         const token = localStorage.getItem('token');
         const userJson = localStorage.getItem('user');
 
@@ -87,48 +80,47 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                     <p className="text-sm text-gray-600 dark:text-gray-800 mb-4">
                         Enter your credentials to login or create a new account.
                     </p>
-                    <div>
+                    <form onSubmit={handleSubmit}>
                         {!isSignUpOpen && (
-                          <form onSubmit={handleSubmit}>
-                          <div className="mb-4">
-                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="email">
-                                  Email
-                              </label>
-                              <input
-                                  className="w-full border border-gray-300 dark:border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:border-indigo-500"
-                                  type="text"
-                                  id="username"
-                                  name="username"
-                                  placeholder="Username"
-                                  value={formData.username}
-                                  onChange={handleChange}
-                                  required 
-                              />
-                          </div>
-                          <div className="mb-6">
-                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="password">
-                                  Password
-                              </label>
-                              <input
-                                  className="w-full border border-gray-300 dark:border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:border-indigo-500"
-                                  type="password"
-                                  id="password"
-                                  name="password"
-                                  placeholder="Password"
-                                  value={formData.password}
-                                  onChange={handleChange}
-                                  required 
-                              />
-                          </div>
-                      </form>
-                      
+                            <>
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="email">
+                                        Email
+                                    </label>
+                                    <input
+                                        className="w-full border border-gray-300 dark:border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:border-indigo-500"
+                                        type="text"
+                                        id="username"
+                                        name="username"
+                                        placeholder="Username"
+                                        value={formData.username}
+                                        onChange={handleChange}
+                                        required 
+                                    />
+                                </div>
+                                <div className="mb-6">
+                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="password">
+                                        Password
+                                    </label>
+                                    <input
+                                        className="w-full border border-gray-300 dark:border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:border-indigo-500"
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        placeholder="Password"
+                                        value={formData.password}
+                                        onChange={handleChange}
+                                        required 
+                                    />
+                                </div>
+                            </>
                         )}
                         {isSignUpOpen && <SignUpPage onClose={() => setIsSignUpOpen(false)} />}
 
                         <div className="flex justify-between items-center">
                             {!isSignUpOpen && (
                                 <>
-                                    <button className="bg-gray-800 dark:bg-white text-white dark:text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit"  >
+                                    <button className="bg-gray-800 dark:bg-white text-white dark:text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                                         Login
                                     </button>
                                     <button className="bg-gray-800 dark:bg-white text-white dark:text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={handleSignUpClick}>
@@ -140,7 +132,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                                 </>
                             )}
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
