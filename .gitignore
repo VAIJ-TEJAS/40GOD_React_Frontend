@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 .env
+40god
+40god.pub
