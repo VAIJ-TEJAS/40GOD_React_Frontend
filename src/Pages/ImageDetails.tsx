@@ -44,11 +44,17 @@ console.log(selectedProductVariantId)
   };
 
   const nextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % (product?.colors?.[0]?.image_product?.length ?? 1));
+    console.log("Next Slide");
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % (product?.colors?.[selectedImage]?.image_product?.length ?? 1));
   };
-
+  
   const prevSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide === 0 ? (product?.colors?.[0]?.image_product?.length ?? 1) - 1 : prevSlide - 1));
+    console.log("Prev Slide");
+    setCurrentSlide((prevSlide) => (prevSlide === 0 ? (product?.colors?.[selectedImage]?.image_product?.length ?? 1) - 1 : prevSlide - 1));
+  };
+  
+  const handleThumbnailClick = (index: number) => {
+    setCurrentSlide(index); 
   };
 
   const handleSizeClick = (size: string) => {
@@ -152,31 +158,48 @@ console.log(selectedProductVariantId)
   .filter(variant => variant.size.text === selectedSize)
   .map(variant => variant.color.hex_code);
   const uniqueSizes = [...new Set(productVariant.map(variant => variant.size.text))];
-
+console.log(products)
   return (
     <div className="flex flex-col">
       <div className="fixed inset-0 bg-black">
         <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover filter brightness-75" />
       </div>
+      
       <div className="mt-60 sm:p-8 z-10">
         {product && (
           <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-20">
             <div className="flex items-center justify-center">
-            {product.colors?.[selectedImage]?.image_product?.map((imageData, index) => (
-  <div
-    key={index}
-    className={`carousel-item ${index === currentSlide ? 'active' : ''}`}
-  >
-    <img src={imageData.image} alt={product.colors?.[0]?.display_name} />
+            <div>
+            <div className="carousel relative overflow-hidden w-68 h-68">
+  <button className="prev absolute top-1/2 transform -translate-y-1/2 left-0 bg-black bg-opacity-50 text-white px-4 py-2 z-10" onClick={prevSlide}>&lt;</button>
+  <div className="carousel-inner flex transition-transform duration-500 ease-in-out">
+    {product.colors?.[selectedImage]?.image_product?.map((imageData, index) => (
+      <div
+        key={index}
+        className={`carousel-item ${index === currentSlide ? 'active' : ''}`}
+        style={{ display: index === currentSlide ? 'block' : 'none' }}
+      >
+        <img src={imageData.image} alt={product.colors?.[0]?.display_name} className="w-full h-full object-cover" />
+      </div>
+    ))}
   </div>
-))}
+  <button className="next absolute top-1/2 transform -translate-y-1/2 right-0 bg-black bg-opacity-50 text-white px-4 py-2 z-10" onClick={nextSlide}>&gt;</button>
+</div>
+      <div className="carousel-thumbnails">
+        {product.colors?.[selectedImage]?.image_product?.map((imageData, index) => (
+          <img
+            key={index}
+            src={imageData.image}
+            alt={product.colors?.[0]?.display_name}
+            onClick={() => handleThumbnailClick(index)}
+            className={`thumbnail ${index === currentSlide ? 'selected' : ''}`}
+          />
+        ))}
+      </div>
+    </div>
 
 
-              <div className="carousel">
-                <button className="prev" onClick={prevSlide}>&lt;</button>
-                <div className="carousel-inner"></div>
-                <button className="next" onClick={nextSlide}>&gt;</button>
-              </div>
+
             </div>
             <div className="">
               <div className="font-bold my-text sm:ml-5 mt-12">

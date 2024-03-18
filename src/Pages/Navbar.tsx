@@ -32,9 +32,11 @@ const NavBar: React.FC = () => {
 
     return (
         <div className='max-w-screen'>
-            <nav className="fixed z-50 max-w-screen flex w-full justify-between p-3 ">
+            <nav className="fixed z-50 max-w-screen flex w-full justify-between p-3 sm:pt-8 ">
                 <div className="relative flex z-20 hidden sm:block items-center justify-center ">
-                    <img onClick={toggleDropDown} className="w-6 z-50 sm:w-16 h-6 sm:h-12 z-0 ml-2 sm:ml-5" src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 6px rgba(0, 0, 0, 1))' }} />
+                    <img onClick={toggleDropDown}
+                className={`w-6 z-50 sm:w-16 h-6 sm:h-12 z-0 ml-2 sm:ml-5 ${isOpen ? 'moved-right' : 'moved-original'}`}
+                src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 6px rgba(0, 0, 0, 1))' }} />
                 </div>
                 
                 <div className="relative block sm:hidden z-20 flex items-center mb-60 ">
@@ -86,28 +88,28 @@ const NavBar: React.FC = () => {
 
             {isOpen && (
                 <div
-                    className="hidden sm:block fixed left-0 z-50 mt-16 sm:mt-20 p-2 sm:p-3 pt-8 sm:pt-12  bg-trasparent ring-1 ring-black ring-opacity-5 divide-y divide-gray-100">
+                    className="dropdownr-animation hidden sm:block fixed left-0 z-50 mt-16 sm:mt-20 p-2 sm:p-3 pt-8 sm:pt-12  bg-trasparent ring-1 ring-black ring-opacity-5  ">
                     <div
                         aria-orientation="vertical"
                         aria-labelledby="menu-button"
                     >
                         <NavLink
                             to="/Option1"
-                            className="block px-4 py-2 my-text font-semibold text-lg  text-gray-700 hover:bg-gray-100 transition duration-300"
+                            className="block px-4 py-2 my-text font-bold text-2xl  text-gray-600 hover:text-gray-100 transition duration-300"
                             role="menuitem"
                         >
                             New
                         </NavLink>
                         <NavLink
                             to="/Option2"
-                            className="block px-4 py-2 my-text font-semibold text-lg  text-gray-700 hover:bg-gray-100 transition duration-300"
+                            className="block px-4 py-4 my-text font-bold text-2xl  text-gray-600 hover:text-gray-100 transition duration-300"
                             role="menuitem"
                         >
                             Dripped
                         </NavLink>
                         <NavLink
                             to="/Option3"
-                            className="block my-text font-semibold text-lg px-4 py-2  text-gray-700 hover:bg-gray-100 transition duration-300"
+                            className="block my-text font-bold text-2xl px-4 py-4  text-gray-600 hover:text-gray-100 transition duration-300"
                             role="menuitem"
                         >
                             All
