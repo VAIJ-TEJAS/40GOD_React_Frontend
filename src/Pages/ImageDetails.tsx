@@ -111,7 +111,6 @@ console.log(selectedProductVariantId)
   }, [id]);
 
   useEffect(() => {
-    // Set the initial selected size to be the first size available
     if (productVariant.length > 0) {
       setSelectedSize(productVariant[0].size.text);
     }
@@ -160,7 +159,7 @@ console.log(selectedProductVariantId)
   const uniqueSizes = [...new Set(productVariant.map(variant => variant.size.text))];
 console.log(products)
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col select-none">
       <div className="fixed inset-0 bg-black">
         <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover filter brightness-75" />
       </div>
@@ -170,7 +169,7 @@ console.log(products)
           <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-20">
             <div className="flex items-center justify-center">
             <div>
-            <div className="carousel relative overflow-hidden w-68 h-68">
+            <div className="carousel relative overflow-hidden"  style={{width: '20rem', height: '28rem'}}>
   <button className="prev absolute top-1/2 transform -translate-y-1/2 left-0 bg-black bg-opacity-50 text-white px-4 py-2 z-10" onClick={prevSlide}>&lt;</button>
   <div className="carousel-inner flex transition-transform duration-500 ease-in-out">
     {product.colors?.[selectedImage]?.image_product?.map((imageData, index) => (

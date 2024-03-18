@@ -12,10 +12,10 @@ import P3 from '/logo/p3.png';
 import P4 from '/logo/p4.png';
 import ring from '../assets/ring.png';
 import './../App.css';
-
+import { useNavigate } from 'react-router-dom';
 const Logo = () => {
     const [isSmallScreen, setIsSmallScreen] = useState(false);
-
+    const navigate = useNavigate()
     useEffect(() => {
         const handleResize = () => {
             setIsSmallScreen(window.innerWidth <= 600);
@@ -31,7 +31,11 @@ const Logo = () => {
     }, []);
 
     const isMobile = window.innerWidth <= 600;
-
+    const handleClick = () => {
+        navigate('/');
+      };
+    
+    
     return (
         <div className='flex justify-center items-center select-none' style={{ transform: isMobile ? 'scale(0.4) translateY(-80%)' : 'scale(0.6) translateY(-30%)' }}>
             <NavLink className='slow-spin select-none' to="/">
@@ -47,7 +51,7 @@ const Logo = () => {
                 <img className="w-20 pump absolute" src={P3} alt="Ring" style={{ filter: 'drop-shadow(0px 0px 15px rgba(0, 0, 0, 1))', marginTop:  isSmallScreen ? '-20.5rem' :'-20.5rem', marginLeft: isSmallScreen ? '0.5rem' : '0.5rem', width:isSmallScreen ? '40rem' : '40rem' }} />
                 <img className="w-20 pump absolute" src={P4} alt="Ring" style={{ filter: 'drop-shadow(0px 0px 15px rgba(0, 0, 0, 1))', marginTop:  isSmallScreen ? '-20.5rem' : '-20.5rem', marginLeft: isSmallScreen ? '-1.5rem' : '-1.5rem', width:isSmallScreen ? '40rem' : '40rem' }} />
             </NavLink>
-            <img className="w-32 h-24 z-10 absolute" src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 10px rgba(0, 0, 0, 1))' }} />
+            <img  className="w-32 h-24 z-10 absolute" src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 10px rgba(0, 0, 0, 1))' }}   onClick={handleClick}/>
         </div>
     );
 };

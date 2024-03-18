@@ -11,7 +11,7 @@ function Footer() {
   <div className="bottom-0 w-full z-50 text-center  justify-between p- text-gray transition-all duration-300">
   <div className="text-center flex justify-between  text-gray pb-4 ">
     <div className="z-20 flex items-center space-x-4">
-      <a href="/terms" className="hover:text-gray-400 my-text">Terms</a>
+      <a href="/terms" className="hover:text-gray-400 my-text ml-4">Terms</a>
       <a href="/privacy" className="hover:text-gray-400 my-text">Privacy</a>
     </div>
     <div className="z-20 items-center justify-center space-x-4 ">
@@ -21,7 +21,7 @@ function Footer() {
     </div>
     <div className="flex z-20 items-center">
       <a href="/" className="hover:text-gray-400 my-text mr-4">General</a>
-      <a href="#" className="hover:text-gray-400 my-text">Contact</a>
+      <a href="#" className="hover:text-gray-400 my-text mr-4">Contact</a>
     </div>
   </div>
   <p className='my-text text-sm z-20 flex items-center justify-center absolute  left-0 right-0 p-2'>

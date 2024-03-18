@@ -88,7 +88,7 @@ const NavBar: React.FC = () => {
 
             {isOpen && (
                 <div
-                    className="dropdownr-animation hidden sm:block fixed left-0 z-50 mt-16 sm:mt-20 p-2 sm:p-3 pt-8 sm:pt-12  bg-trasparent ring-1 ring-black ring-opacity-5  ">
+                    className="dropdownr-animation hidden sm:block fixed left-0 z-50 mt-16 sm:mt-20 p-2 sm:p-3 pt-8 sm:pt-12  bg-trasparent  ">
                     <div
                         aria-orientation="vertical"
                         aria-labelledby="menu-button"
@@ -97,6 +97,7 @@ const NavBar: React.FC = () => {
                             to="/Option1"
                             className="block px-4 py-2 my-text font-bold text-2xl  text-gray-600 hover:text-gray-100 transition duration-300"
                             role="menuitem"
+                            onClick={toggleDropDown}
                         >
                             New
                         </NavLink>
@@ -104,6 +105,7 @@ const NavBar: React.FC = () => {
                             to="/Option2"
                             className="block px-4 py-4 my-text font-bold text-2xl  text-gray-600 hover:text-gray-100 transition duration-300"
                             role="menuitem"
+                            onClick={toggleDropDown}
                         >
                             Dripped
                         </NavLink>
@@ -111,6 +113,7 @@ const NavBar: React.FC = () => {
                             to="/Option3"
                             className="block my-text font-bold text-2xl px-4 py-4  text-gray-600 hover:text-gray-100 transition duration-300"
                             role="menuitem"
+                            onClick={toggleDropDown}
                         >
                             All
                         </NavLink>
