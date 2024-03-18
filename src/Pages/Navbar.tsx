@@ -72,9 +72,9 @@ const NavBar: React.FC = () => {
                 </div>
 
                 <div className="space-x-6 z-20 ">
-                    <button className="my-text text-gray-700 hover:text-gray-400 font-bold hidden sm:inline-block text-base sm:text-xl text-gray-700" onClick={openModal}>
-                        Login
-                    </button>
+                <NavLink className="my-text font-bold text-gray-700 hover:text-gray-400 text-base sm:text-xl text-gray-700" to="/login">
+               Login
+                  </NavLink>
                     <NavLink className="my-text font-bold text-gray-700 hover:text-gray-400 text-base sm:text-xl text-gray-700" to="/Bag">
                         Bag
                     </NavLink>
@@ -84,7 +84,6 @@ const NavBar: React.FC = () => {
                 </div>
             </nav>
 
-            <div className={`fixed top-0 left-0 w-full h-full bg-black opacity-50 ${isModalOpen ? 'block' : 'hidden'}`} onClick={closeModal}></div>
 
             {isOpen && (
                 <div
@@ -121,7 +120,7 @@ const NavBar: React.FC = () => {
                 </div>
             )}
 
-            <Login isOpen={isModalOpen} onClose={closeModal} />
+         
         </div>
     );
 };

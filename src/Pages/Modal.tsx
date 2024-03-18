@@ -1,15 +1,12 @@
 import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import SignUpPage from './SignUp';
-import bg2 from '../assets/background/b2.jpeg';
+import bg from '../assets/background/Backgroud.jpeg';
 import axios from 'axios';
 
-interface ModalProps {
-    isOpen: boolean;
-    onClose: () => void;
-}
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
-    if (!isOpen) return null;
+
+const Login = () => {
+    
 
     const [isSignUpOpen, setIsSignUpOpen] = useState(false);
     const [formData, setFormData] = useState({
@@ -30,7 +27,7 @@ alert ('button tudum')
                 const token = response.data.token;
                 localStorage.setItem('token', token);
                 console.log('Logged in successfully!', response.data);
-                onClose();
+               
             } else {
                 // Handle sign-up logic
             }
@@ -64,18 +61,14 @@ alert ('button tudum')
     }, []);
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
-            <div className="bg-white relative w-auto max-w-md mx-auto my-6 rounded-lg">
-                <div className="absolute opacity-20 inset-0 bg-cover bg-center z-0">
-                    <img src={bg2} alt="bg" className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-lhttp://localhost:5173/historyg " />
-                </div>
-                <div className="rounded-lg shadow-lg relative flex flex-col w-full p-8">
-                    <button
-                        className="absolute top-0 right-0 mt-4 mr-4 text-2xl cursor-pointer focus:outline-none text-white" // Add text-white class
-                        onClick={onClose}
-                    >
-                        &times;
-                    </button>
+        <div className="flex flex-col relative ">
+     <div className="fixed inset-0 bg-black">
+        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
+      </div>
+            <div className="bg-transparent h-screen mt-60 items-center justify-center relative w-auto max-w-md mx-auto my-6 rounded-lg">
+              
+                <div className="relative flex flex-col w-full p-8">
+                  
                     <h1 className="text-xl text-gray-600 font-semibold mb-4">Login or Create Account</h1>
                     <p className="text-sm text-gray-600 dark:text-gray-800 mb-4">
                         Enter your credentials to login or create a new account.
@@ -126,7 +119,7 @@ alert ('button tudum')
                                     <button className="bg-gray-800 dark:bg-white text-white dark:text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={handleSignUpClick}>
                                         Sign Up
                                     </button>
-                                    <button className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={onClose}>
+                                    <button className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" >
                                         Cancel
                                     </button>
                                 </>
@@ -139,4 +132,4 @@ alert ('button tudum')
     );
 };
 
-export default Modal;
+export default Login;

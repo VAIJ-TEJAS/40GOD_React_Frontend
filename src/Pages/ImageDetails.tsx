@@ -244,7 +244,6 @@ console.log(products)
           </div>
         )}
       </div>
-      <Login isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 }

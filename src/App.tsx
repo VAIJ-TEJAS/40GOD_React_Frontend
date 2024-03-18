@@ -14,6 +14,8 @@ import Footer from './Pages/footer';
 import PrivacyPolicy from './Pages/privacyPolicy';
 import FortyGodTerms from './Pages/terms';
 import MyComponent from './Pages/MyComponent';
+import Login from './Pages/Modal';
+
 
 
 
@@ -30,6 +32,8 @@ const App: React.FC = () => {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+
           <Route path="/account" element={<Account />} />
           <Route path="/Option1" element={<Option1 />} />
           <Route
