@@ -3,7 +3,7 @@
     100% { transform: rotate(360deg); }
   }
   .full-height-div {
-    min-height: 90vh; /* This sets the minimum height to 95% of the viewport height */
+    min-height: 91vh; /* This sets the minimum height to 95% of the viewport height */
   }
   .slow-spin {
     animation: spin 30s linear infinite; 

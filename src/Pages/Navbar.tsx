@@ -3,11 +3,9 @@ import { NavLink } from 'react-router-dom';
 import './../css/Button.css';
 import god from './../assets/logo1.png';
 import './../App.css';
-import Login from './Modal';
 import Logo from '../components/logo';
 const NavBar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [isShopOpen, setIsShopOpen]=useState(false)
 
     const toggleDropDown = () => {
@@ -17,15 +15,9 @@ const NavBar: React.FC = () => {
         setIsShopOpen(!isShopOpen);
     };
 
-    const openModal = () => {
-        setIsModalOpen(true);
-        document.body.style.overflow = 'hidden';
-    };
+   
 
-    const closeModal = () => {
-        setIsModalOpen(false);
-        document.body.style.overflow = 'auto';
-    };
+ 
 
 
 
@@ -53,7 +45,7 @@ const NavBar: React.FC = () => {
                             <div className="dropdown-content">
                                 <h2 className="text-lg font-bold mt-4 mb-8  my-text">Menu</h2>
                                 <ul>
-                                    <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={openModal}>Login</li>
+                                    <li className='my-text font-bold p-4 m-4 ml-0 pl-2'>Login</li>
                                     <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={() => window.location.href = '/account'}>Account</li>
                                     <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={toggleShopDropDown}>Shop</li>
 

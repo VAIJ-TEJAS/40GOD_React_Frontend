@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
+import  { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import SignUpPage from './SignUp';
 import bg from '../assets/background/Backgroud.jpeg';
 import axios from 'axios';

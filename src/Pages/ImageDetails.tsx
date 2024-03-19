@@ -5,7 +5,6 @@ import color0 from "../assets/logo.png";
 import { Product } from '../types/productType';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Login from './Modal';
 
 interface ProductVariant {
   id: number;
@@ -27,7 +26,6 @@ interface ImageDetailsProps {
 
 const ImageDetails: React.FC<ImageDetailsProps> = () => {
   const [isAdded, setIsAdded] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [selectedProductVariantId, setSelectedProductVariantId] = useState<number | null>(0);
@@ -38,10 +36,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
   const [selectedImage, setSelectedImage] = useState(0);
 
 console.log(selectedProductVariantId)
-  const closeModal = () => {
-    setIsModalOpen(false);
-    document.body.style.overflow = 'auto';
-  };
+ 
 
   const nextSlide = () => {
     console.log("Next Slide");
@@ -149,7 +144,7 @@ console.log(selectedProductVariantId)
       console.log('Added to bag:', response.data);
       setIsAdded(true);
     } catch (error) {
-      setIsModalOpen(true);
+      alert("first login to add to bag");
       console.error('Error adding item to bag:', error);
     }
   };
