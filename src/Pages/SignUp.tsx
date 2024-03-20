@@ -61,6 +61,7 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ onClose }) => {
 
     return (
         <div className="signup-container">
+            
             <h2>Sign Up</h2>
             <form className="signup-form" onSubmit={handleSubmit}>
             <div className="mb-4">
@@ -140,9 +141,7 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ onClose }) => {
                 <button type="submit" className="bg-gray-800 dark:bg-white text-white dark:text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
         Sign Up
     </button>
-                    <button type="button" className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={onClose}>
-                        Cancel
-                    </button>
+                  
                 </div>
             </form>
         </div>

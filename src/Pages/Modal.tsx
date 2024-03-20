@@ -1,4 +1,4 @@
-import  { useState, useEffect, FormEvent, ChangeEvent } from 'react';
+import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import SignUpPage from './SignUp';
 import bg from '../assets/background/Backgroud.jpeg';
 import axios from 'axios';
@@ -6,7 +6,8 @@ import axios from 'axios';
 
 
 const Login = () => {
-    
+
+    const [activeButton, setActiveButton] = useState<'login' | 'signup' | null>('login');;
 
     const [isSignUpOpen, setIsSignUpOpen] = useState(false);
     const [formData, setFormData] = useState({
@@ -16,18 +17,25 @@ const Login = () => {
 
     const handleSignUpClick = () => {
         setIsSignUpOpen(true);
-    };
+        setActiveButton('signup');
 
+
+    };
+    const handleLoginClick = () => {
+        setIsSignUpOpen(false);
+        setActiveButton('login');
+
+    };
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-alert ('button tudum')
+        alert('button tudum')
         try {
             if (!isSignUpOpen) {
                 const response = await axios.post('/auth/', formData);
                 const token = response.data.token;
                 localStorage.setItem('token', token);
                 console.log('Logged in successfully!', response.data);
-               
+
             } else {
                 // Handle sign-up logic
             }
@@ -57,22 +65,44 @@ alert ('button tudum')
             const user = JSON.parse(userJson!);
             console.log(user);
             console.log('User is already logged in with token:', token);
-        } 
+        }
     }, []);
+
 
     return (
         <div className="flex flex-col relative ">
-     <div className="fixed inset-0 bg-black">
-        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
-      </div>
+             <div
+        className={`absolute bottom-0 ${activeButton === 'login' ? 'left-0' : 'right-0'}`}
+        style={{ width: 'calc(50% - 50px)', borderBottom: '64px solid black' }}
+      />
+
+            <div className="fixed inset-0 bg-black">
+                <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
+            </div>
             <div className="bg-transparent h-screen mt-60 items-center justify-center relative w-auto max-w-md mx-auto my-6 rounded-lg">
-              
+
                 <div className="relative flex flex-col w-full p-8">
-                  
-                    <h1 className="text-xl text-gray-600 font-semibold mb-4">Login or Create Account</h1>
-                    <p className="text-sm text-gray-600 dark:text-gray-800 mb-4">
-                        Enter your credentials to login or create a new account.
-                    </p>
+                    
+                <div className="grid grid-cols-2 gap-20 mt-10 sm:mt-16 py-8">
+               
+        <button
+          className={`font-semibold mr-16 ${activeButton === 'login' ? 'border-b-2 border-black' : ''}`}
+          type="button"
+          onClick={handleLoginClick}
+        >
+          Login
+        </button>
+        <button
+          className={`font-semibold ${activeButton === 'signup' ? 'border-b-2 border-black' : ''}`}
+          type="button"
+          onClick={handleSignUpClick}
+        >
+          Create Account
+        </button>
+       
+      </div>
+   
+
                     <form onSubmit={handleSubmit}>
                         {!isSignUpOpen && (
                             <>
@@ -88,7 +118,7 @@ alert ('button tudum')
                                         placeholder="Username"
                                         value={formData.username}
                                         onChange={handleChange}
-                                        required 
+                                        required
                                     />
                                 </div>
                                 <div className="mb-6">
@@ -103,7 +133,7 @@ alert ('button tudum')
                                         placeholder="Password"
                                         value={formData.password}
                                         onChange={handleChange}
-                                        required 
+                                        required
                                     />
                                 </div>
                             </>
