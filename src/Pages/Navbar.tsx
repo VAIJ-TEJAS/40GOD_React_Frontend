@@ -6,7 +6,7 @@ import './../App.css';
 import Logo from '../components/logo';
 const NavBar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [isShopOpen, setIsShopOpen]=useState(false)
+    const [isShopOpen, setIsShopOpen] = useState(false)
 
     const toggleDropDown = () => {
         setIsOpen(!isOpen);
@@ -15,29 +15,29 @@ const NavBar: React.FC = () => {
         setIsShopOpen(!isShopOpen);
     };
 
-   
 
- 
+
+
 
 
 
 
     return (
-        <div className='max-w-screen'>
-            <nav className="fixed z-50 max-w-screen flex w-full justify-between p-3 sm:pt-8 ">
-                <div className="select-none relative flex z-20 hidden sm:block items-center justify-center ">
-                    <img onClick={toggleDropDown}
-                className={`w-6 z-50 sm:w-16 h-6 sm:h-12 z-0 ml-2 sm:ml-5 ${isOpen ? 'moved-right' : 'moved-original'}`}
-                src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 6px rgba(0, 0, 0, 1))' }} />
-                </div>
-                
-                <div className="relative block sm:hidden z-20 flex items-center mb-60 ">
-                    <img onClick={toggleDropDown} className="w-6 sm:w-10 h-6 sm:h-8 z-0 ml-2 sm:ml-5" src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 6px rgba(0, 0, 0, 1))' }} />
-                </div>
+        <div>
+        <nav className="absolute z-50  flex justify-between  sm:pt-8" style={{ width: '100%' }}>
+            <div className="select-none fixed flex z-20 hidden sm:block items-center justify-center">
+                <img onClick={toggleDropDown} className={`w-6 z-50 sm:w-16 h-6 sm:h-12 z-0 ml-2 sm:ml-5 ${isOpen ? 'moved-right' : 'moved-original'}`} src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 6px rgba(0, 0, 0, 1))' }} />
+            </div>
+    
+            <div className="fixed block sm:hidden z-20 flex items-center mb-60">
+                <img onClick={toggleDropDown} className="w-6 sm:w-10 h-6 sm:h-8 z-0 ml-2 sm:ml-5" src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 6px rgba(0, 0, 0, 1))' }} />
+            </div>
+    
+            <div className='absolute z-1  justify-center' style={{ width: '100%' }}>
+                {/* Place your Logo component here */}
+                <Logo />
+            </div>
 
-                <div className='absolute z-1 w-full flex justify-center'>
-                  <Logo />
-                </div>
 
                 <div className="relative">
                     {isOpen && (
@@ -51,10 +51,10 @@ const NavBar: React.FC = () => {
 
                                     {isShopOpen && (
                                         <div className='ml-4'>
-                                    <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={() => window.location.href = '/Option1'}>New</li>
-                                    <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={() => window.location.href = '/Option2'}>Dripped</li>
-                                    <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={() => window.location.href = '/Option3'}>All</li>
-                                    </div>)}
+                                            <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={() => window.location.href = '/Option1'}>New</li>
+                                            <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={() => window.location.href = '/Option2'}>Dripped</li>
+                                            <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={() => window.location.href = '/Option3'}>All</li>
+                                        </div>)}
                                     <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={() => window.location.href = '/bag'}>Bag</li>
 
                                 </ul>
@@ -63,10 +63,10 @@ const NavBar: React.FC = () => {
                     )}
                 </div>
 
-                <div className="space-x-6 z-20 ">
-                <NavLink className="my-text font-bold text-gray-700 hover:text-gray-400 text-base sm:text-xl text-gray-700" to="/login">
-               Login
-                  </NavLink>
+                <div className="fixed right-0 space-x-6 z-20 ">
+                    <NavLink className="my-text font-bold text-gray-700 hover:text-gray-400 text-base sm:text-xl text-gray-700" to="/login">
+                        Login
+                    </NavLink>
                     <NavLink className="my-text font-bold text-gray-700 hover:text-gray-400 text-base sm:text-xl text-gray-700" to="/Bag">
                         Bag
                     </NavLink>
@@ -112,7 +112,7 @@ const NavBar: React.FC = () => {
                 </div>
             )}
 
-         
+
         </div>
     );
 };

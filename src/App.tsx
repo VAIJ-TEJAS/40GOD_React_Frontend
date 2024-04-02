@@ -15,7 +15,7 @@ import PrivacyPolicy from './Pages/privacyPolicy';
 import FortyGodTerms from './Pages/terms';
 import MyComponent from './Pages/MyComponent';
 import Login from './Pages/Modal';
-
+import General from './Pages/general';
 
 
 
@@ -64,6 +64,8 @@ const App: React.FC = () => {
           <Route path="/history" element={<History/>} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<FortyGodTerms />} />
+          <Route path="/general" element={<General />} />
+
           <Route path="/com" element={<MyComponent />} />
 
 

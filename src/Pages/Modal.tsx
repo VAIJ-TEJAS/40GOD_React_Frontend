@@ -79,21 +79,21 @@ const Login = () => {
             <div className="fixed inset-0 bg-black">
                 <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
             </div>
-            <div className="bg-transparent h-screen mt-60 items-center justify-center relative w-auto max-w-md mx-auto my-6 rounded-lg">
+            <div className="z-50 bg-transparent h-screen mx-auto items-center justify-center relative  rounded-lg sm:w-1/3 " style={{  margin: "10rem auto 0 auto" }}>
 
                 <div className="relative flex flex-col w-full p-8">
                     
-                <div className="grid grid-cols-2 gap-20 mt-10 sm:mt-16 py-8">
+                <div className="grid grid-cols-2 gap-20 sm:mt-13 sm:mt-16 py-8">
                
         <button
-          className={`font-semibold mr-16 ${activeButton === 'login' ? 'border-b-2 border-black' : ''}`}
+          className={`font-semibold mr-16  ${activeButton === 'login' ? 'border-b-2 border-black' : ''}`}
           type="button"
           onClick={handleLoginClick}
         >
           Login
         </button>
         <button
-          className={`font-semibold ${activeButton === 'signup' ? 'border-b-2 border-black' : ''}`}
+          className={`font-semibold text-lg ${activeButton === 'signup' ? 'border-b-2 border-black' : ''}`}
           type="button"
           onClick={handleSignUpClick}
         >
@@ -107,7 +107,7 @@ const Login = () => {
                         {!isSignUpOpen && (
                             <>
                                 <div className="mb-4">
-                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="email">
+                                    <label className="block text-sm font-medium text-gray-700  mb-1" htmlFor="email">
                                         Email
                                     </label>
                                     <input
@@ -122,7 +122,7 @@ const Login = () => {
                                     />
                                 </div>
                                 <div className="mb-6">
-                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="password">
+                                    <label className="block text-sm font-medium text-gray-700  mb-1" htmlFor="password">
                                         Password
                                     </label>
                                     <input
@@ -136,24 +136,15 @@ const Login = () => {
                                         required
                                     />
                                 </div>
+                                <button className=" w-full bg-black text-white hover:bg-white hover:text-black border-balck shadow-lg font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                                        Login
+                                    </button>
                             </>
                         )}
                         {isSignUpOpen && <SignUpPage onClose={() => setIsSignUpOpen(false)} />}
 
                         <div className="flex justify-between items-center">
-                            {!isSignUpOpen && (
-                                <>
-                                    <button className="bg-gray-800 dark:bg-white text-white dark:text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                                        Login
-                                    </button>
-                                    <button className="bg-gray-800 dark:bg-white text-white dark:text-gray-800 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onClick={handleSignUpClick}>
-                                        Sign Up
-                                    </button>
-                                    <button className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" >
-                                        Cancel
-                                    </button>
-                                </>
-                            )}
+                          
                         </div>
                     </form>
                 </div>

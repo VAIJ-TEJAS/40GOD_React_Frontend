@@ -37,7 +37,7 @@ const Logo = () => {
     
     
     return (
-        <div className='flex justify-center items-center select-none' style={{ transform: isMobile ? 'scale(0.4) translateY(-80%)' : 'scale(0.6) translateY(-30%)' }}>
+        <div className='z-20 flex justify-center items-center select-none' style={{ transform: isMobile ? 'scale(0.4) translateY(-80%)' : 'scale(0.6) translateY(-30%)' }}>
             <NavLink className='slow-spin select-none' to="/">
                 <img className="z-10  w-68" src={ring} alt="Ring" style={{ filter: 'drop-shadow(0px 0px 30px rgba(0, 0, 0, 1))' }} />
                 <img className="z-10 w-20 pump absolute" src={A2} alt="Ring" style={{ filter: 'drop-shadow(0px 0px 15px rgba(0, 0, 0, 1))', marginTop: isSmallScreen ? '-17rem' :  '-17rem', marginLeft: isSmallScreen ? '4rem' : '4rem', width:isSmallScreen ? '4rem' :  '4rem' }} />

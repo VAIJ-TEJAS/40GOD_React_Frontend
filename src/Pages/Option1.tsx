@@ -29,10 +29,10 @@ const Option1: React.FC = () => {
 
   
   return (
-  <div className=" relative">
-    <div className="fixed inset-0 bg-black">
-      <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
-    </div>
+    <div className="flex flex-col relative full-height-div ">
+      <div className="fixed inset-0 bg-black">
+        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
+      </div>
 
     <div className="relative w-full h-screen sm:h-[300vh] " >
     <img src={bg2} alt='bg' className="absolute inset-0 w-full h-full object-cover filter brightness-75" />

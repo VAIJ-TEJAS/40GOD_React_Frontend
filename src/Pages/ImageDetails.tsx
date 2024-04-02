@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import './../css/Button.css';
 import bg from "../assets/background/Backgroud.jpeg";
 import color0 from "../assets/logo.png";
@@ -34,6 +35,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
   const { id } = useParams<{ id?: string }>() ?? {};
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedImage, setSelectedImage] = useState(0);
+  const navigate = useNavigate();
 
 console.log(selectedProductVariantId)
  
@@ -119,12 +121,14 @@ console.log(selectedProductVariantId)
   if (!product) {
     return <div>Product not found</div>;
   }
+
   const handleAddToBag = async () => {
     try {
       const token = localStorage.getItem('token');
 
       if (!token) {
         console.error("Token not found.");
+        navigate("/login"); 
         return;
       }
 
@@ -132,7 +136,7 @@ console.log(selectedProductVariantId)
         "product_varient": 16,
         "quantity": 1
     }
-    
+    console.log(productVariant)
 
       const response = await axios.post('/cart-items/', productWithQuantity, {
         headers: {
@@ -161,7 +165,7 @@ console.log(products)
       
       <div className="mt-60 sm:p-8 z-10">
         {product && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-20">
+          <div className="grid grid-cols-1  sm:grid-cols-2 p-8 sm:gap-20">
             <div className="flex items-center justify-center">
             <div>
             <div className="carousel relative overflow-hidden"  style={{width: '20rem', height: '28rem'}}>
