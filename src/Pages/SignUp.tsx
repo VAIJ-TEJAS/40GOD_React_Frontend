@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import "../App.css"
 interface SignUpPageProps {
     onClose: () => void;
 }
@@ -60,11 +60,11 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ onClose }) => {
     };
 
     return (
-        <div className="signup-container">
+        <div className="signup-container my-text text-2xl">
           
             <form className="signup-form" onSubmit={handleSubmit}>
             <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="phoneNumber">
+                    <label className="block  font-medium text-gray-700 mb-1" htmlFor="phoneNumber">
                         Username
                     </label>
                     <input
@@ -72,13 +72,14 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ onClose }) => {
                         type="text"
                         id="username"
                         name="username"
+                        placeholder='   Username'
                         value={formData.username}
                         onChange={handleChange}
                         required
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="password">
+                    <label className="block  font-medium text-gray-700 mb-1" htmlFor="password">
                         Password
                     </label>
                     <input
@@ -86,13 +87,14 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ onClose }) => {
                         type="password"
                         id="password"
                         name="password"
+                        placeholder='Password'
                         value={formData.password}
                         onChange={handleChange}
                         required
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-sm font-medium   mb-1" htmlFor="firstName">
+                    <label className="block  font-medium   mb-1" htmlFor="firstName">
                         First Name
                     </label>
                     <input
@@ -100,19 +102,21 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ onClose }) => {
                         type="text"
                         id="first_name"
                         name="first_name"
+                        placeholder='First-Name'
                         value={formData.first_name}
                         onChange={handleChange}
                         required
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-sm font-medium mb-1" htmlFor="lastName">
+                    <label className="block  font-medium mb-1" htmlFor="lastName">
                         Last Name
                     </label>
                     <input
                         className="w-full border border-gray-300 dark:border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:border-indigo-500"
                         type="text"
                         id="last_name"
+                        placeholder='Last Name'
                         name="last_name"
                         value={formData.last_name}
                         onChange={handleChange}
@@ -120,12 +124,13 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ onClose }) => {
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-sm font-medium mb-1" htmlFor="email">
+                    <label className="block  font-medium mb-1" htmlFor="email">
                         Email
                     </label>
                     <input
                         className="w-full border border-gray-300  rounded-md py-2 px-3 focus:outline-none focus:border-indigo-500"
                         type="email"
+                        placeholder='Email'
                         id="email"
                         name="email"
                         value={formData.email}

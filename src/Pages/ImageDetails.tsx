@@ -133,10 +133,9 @@ console.log(selectedProductVariantId)
       }
 
       const productWithQuantity = {
-        "product_varient": 16,
+        "product_varient": selectedProductVariantId,
         "quantity": 1
     }
-    console.log(productVariant)
 
       const response = await axios.post('/cart-items/', productWithQuantity, {
         headers: {
@@ -148,8 +147,15 @@ console.log(selectedProductVariantId)
       console.log('Added to bag:', response.data);
       setIsAdded(true);
     } catch (error) {
-      alert("first login to add to bag");
+      if (selectedProductVariantId === 0) {
+        alert("Please select color and size.");
+        console.error('Error adding item to bag:', error);
+
+    }
+    else{
+      alert("Please login to add to bag.");
       console.error('Error adding item to bag:', error);
+    }
     }
   };
   const availableColors = productVariant
@@ -206,7 +212,7 @@ console.log(products)
                 {uniqueSizes.map((size, index) => (
   <div key={index}>
     <button
-      className={`w-10 h-8 text-center rounded-full bg-gray-500 text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${size === selectedSize ? 'bg-green-500' : ''}`}
+      className={`w-10 h-8 text-center rounded-full bg-gray-500 text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${size === selectedSize ? 'bg-black' : ''}`}
       onClick={() => handleSizeClick(size)}
     >
       {size}

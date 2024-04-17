@@ -166,7 +166,13 @@ const Checkout: React.FC = () => {
 
   console.log('product_variants', cartItems.map((item) => (item.product_varient.id)))
   console.log('quantyties', cartItems.map((item) => (item.quantity)))
-
+  const totalSum = cartItems.reduce((accumulator, item) => {
+    if (item.product_varient && item.product_varient.color && item.product_varient.color.product) {
+        const price = item.product_varient.color.product.price * item.quantity;
+        return accumulator + price;
+    }
+    return accumulator;
+}, 0);
   return (
     <div className="flex flex-col min-h-screen relative h-full justify-center items-center"> {/* Added px-4 for padding on the left and right */}
       <div className="fixed inset-0 bg-black">
@@ -174,9 +180,9 @@ const Checkout: React.FC = () => {
       </div>
       <div className='mt-36  relative z-10'>
         <div className="my-8 w-full mt-28">
-          <h1 className="text-2xl font-semibold">Checkout</h1>
+          <h1 className="text-2xl font-semibold m-2">Checkout</h1>
         </div>
-        <div className="grid grid-cols-1 mt-10 md:grid-cols-2  gap-4">
+        <div className="grid grid-cols-1 m-4 mt-10 md:grid-cols-2  gap-4">
 
 
           <ShippingInfo signUpData={null} />
@@ -185,7 +191,7 @@ const Checkout: React.FC = () => {
           <div className="p-4 rounded-lg shadow-md" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${b4})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
 
             <div className="mb-4">
-              <h2 className="text-lg font-semibold mb-2">Items</h2>
+              <h2 className="text-lg font-semibold mb-2 p-8">Items</h2>
 
               {cartItems.map((item) => (
                 <div className="border-b-2 border-black py-4 flex items-center justify-between relative" key={item.id} >
@@ -203,19 +209,18 @@ const Checkout: React.FC = () => {
                         />
                       )}
                     <div>
-                      <p>  Color Name:{' '}
-                        {item.product_varient &&
+                      <p>  Color Name{' '}
+                       </p>
+                      <p className="text-gray-500"> {item.product_varient &&
                           item.product_varient.color &&
                           item.product_varient.color.color_name}</p>
-                      <p className="text-gray-500">Navy blue</p>
                     </div>
+                  
                     <div className='ml-9'>
-
-                      <p className="text-gray-500">Description about jeans</p>
-                    </div>
-                    <div className='ml-9'>
-                      <p>size:M</p>
-                      <p className="text-gray-500">{item.quantity}</p>
+                      <p>size :  {item.product_varient &&
+                          item.product_varient.size &&
+                          item.product_varient.size.text}</p>
+                      <p className="text-gray-500">Quantity : {item.quantity}</p>
                     </div>
                     <div className='ml-9'>
                       <p>Amount to be paid</p>
@@ -227,7 +232,7 @@ const Checkout: React.FC = () => {
               ))}
             </div>
             <div>
-              <h2 className="text-lg font-semibold mb-2">Payment Method</h2>
+              <h2 className="text-lg font-semibold mb-2">Total Amount to be Paid : {totalSum}</h2>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../App.css"
 import axios from "axios";
 import bg from '../assets/background/Backgroud.jpeg';
 interface Color {
@@ -70,13 +71,13 @@ const History: React.FC = () => {
     </div>  
   
     <div className="mb-8 mt-60 z-20  ml-5">
-      <h1 className="text-3xl font-bold">History</h1>
+      <h1 className="text-3xl font-bold my-text">History</h1>
     </div>    
   
-    <div className=" gap-4 p-8 flex items-center justify-center rounded-lg z-10 shadow-lg">
+    <div className=" gap-4 p-8 flex  rounded-lg z-10 shadow-lg my-text font-semibold text-lg text-gray-700">
       {orders.length > 0 ? (
         orders.map((order) => (
-          <div key={order.id} className="grid sm:grid-cols-4 gap-4  ">
+          <div key={order.id} className="grid sm:grid-cols-7 gap-4  ">
              <div>
             <ul>
               {order.order_items.map((item, index) => (
@@ -92,6 +93,9 @@ const History: React.FC = () => {
             </div>
             <div>
             <p>Date: {order.date}</p>
+         
+            </div>
+            <div>
             <p>Status: {order.status}</p>
             </div>
             <div>
@@ -99,17 +103,38 @@ const History: React.FC = () => {
               {order.order_items.map((item, index) => (
                 <li key={index}>
                   <p>Product: {item.cart_item.color.product.name}</p>
+                 
+                </li>
+              ))}
+            </ul>
+            </div>
+            <div>
+            <ul>
+              {order.order_items.map((item, index) => (
+                <li key={index}>
                   <p>Color: {item.cart_item.color.display_name}</p>
                   <p>Size: {item.cart_item.size.text}</p>
                 </li>
               ))}
-            </ul>
-            </div><div>
+            </ul></div>
+            
+            <div>
             <ul>
               {order.order_items.map((item, index) => (
                 <li key={index}>
                   <p>Quantity: {item.quantity}</p>
+               
+                 
+                </li>
+              ))}
+            </ul></div>
+            <div>
+            <ul>
+              {order.order_items.map((item, index) => (
+                <li key={index}>
+                 
                   <p>Price: {item.cart_item.color.product.price * item.quantity}</p>
+                 
                 </li>
               ))}
             </ul></div>

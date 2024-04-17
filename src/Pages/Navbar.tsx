@@ -23,7 +23,7 @@ const NavBar: React.FC = () => {
 
 
     return (
-        <div>
+        <div >
         <nav className="absolute z-50  flex justify-between  sm:pt-8" style={{ width: '100%' }}>
             <div className="select-none fixed flex z-20 hidden sm:block items-center justify-center">
                 <img onClick={toggleDropDown} className={`w-6 z-50 sm:w-16 h-6 sm:h-12 z-0 ml-2 sm:ml-5 ${isOpen ? 'moved-right' : 'moved-original'}`} src={god} alt="God" style={{ filter: 'drop-shadow(0px 0px 6px rgba(0, 0, 0, 1))' }} />
@@ -64,13 +64,13 @@ const NavBar: React.FC = () => {
                 </div>
 
                 <div className="fixed right-0 space-x-6 z-20 ">
-                    <NavLink className="my-text font-bold text-gray-700 hover:text-gray-400 text-base sm:text-xl text-gray-700" to="/login">
+                    <NavLink className="my-text hiden font-bold text-gray-700 hover:text-gray-400 hidden sm:inline-block text-base sm:text-xl text-gray-700" to="/login">
                         Login
                     </NavLink>
-                    <NavLink className="my-text font-bold text-gray-700 hover:text-gray-400 text-base sm:text-xl text-gray-700" to="/Bag">
+                    <NavLink className="p-4 my-text font-bold text-gray-700 hover:text-gray-400 text-base sm:text-xl text-gray-700" to="/Bag">
                         Bag
                     </NavLink>
-                    <NavLink className="my-text text-gray-700 block hover:text-gray-400 font-bold sm:text-xl hidden sm:inline-block text-gray-700" to="/account">
+                    <NavLink className="pr-6 my-text text-gray-700 block hover:text-gray-400 font-bold sm:text-xl hidden sm:inline-block text-gray-700" to="/account">
                         Accn
                     </NavLink>
                 </div>

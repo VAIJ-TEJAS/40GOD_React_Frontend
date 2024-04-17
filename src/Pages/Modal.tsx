@@ -2,7 +2,7 @@ import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import SignUpPage from './SignUp';
 import bg from '../assets/background/Backgroud.jpeg';
 import axios from 'axios';
-
+import "../App.css"
 
 
 const Login = () => {
@@ -70,11 +70,8 @@ const Login = () => {
 
 
     return (
-        <div className="flex flex-col relative ">
-             <div
-        className={`absolute bottom-0 ${activeButton === 'login' ? 'left-0' : 'right-0'}`}
-        style={{ width: 'calc(50% - 50px)', borderBottom: '64px solid black' }}
-      />
+        <div className="flex flex-col relative my-text text-2xl text-gray-600">
+       
 
             <div className="fixed inset-0 bg-black">
                 <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
@@ -86,14 +83,14 @@ const Login = () => {
                 <div className="grid grid-cols-2 gap-20 sm:mt-13 sm:mt-16 py-8">
                
         <button
-          className={`font-semibold mr-16  ${activeButton === 'login' ? 'border-b-2 border-black' : ''}`}
+          className={`font-semibold m-3    ${activeButton === 'login' ? 'border-b-4  border-gray-600' : ''}`}
           type="button"
           onClick={handleLoginClick}
         >
           Login
         </button>
         <button
-          className={`font-semibold text-lg ${activeButton === 'signup' ? 'border-b-2 border-black' : ''}`}
+          className={`font-semibold  ${activeButton === 'signup' ? 'border-b-4 border-gray-600' : ''}`}
           type="button"
           onClick={handleSignUpClick}
         >
@@ -107,7 +104,7 @@ const Login = () => {
                         {!isSignUpOpen && (
                             <>
                                 <div className="mb-4">
-                                    <label className="block text-sm font-medium text-gray-700  mb-1" htmlFor="email">
+                                    <label className="block text-2xl font-medium text-gray-700  mb-1" htmlFor="email">
                                         Email
                                     </label>
                                     <input
@@ -122,7 +119,7 @@ const Login = () => {
                                     />
                                 </div>
                                 <div className="mb-6">
-                                    <label className="block text-sm font-medium text-gray-700  mb-1" htmlFor="password">
+                                    <label className="block  font-medium text-gray-700  mb-1" htmlFor="password">
                                         Password
                                     </label>
                                     <input

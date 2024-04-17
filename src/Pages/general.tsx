@@ -8,7 +8,7 @@ function General() {
       </div>
          <div className="mt-60 sm:p-8 z-10">
         
-      <h1 className="text-2xl font-bold mb-4 p-2">GENERAL INFORMATION</h1>
+      <h1 className="text-2xl font-bold mb-4 p-2">GENERAL INFORMATION</h1>   
       <p className="text-lg font-bold mb-4 p-2">Shipping and Delivery - Delivery Zones</p> 
       <div className="text-sm ">
         <p>These Terms and Conditions (these “Terms”) apply to use access and use of the website, 40god.in (the “Website”), operated on behalf of 40.GOD LLC (“Company”, “we” or “us”), and together with any online content, tools, features and functionality offered on or through our Website (the “Services”).</p>

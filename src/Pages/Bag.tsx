@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, NavLink } from 'react-router-dom';
 import bg from '../assets/background/Backgroud.jpeg';
+import "../App.css"
 interface productData {
   id: number;
   sku: string;
@@ -165,20 +166,20 @@ function Bag() {
     return accumulator;
 }, 0);
   return (
-    <div className="flex flex-col relative min-h-screen">
+    <div className="flex flex-col relative min-h-screen  text-xl text-gray-600 font-semibold ">
      <div className="fixed inset-0 bg-black">
         <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
       </div>
       <div className="sm:flex h-full  z-10 item-center justify-center mt-60">
         {cartItems.length === 0 ? (
-          <p>Your bag is empty.</p>
+          <p className='my-text'>Your bag is empty.</p>
         ) : (
           <div>
             {cartItems.map((item) => (
               <div className="flex" key={item.id}>
                 <div className="w-full mr-4">
                   <div className="grid sm:grid-cols-5 grid-rows-1 sm:gap-4 mt-40">
-                    <div className="sm:p-4 text-center">
+                    <div className="sm:p-4 text-center my-text">
                       {item.product_varient &&
                         item.product_varient.color &&
                         item.product_varient.color.image_product &&
@@ -191,44 +192,46 @@ function Bag() {
                           />
                         )}
                     </div>
-                    <div className="sm:p-4 text-center">
+                    <div className="sm:p-4 text-center my-text">
+                    <p className='m-4'>
+                        Name-{' '}
+                        {item.product_varient &&
+                          item.product_varient.color &&
+                          item.product_varient.color.display_name}
+                         
+                      </p>
                       <p>
-                        Color Name:{' '}
+                        Colour -{' '}
                         {item.product_varient &&
                           item.product_varient.color &&
                           item.product_varient.color.color_name}
                           
                       </p>
                       
-                      <p>
-                        {item.product_varient &&
-                          item.product_varient.color &&
-                          item.product_varient.color.hex_code}
-                      </p>
-                    </div>
-                    <div className="sm:p-4 text-center sm:space-x-4">
-                      <p>
+                      <p className='my-text m-4'>
                         Size:{' '}
                         {item.product_varient &&
                           item.product_varient.size &&
                           item.product_varient.size.text}{' '}
-                        Color:{' '}
-                        {item.product_varient &&
-                          item.product_varient.color &&
-                          item.product_varient.color.display_name}
-                          <p>Quantity: </p>
-                      </p>
-                      <div className='flex items-center justify-center sm:mr-4'>
-                      <button className='bg-gray-900 hover:bg-white border border-gray-300 shadow-xl m-4  text-white hover:text-black p-2 rounded-full' onClick={() => handleIncreaseQuantity(item.id)}>
+                      </p>  
+                    
+                     
+                    </div>
+                    <div className="sm:p-4 text-center sm:space-x-4">
+                     
+
+                      <div className='flex items-center justify-center sm:mr-4 text-xl'>
+                      <p className='my-text'>Quantity: </p>
+                      <button className='  m-4  text-black font-bold p-2 rounded-full' onClick={() => handleIncreaseQuantity(item.id)}>
                      +
                       </button>
                       <p>{item.quantity}</p> 
-                      <button className='bg-gray-900 hover:bg-white border border-gray-300 shadow-xl m-4 mr-8 text-white hover:text-black p-2 rounded-full' onClick={() => handleDecreaseQuantity(item.id)}>
+                      <button className=' m-4  text-black font-bold p-2 rounded-full' onClick={() => handleDecreaseQuantity(item.id)}>
                        -
                       </button>
                       </div>
                     </div>
-                    <div className="sm:p-4 text-center">
+                    <div className="sm:p-4 text-center my-text mt-2">
                       <button onClick={() => handleDelete(item.id)}>
                         Delete
                       </button>
@@ -242,18 +245,17 @@ function Bag() {
           </div>
         )}
         {cartItems.length > 0 && (
-          <div>
-            <div className="sm:w-full mt-40 sm:mr-4">
-              <div className="bg-gray-300 p-6 text-center">
+          <div className='m:2 sm:m-4'>
+            <div className="sm:w-full mt-40  sm:mr-4">
+              <div className="my-text p-6 text-center">
                 {cartItems.map((item) => (
                   <div className="flex" key={item.id}>
-                    <div className="grid grid-cols-5 grid-rows-1 gap-4">
+                    <div className="grid grid-cols-4 grid-rows-1 gap-4 m-4">
                       <div className="text-center">
                         <p>
                           {item.product_varient &&
                             item.product_varient.color &&
                             item.product_varient.color.color_name}{' '}
-                          {item.quantity}
                         </p>
                       </div>
                       <div className="text-center">
@@ -264,9 +266,7 @@ function Bag() {
                             item.product_varient.size.text}
                         </p>
                       </div>
-                      <div className="text-center">
-                        <p>Navy blue</p>
-                      </div>
+                   
                       <div className="text-center">
                         <p>Quantity: {item.quantity}</p>
                       </div>
@@ -281,15 +281,14 @@ function Bag() {
               </div>
 
               <>
-              <div className="grid grid-cols-2 grid-rows-1 sm:gap-64 border border-black">
-                <h1>Total</h1>
+              <div className="grid grid-cols-2 grid-rows-1 sm:gap-64 border border-gray-700"> </div>
+                <h1 className='m-4 ml-12 font-bold sm:text-2xl my-text'>Total  Estimated Amount : {totalSum}</h1>
            
-                <>
+               
                  
-                  <h1>  {totalSum}
-                  </h1>
-                </>
-              </div>
+                 
+               
+             
               <div className="flex item-center justify-center mt-4">
                 <Link to="/checkout">
                   <button className="button my-text pl-40 pr-40">
