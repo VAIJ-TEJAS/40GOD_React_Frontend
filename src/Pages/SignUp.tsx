@@ -32,9 +32,9 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ onClose }) => {
         }));
     };
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault(); 
-
+    const handleSubmit = async () => {
+       
+        alert("dfdsf")
         try {
             const response = await axios.post('/signup/', formData);
             const token = response.data.token; 
@@ -42,14 +42,12 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ onClose }) => {
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
             console.log(response.data); 
+            alert("user logged in")
             navigate('/Account', { state: formData });
             onClose();
         } catch (error) {
             console.error('Error signing up:', error);
-            alert('Error signing up');
-
         }
-
         setFormData({
             username: '',
             password: '',
@@ -84,7 +82,6 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ onClose }) => {
                     </label>
                     <input
                         className="w-full border border-gray-300 dark:border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:border-indigo-500"
-                        type="password"
                         id="password"
                         name="password"
                         placeholder='Password'
@@ -142,7 +139,7 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ onClose }) => {
               
                 <div className="flex justify-between items-center">
 
-                <button type="submit" className="w-full bg-black text-white hover:bg-white hover:text-black shadow-lg font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                <button type="submit" className="w-full bg-black text-white hover:bg-white hover:text-black shadow-lg font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleSubmit}>
         Sign Up
     </button>
                   

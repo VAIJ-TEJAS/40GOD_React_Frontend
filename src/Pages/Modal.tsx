@@ -28,16 +28,17 @@ const Login = () => {
     };
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        alert('button tudum')
+
         try {
             if (!isSignUpOpen) {
                 const response = await axios.post('/auth/', formData);
                 const token = response.data.token;
                 localStorage.setItem('token', token);
                 console.log('Logged in successfully!', response.data);
+                alert('Successfully Logged in')
 
             } else {
-                // Handle sign-up logic
+                alert("error in logging")
             }
         } catch (error) {
             console.error('Error logging in:', error);
@@ -70,7 +71,7 @@ const Login = () => {
 
 
     return (
-        <div className="flex flex-col relative my-text text-2xl text-gray-600">
+        <div className="flex flex-col relative my-text text-2xl text-gray-600  ">
        
 
             <div className="fixed inset-0 bg-black">
@@ -105,8 +106,7 @@ const Login = () => {
                             <>
                                 <div className="mb-4">
                                     <label className="block text-2xl font-medium text-gray-700  mb-1" htmlFor="email">
-                                        Email
-                                    </label>
+                                    Username                                    </label>
                                     <input
                                         className="w-full border border-gray-300 dark:border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:border-indigo-500"
                                         type="text"
@@ -124,7 +124,6 @@ const Login = () => {
                                     </label>
                                     <input
                                         className="w-full border border-gray-300 dark:border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:border-indigo-500"
-                                        type="password"
                                         id="password"
                                         name="password"
                                         placeholder="Password"
@@ -135,7 +134,7 @@ const Login = () => {
                                 </div>
                                 <button className=" w-full bg-black text-white hover:bg-white hover:text-black border-balck shadow-lg font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                                         Login
-                                    </button>
+                                </button>
                             </>
                         )}
                         {isSignUpOpen && <SignUpPage onClose={() => setIsSignUpOpen(false)} />}

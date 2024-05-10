@@ -35,23 +35,23 @@ const App: React.FC = () => {
           <Route path="/login" element={<Login />} />
 
           <Route path="/account" element={<Account />} />
-          <Route path="/Option1" element={<Option1 />} />
+          <Route path="/New" element={<Option1 />} />
           <Route
-            path="/Option1/:id"
+            path="/New/:id"
             element={<ImageDetails addToBag={function (): void {
               throw new Error('Function not implemented.');
             } } checkoutItems={[]} />}
           />
-          <Route path="/Option2" element={<Option2 />} />
+          <Route path="/Dripped" element={<Option2 />} />
           <Route
-            path="/Option2/:id"
+            path="/Dripped/:id"
             element={<ImageDetails addToBag={function (): void {
               throw new Error('Function not implemented.');
             } } checkoutItems={[]} />}
           />
-          <Route path="/Option3" element={<Option3 />} />
+          <Route path="/All" element={<Option3 />} />
           <Route
-            path="/Option3/:id"
+            path="/All/:id"
             element={<ImageDetails addToBag={function (): void {
               throw new Error('Function not implemented.');
             } } checkoutItems={[]}  />}

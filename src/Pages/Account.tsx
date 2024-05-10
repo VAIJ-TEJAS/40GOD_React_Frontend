@@ -43,7 +43,13 @@ const AddressBookComponent: React.FC = () => {
       [name]: value
     }));
   };
-
+  useEffect(() => {
+    if (AddressBook.length === 0) {
+        setShowForm(true);
+    } else {
+        setShowForm(false);
+    }
+}, [AddressBook]);
   useEffect(() => {
     const token: string | null = localStorage.getItem('token');
 
@@ -102,6 +108,12 @@ const AddressBookComponent: React.FC = () => {
       console.error('Error submitting form:', error);
     }
   }
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    console.log('Logged out successfully.');
+
+    window.location.href = '/login';  
+};
 
   const handleDelete = (itemId: number) => {
     const token: string | null = localStorage.getItem('token');
@@ -134,7 +146,7 @@ const AddressBookComponent: React.FC = () => {
     setShowForm(false);
   };
 
-
+  
   return (
     <div className='flex relative min-h-screen my-text text-gray-700 text-2xl'>
     <div className="fixed inset-0 bg-black">
@@ -259,7 +271,11 @@ const AddressBookComponent: React.FC = () => {
           <button className="mt-4  hover:text-gray-500 text-black font-bold py-2 px-1 rounded" onClick={handleDeleteButtonClick}>Delete</button>
        </form>  )}
        <button className="mt-4 bg-black hover:bg-white hover:text-black text-white font-bold py-2 px-4 rounded" onClick={handleAddButtonClick}>Add</button>
-     
+       <ul className="flex space-x-2">
+          <button className="my-text text-2xl text-gray-700 z-50 font-bold mt-4" onClick={handleLogout}>
+        Log Out
+          </button>
+        </ul>
         </div>
        
         

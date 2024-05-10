@@ -15,12 +15,13 @@
 
   @font-face {
     font-family: 'MyFont';
-    src: local('MyFont'), url('./assets/fonts/font.otf') format('truetype');
+    src: local('MyFont'), url('./assets/fonts/font.otf') format('opentype');
   }
-
+  
   .my-text {
-    font-family: 'MyFont', sans-serif;
+    font-family: 'MyFont', Arial, sans-serif;
   }
+  
 
   @font-face {
     font-family: 'Cloister';

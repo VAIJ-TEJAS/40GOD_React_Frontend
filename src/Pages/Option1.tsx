@@ -58,7 +58,7 @@ const Option1: React.FC = () => {
                     onMouseLeave={() => setHoveredId(null)}
                     style={{ transform: hoveredId === product.colors[0].image_product[0].id ? 'scale(1.05)' : 'scale(1)' }}
                   >
-                    <Link to={`/Option1/${product.id}`}>
+                    <Link to={`/New/${product.id}`}>
                       <img
                         src={product.colors[0].image_product[0].image}
                         alt={`Image ${product.colors[0].image_product[0].id}`}

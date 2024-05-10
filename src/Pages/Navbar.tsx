@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './../css/Button.css';
 import god from './../assets/logo1.png';
@@ -7,6 +7,7 @@ import Logo from '../components/logo';
 const NavBar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isShopOpen, setIsShopOpen] = useState(false)
+    const [isLoggedIn, setIsLoggedIn] = useState(true); // Track login state
 
     const toggleDropDown = () => {
         setIsOpen(!isOpen);
@@ -15,7 +16,12 @@ const NavBar: React.FC = () => {
         setIsShopOpen(!isShopOpen);
     };
 
-
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            setIsLoggedIn(false); 
+        }
+    }, []); 
 
 
 
@@ -45,7 +51,10 @@ const NavBar: React.FC = () => {
                             <div className="dropdown-content">
                                 <h2 className="text-lg font-bold mt-4 mb-8  my-text">Menu</h2>
                                 <ul>
-                                    <li className='my-text font-bold p-4 m-4 ml-0 pl-2'>Login</li>
+                                {isLoggedIn && (<li className='my-text font-bold p-4 m-4 ml-0 pl-2'>Login</li>)}
+
+
+                                    
                                     <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={() => window.location.href = '/account'}>Account</li>
                                     <li className='my-text font-bold p-4 m-4 ml-0 pl-2' onClick={toggleShopDropDown}>Shop</li>
 
@@ -64,9 +73,9 @@ const NavBar: React.FC = () => {
                 </div>
 
                 <div className="fixed right-0 space-x-6 z-20 ">
-                    <NavLink className="my-text hiden font-bold text-gray-700 hover:text-gray-400 hidden sm:inline-block text-base sm:text-xl text-gray-700" to="/login">
+                {isLoggedIn && (  <NavLink className="my-text hiden font-bold text-gray-700 hover:text-gray-400 hidden sm:inline-block text-base sm:text-xl text-gray-700" to="/login">
                         Login
-                    </NavLink>
+                    </NavLink>)}
                     <NavLink className="p-4 my-text font-bold text-gray-700 hover:text-gray-400 text-base sm:text-xl text-gray-700" to="/Bag">
                         Bag
                     </NavLink>
@@ -85,7 +94,7 @@ const NavBar: React.FC = () => {
                         aria-labelledby="menu-button"
                     >
                         <NavLink
-                            to="/Option1"
+                            to="/New"
                             className="block px-4 py-2 my-text font-bold text-2xl  text-gray-600 hover:text-gray-100 transition duration-300"
                             role="menuitem"
                             onClick={toggleDropDown}
@@ -93,7 +102,7 @@ const NavBar: React.FC = () => {
                             New
                         </NavLink>
                         <NavLink
-                            to="/Option2"
+                            to="/Dripped"
                             className="block px-4 py-4 my-text font-bold text-2xl  text-gray-600 hover:text-gray-100 transition duration-300"
                             role="menuitem"
                             onClick={toggleDropDown}
@@ -101,7 +110,7 @@ const NavBar: React.FC = () => {
                             Dripped
                         </NavLink>
                         <NavLink
-                            to="/Option3"
+                            to="All"
                             className="block my-text font-bold text-2xl px-4 py-4  text-gray-600 hover:text-gray-100 transition duration-300"
                             role="menuitem"
                             onClick={toggleDropDown}

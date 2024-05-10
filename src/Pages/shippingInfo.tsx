@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './../css/Button.css';
 import b4 from '../assets/background/b4.jpeg';
 import axios, { AxiosResponse } from 'axios';
+import { useNavigate } from "react-router-dom";
 
 interface UserData {
     id: number;
@@ -29,6 +30,7 @@ interface AddressBookEntry {
 const ShippingInfo: React.FC<ShippingInfoProps> = ({ }) => {
     const [addressBook, setAddressBook] = useState<AddressBookEntry[]>([]);
     const [selectedAddressId, setSelectedAddressId] = useState<number | null>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const token: string | null = localStorage.getItem('token');
@@ -53,7 +55,10 @@ const ShippingInfo: React.FC<ShippingInfoProps> = ({ }) => {
                 });
         }
     }, []);
+const navi = () => {
+    navigate("/account"); 
 
+}
     const handleAddressSelect = (addressId: number) => {
         setSelectedAddressId(addressId);
     };
@@ -85,6 +90,9 @@ console.log(selectedAddressId)
                     </li>
                 ))}
             </ul>
+            <button className="bg-black hover:bg-gray-700 text-white font-bold py-1 my-text px-4 mt-2 rounded" onClick={navi} >
+Add the Address</button>
+
         </div>
     );
 };

@@ -37,8 +37,26 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const navigate = useNavigate();
 
-console.log(selectedProductVariantId)
- 
+  useEffect(() => {
+    if (productVariant.length > 0) {
+      const initialSize = productVariant[0].size.text;
+      const initialColor = productVariant[0].color.hex_code;
+      setSelectedSize(initialSize);
+      setSelectedColor(initialColor);
+  
+      const variant = productVariant.find(v => v.size.text === initialSize && v.color.hex_code === initialColor);
+  
+      console.log(variant ? variant.id : null);
+  
+      setSelectedProductVariantId(variant ? variant.id : null);
+  
+      if (!variant) {
+        console.log("No variant found for the initial size and color.");
+      }
+    }
+  }, [productVariant]);
+  
+
 
   const nextSlide = () => {
     console.log("Next Slide");
@@ -56,7 +74,6 @@ console.log(selectedProductVariantId)
 
   const handleSizeClick = (size: string) => {
     setSelectedSize(size);
-    setSelectedColor(null);
 
     
     const variant = productVariant.find((variant) => variant.size.text === size);
@@ -78,7 +95,6 @@ console.log(selectedProductVariantId)
       console.log('Product Variant not found for selected color and size');
     }
   };
-
  
 
   useEffect(() => {
@@ -110,6 +126,8 @@ console.log(selectedProductVariantId)
   useEffect(() => {
     if (productVariant.length > 0) {
       setSelectedSize(productVariant[0].size.text);
+      setSelectedColor(productVariant[0].color.hex_code);
+      
     }
   }, [productVariant]);
 
@@ -162,7 +180,11 @@ console.log(selectedProductVariantId)
   .filter(variant => variant.size.text === selectedSize)
   .map(variant => variant.color.hex_code);
   const uniqueSizes = [...new Set(productVariant.map(variant => variant.size.text))];
+  
+console.log("after",selectedProductVariantId)
 console.log(products)
+console.log(selectedColor)
+console.log(selectedSize)
   return (
     <div className="flex flex-col select-none">
       <div className="fixed inset-0 bg-black">
@@ -212,7 +234,7 @@ console.log(products)
                 {uniqueSizes.map((size, index) => (
   <div key={index}>
     <button
-      className={`w-10 h-8 text-center rounded-full bg-gray-500 text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${size === selectedSize ? 'bg-black' : ''}`}
+      className={`w-10 h-8 text-center rounded-full bg-gray-500 text-white hover:bg-gray-600  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${size === selectedSize ? 'bg-gray-900' : ''}`}
       onClick={() => handleSizeClick(size)}
     >
       {size}
@@ -224,13 +246,14 @@ console.log(products)
                 {availableColors.map((color, index) => (
                     <button
                       key={index}
-                      style={{ backgroundColor: color }}
-                      className={`w-10 h-10 text-center rounded-full bg-gray-500 text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${selectedColor === color ? 'bg-green-500' : ''}`}
+                      style={{ backgroundColor: selectedColor === color ? selectedColor : color }}
+                      className={`w-10 h-10 text-center rounded-full text-white  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${selectedColor === color ? `opacity-50` : ``}`}
                       onClick={() => handleColorClick(color,index)}
                     >
                       <img src={color0} alt='image' />
                     </button>
                   ))}
+                   
                 </div>
                 <div>
                   <ul className="list-disc">
