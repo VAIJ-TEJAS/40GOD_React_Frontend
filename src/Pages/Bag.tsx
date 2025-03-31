@@ -168,7 +168,7 @@ function Bag() {
   return (
     <div className="flex flex-col relative min-h-screen  text-xl text-gray-600 font-semibold ">
      <div className="fixed inset-0 bg-black">
-        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
+        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-50" />
       </div>
       <div className="sm:flex h-full  z-10 item-center justify-center mt-60">
         {cartItems.length === 0 ? (

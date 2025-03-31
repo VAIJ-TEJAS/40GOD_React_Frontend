@@ -75,7 +75,7 @@ const Login = () => {
        
 
             <div className="fixed inset-0 bg-black">
-                <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
+                <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-50" />
             </div>
             <div className="z-50 bg-transparent h-screen mx-auto items-center justify-center relative  rounded-lg sm:w-1/3 " style={{  margin: "10rem auto 0 auto" }}>
 

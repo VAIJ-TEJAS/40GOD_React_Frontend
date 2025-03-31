@@ -150,7 +150,7 @@ const AddressBookComponent: React.FC = () => {
   return (
     <div className='flex relative min-h-screen my-text text-gray-700 text-2xl'>
     <div className="fixed inset-0 bg-black">
-        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
+        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-50" />
       </div>
       <div className="relative w-screen z-10 mt-60 sm:mt-40 p-4 sm:p-24">
         <div className="flex justify-between items-center mb-8">

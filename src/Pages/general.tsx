@@ -4,7 +4,7 @@ function General() {
   return (
     <div className={"flex flex-col relative  sm:p-20"}>
      <div className="fixed inset-0 bg-black">
-        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
+        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-50" />
       </div>
          <div className="mt-60 sm:p-8 z-10">
         

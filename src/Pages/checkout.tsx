@@ -176,7 +176,7 @@ const Checkout: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen relative h-full justify-center items-center"> {/* Added px-4 for padding on the left and right */}
       <div className="fixed inset-0 bg-black">
-        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-75" />
+        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-50" />
       </div>
       <div className='mt-36  relative z-10'>
         <div className="my-8 w-full mt-28">
