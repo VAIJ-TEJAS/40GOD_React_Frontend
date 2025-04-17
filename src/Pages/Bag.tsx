@@ -166,147 +166,94 @@ function Bag() {
     return accumulator;
 }, 0);
   return (
-    <div className="flex flex-col relative min-h-screen  text-xl text-gray-600 font-semibold ">
-     <div className="fixed inset-0 bg-black">
-        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-50" />
-      </div>
-      <div className="sm:flex h-full  z-10 item-center justify-center mt-60">
-        {cartItems.length === 0 ? (
-          <p className='my-text'>Your bag is empty.</p>
-        ) : (
-          <div>
-            {cartItems.map((item) => (
-              <div className="flex" key={item.id}>
-                <div className="w-full mr-4">
-                  <div className="grid sm:grid-cols-5 grid-rows-1 sm:gap-4 mt-40">
-                    <div className="sm:p-4 text-center my-text">
-                      {item.product_varient &&
-                        item.product_varient.color &&
-                        item.product_varient.color.image_product &&
-                        item.product_varient.color.image_product[0] && (
-                          <img
-                            src={
-                              item.product_varient.color.image_product[0].image
-                            }
-                            alt={item.product_varient.color.display_name}
-                          />
-                        )}
-                    </div>
-                    <div className="sm:p-4 text-center my-text">
-                    <p className='m-4'>
-                        Name-{' '}
-                        {item.product_varient &&
-                          item.product_varient.color &&
-                          item.product_varient.color.display_name}
-                         
-                      </p>
-                      <p>
-                        Colour -{' '}
-                        {item.product_varient &&
-                          item.product_varient.color &&
-                          item.product_varient.color.color_name}
-                          
-                      </p>
-                      
-                      <p className='my-text m-4'>
-                        Size:{' '}
-                        {item.product_varient &&
-                          item.product_varient.size &&
-                          item.product_varient.size.text}{' '}
-                      </p>  
-                    
-                     
-                    </div>
-                    <div className="sm:p-4 text-center sm:space-x-4">
-                     
+<div className="flex flex-col h-[90vh] text-xl text-gray-300 font-semibold">
+<div className="fixed inset-0 bg-black">
+    <img src={bg} alt="bg" className="absolute inset-0 w-full h-full object-cover filter brightness-50" />
+  </div>
 
-                      <div className='flex items-center justify-center sm:mr-4 text-xl'>
-                      <p className='my-text'>Quantity: </p>
-                      <button className='  m-4  text-black font-bold p-2 rounded-full' onClick={() => handleIncreaseQuantity(item.id)}>
-                     +
-                      </button>
-                      <p>{item.quantity}</p> 
-                      <button className=' m-4  text-black font-bold p-2 rounded-full' onClick={() => handleDecreaseQuantity(item.id)}>
-                       -
-                      </button>
-                      </div>
-                    </div>
-                    <div className="sm:p-4 text-center my-text mt-2">
-                      <button onClick={() => handleDelete(item.id)}>
-                        Delete
-                      </button>
-                     
-                     
-                    </div>
+  <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center z-10 mt-60 px-4">
+    {cartItems.length === 0 ? (
+      <p className="my-text text-center">Your bag is empty.</p>
+    ) : (
+      <div className="w-full">
+        {cartItems.map((item) => (
+          <div className="flex flex-col sm:flex-row w-full mb-12" key={item.id}>
+            <div className="w-full sm:mr-4">
+              <div className="grid sm:grid-cols-5 grid-cols-1 gap-4">
+                <div className="sm:p-4 text-center my-text">
+                  {item.product_varient?.color?.image_product?.[0]?.image && (
+                    <img
+                      src={item.product_varient.color.image_product[0].image}
+                      alt={item.product_varient.color.display_name}
+                      className="mx-auto max-w-[100px]"
+                    />
+                  )}
+                </div>
+                <div className="sm:p-4 text-center my-text">
+                  <p className="m-2">Name: {item.product_varient?.color?.display_name}</p>
+                  <p className="m-2">Colour: {item.product_varient?.color?.color_name}</p>
+                  <p className="m-2">Size: {item.product_varient?.size?.text}</p>
+                </div>
+                <div className="sm:p-4 flex flex-col items-center justify-center space-y-2">
+                  <p className="my-text">Quantity:</p>
+                  <div className="flex items-center space-x-4">
+                    <button className="text-black font-bold p-2 rounded-full bg-white" onClick={() => handleIncreaseQuantity(item.id)}>+</button>
+                    <p>{item.quantity}</p>
+                    <button className="text-black font-bold p-2 rounded-full bg-white" onClick={() => handleDecreaseQuantity(item.id)}>-</button>
                   </div>
                 </div>
+                <div className="sm:p-4 flex items-center justify-center my-text">
+                  <button onClick={() => handleDelete(item.id)}>Delete</button>
+                </div>
               </div>
-            ))}
+            </div>
           </div>
-        )}
-        {cartItems.length > 0 && (
-          <div className='m:2 sm:m-4'>
-            <div className="sm:w-full mt-40  sm:mr-4">
-              <div className="my-text p-6 text-center">
-                {cartItems.map((item) => (
-                  <div className="flex" key={item.id}>
-                    <div className="grid grid-cols-4 grid-rows-1 gap-4 m-4">
-                      <div className="text-center">
-                        <p>
-                          {item.product_varient &&
-                            item.product_varient.color &&
-                            item.product_varient.color.color_name}{' '}
-                        </p>
-                      </div>
-                      <div className="text-center">
-                        <p>
-                          {' '}
-                          {item.product_varient &&
-                            item.product_varient.size &&
-                            item.product_varient.size.text}
-                        </p>
-                      </div>
-                   
-                      <div className="text-center">
-                        <p>Quantity: {item.quantity}</p>
-                      </div>
-                      <div className="text-center">
-                        <p>Price:  {item.product_varient &&
-                          item.product_varient.color &&
-                          item.product_varient.color.product.price * item.quantity}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+        ))}
+      </div>
+    )}
 
-              <>
-              <div className="grid grid-cols-2 grid-rows-1 sm:gap-64 border border-gray-700"> </div>
-                <h1 className='m-4 ml-12 font-bold sm:text-2xl my-text'>Total  Estimated Amount : {totalSum}</h1>
-           
-               
-                 
-                 
-               
-             
-              <div className="flex item-center justify-center mt-4">
-                <Link to="/checkout">
-                  <button className="button my-text pl-40 pr-40">
-                    Checkout
-                  </button>
-                </Link>
+    {cartItems.length > 0 && (
+      <div className="w-full sm:mt-10 mt-16">
+        <div className="my-text p-6 text-center">
+          {cartItems.map((item) => (
+            <div className="flex flex-col sm:flex-row justify-center mb-4" key={item.id}>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full">
+                <div className="text-center">
+                  <p>{item.product_varient?.color?.color_name}</p>
+                </div>
+                <div className="text-center">
+                  <p>{item.product_varient?.size?.text}</p>
+                </div>
+                <div className="text-center">
+                  <p>Quantity: {item.quantity}</p>
+                </div>
+                <div className="text-center">
+                  <p>Price: {item.product_varient?.color?.product?.price * item.quantity}</p>
+                </div>
               </div>
-           
-            </>  
-            </div></div>
-        )}
+            </div>
+          ))}
+        </div>
+
+        <div className="border-t border-gray-700 mt-6 pt-4">
+          <h1 className="text-center sm:text-2xl text-xl font-bold my-text">Total Estimated Amount: {totalSum}</h1>
+          <div className="flex justify-center mt-4">
+            <Link to="/checkout">
+              <button className="button my-text px-12 py-2">Checkout</button>
+            </Link>
+          </div>
+        </div>
       </div>
-      <div className="flex item-center z-10 justify-center m-4">
-        <NavLink to="/">
-          <button className="button my-text ">Continue Shopping</button>
-        </NavLink>
-      </div>
-    </div>
+    )}
+  </div>
+
+  <div className=" z-[22] sm:50  flex justify-center  mt-4">  
+    <NavLink to="/">
+      <button className="button my-text">Continue Shopping</button>
+    </NavLink>
+  </div>
+</div>
+
   );
 }
 

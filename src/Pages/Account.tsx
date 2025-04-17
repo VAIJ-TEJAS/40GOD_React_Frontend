@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import bg from '../assets/background/Backgroud.jpeg';
 import { NavLink } from 'react-router-dom';
-import b4 from '../assets/background/b4.jpeg'
 import'../App.css'
 
 interface AddressBookEntry {
@@ -148,139 +147,172 @@ const AddressBookComponent: React.FC = () => {
 
   
   return (
-    <div className='flex relative min-h-screen my-text text-gray-700 text-2xl'>
+    <div className='my-text flex relative min-h-screen text-2xl text-white'>
     <div className="fixed inset-0 bg-black">
-        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-50" />
-      </div>
-      <div className="relative w-screen z-10 mt-60 sm:mt-40 p-4 sm:p-24">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-semibold mt-16">My Account</h2>
-          <button className="font-bold py-2 px-4 rounded">
-            
-          </button>  </div>
-          <ul className="flex space-x-2">
-          <li>
-            <NavLink className="my-text text-2xl text-gray-700 z-50 font-bold" to="/history">History</NavLink>
-          </li>
-        </ul>
-
-        <div className="my-4">
-     
-        </div>
-        {AddressBook.slice(0, 1).map((entry: any) => (
-  <div key={entry.id}>
-    <div className="mb-4 grid grid-cols-2">
-      <label className="block mb-2">User Name : {entry.user.username}</label>
+      <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover filter brightness-50" />
     </div>
-    <div className="mb-4 grid grid-cols-2">
-      <label className="block mb-8 ">Email Address : {entry.user.email}</label>
+  
+    <div className="relative w-full z-10 mt-32 sm:mt-40 p-4 sm:p-12 lg:p-24">
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
+        <h2 className="text-3xl sm:text-4xl font-bold">My Account</h2>
+      </div>
+  
+      <ul className="flex flex-wrap gap-4 mb-4">
+        <li>
+          <NavLink className="text-gray-300 hover:text-white font-semibold transition" to="/history">
+            History
+          </NavLink>
+        </li>
+      </ul>
+  
+      {AddressBook.slice(0, 1).map((entry: any) => (
+        <div key={entry.id} className="mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <label>User Name: {entry?.user?.username || "N/A"}</label>
+            <label>Email Address: {entry?.user?.email || "N/A"}</label>
+          </div>
+        </div>
+      ))}
+  
+      <h2 className="text-3xl font-semibold mb-4">Shipping Information</h2>
+  
+      {AddressBook.map((entry: any) => (
+        <div key={entry.id} className="bg-white bg-opacity-10 p-4 rounded-lg shadow mb-6">
+          <div className="space-y-2">
+            <p><strong>Name:</strong> {entry?.name || "N/A"}</p>
+            <p><strong>Country:</strong> {entry?.country || "N/A"}</p>
+            <p><strong>State:</strong> {entry?.state || "N/A"}</p>
+            <p><strong>City:</strong> {entry?.city || "N/A"}</p>
+            <p><strong>Postal Code:</strong> {entry?.postal_code || "N/A"}</p>
+            <p><strong>Street Address:</strong> {entry?.street_address || "N/A"}</p>
+          </div>
+          <button
+            type="button"
+            onClick={() => handleDelete(entry.id)}
+            className="mt-4 text-red-400 hover:text-red-200 font-bold rounded transition"
+          >
+            Delete
+          </button>
+        </div>
+      ))}
+  
+      {showForm && (
+        <form onSubmit={handleSubmit} className="bg-white bg-opacity-10 p-6 rounded-lg shadow mt-8 space-y-6">
+          <h2 className="text-xl font-bold">Shipping Information</h2>
+  
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <label>
+              Name:
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className="mt-1 p-2 w-full bg-white bg-opacity-80 text-black rounded"
+              />
+            </label>
+            <label>
+              Phone Number:
+              <input
+                type="text"
+                name="phone_number"
+                value={formData.phone_number}
+                onChange={handleChange}
+                className="mt-1 p-2 w-full bg-white bg-opacity-80 text-black rounded"
+              />
+            </label>
+          </div>
+  
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <label>
+              Country:
+              <input
+                type="text"
+                name="country"
+                value={formData.country}
+                onChange={handleChange}
+                className="mt-1 p-2 w-full bg-white bg-opacity-80 text-black rounded"
+              />
+            </label>
+            <label>
+              State:
+              <input
+                type="text"
+                name="state"
+                value={formData.state}
+                onChange={handleChange}
+                className="mt-1 p-2 w-full bg-white bg-opacity-80 text-black rounded"
+              />
+            </label>
+          </div>
+  
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <label>
+              City:
+              <input
+                type="text"
+                name="city"
+                value={formData.city}
+                onChange={handleChange}
+                className="mt-1 p-2 w-full bg-white bg-opacity-80 text-black rounded"
+              />
+            </label>
+            <label>
+              Postal Code:
+              <input
+                type="text"
+                name="postal_code"
+                value={formData.postal_code}
+                onChange={handleChange}
+                className="mt-1 p-2 w-full bg-white bg-opacity-80 text-black rounded"
+              />
+            </label>
+          </div>
+  
+          <label className="block">
+            Street Address:
+            <input
+              type="text"
+              name="street_address"
+              value={formData.street_address}
+              onChange={handleChange}
+              className="mt-1 p-2 w-full bg-white bg-opacity-80 text-black rounded"
+            />
+          </label>
+  
+          <div className="flex flex-wrap gap-4 mt-4">
+  <button type="submit" className="bg-gray-500 hover:bg-gray-400 text-white rounded-full w-10 h-10 flex items-center justify-center transition">
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+    </svg>
+  </button>
+  <button type="button" onClick={handleDeleteButtonClick} className="bg-gray-500 hover:bg-gray-400 text-white rounded-full w-10 h-10 flex items-center justify-center transition">
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+</div>
+        </form>
+      )}
+  
+  <button
+  className="mt-8 bg-black hover:bg-gray-400 text-white rounded-full w-10 h-10 flex items-center justify-center transition"
+  onClick={handleAddButtonClick}
+>
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+  </svg>
+</button>
+
+  
+      <div className="mt-6">
+        <button className="text-xl font-bold text-gray-300 hover:text-white" onClick={handleLogout}>
+          Log Out
+        </button>
+      </div>
     </div>
   </div>
-))}
-
-<h2 className="text-3xl  font-semibold mb-4 my-text">Shipping Information</h2>
-
-        {AddressBook.map((entry: any) => (
-          <div key={entry.id}>
-           
-
-            <div className="z-10 mt-8 pb-6">
-
-
-              <div>
-              <label className="block mb-2 font-bold my-text">Name : {entry.name}</label>
-            </div> 
-                <div>
-                  <label className="block   mb-2 my-text">Country : {entry.country} </label>
-                  </div>
-                <div>
-                  <label className="block  mb-2 my-text">State : {entry.state} </label>
-                 </div>
-             
-             
-              <div className="mb-2   ">
-                <div>
-                  <label className="block  mb-2 my-text">Town/city : {entry.city} </label>
-              </div>
-                <div>
-                  <label className="block mb-2 my-text">Postal Code : {entry.postal_code}</label>
-                  </div>
-              </div>
-              <div className="mb-2 grid grid-cols-1">
-                <label className="block   mb-2 my-text">street address : {entry.street_address} </label>
-              </div>
-              <div >
-                <label className="block  my-text">street : {entry.street_address} </label>
-              </div>
-              <div >
-              <button type="button" onClick={() => handleDelete(entry.id)} className="mt-4 my-text hover:text-gray-500 text-black font-bold rounded">Delete</button>
-              </div>
-            </div>
-          </div>
-        ))}
-       
-
-
-        {showForm && (
-        <form onSubmit={handleSubmit} className="p-4 z-10 mt-8 rounded-lg shadow-md w-full" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url(${b4})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
-          <h2 className="text-lg  font-semibold mb-4">Shipping Information</h2>
-
-
-          <div className="mb-4 gap-4 grid grid-cols-2">
-            <div>
-              <label className="block">
-                Name:
-                <input type="text" name="name" value={formData.name} onChange={handleChange} className="block mt-1 p-2 w-full border border-gray-300 rounded-md" />
-              </label></div>
-            <label className="block">
-              Phone Number:
-              <input type="text" name="phone_number" value={formData.phone_number} onChange={handleChange} className="block p-2 mt-1 w-full border border-gray-300 rounded-md" />
-            </label>
-          </div>
-          <div className="mb-4 grid gap-4 grid-cols-2">
-            <label className="block">
-              Country:
-              <input type="text" name="country" value={formData.country} onChange={handleChange} className="block mt-1 p-2 w-full border border-gray-300 rounded-md" />
-            </label>
-            <label className="block">
-              State:
-              <input type="text" name="state" value={formData.state} onChange={handleChange} className="block mt-1 w-full p-2 border border-gray-300 rounded-md" />
-            </label>
-
-          </div>
-          <div className="mb-4 gap-4 grid grid-cols-2">
-            <div>
-              <label className="block">
-                City:
-                <input type="text" name="city" value={formData.city} onChange={handleChange} className="block mt-1 w-full p-2 border border-gray-300 rounded-md" />
-              </label></div>
-            <label className="block">
-              Postal Code:
-              <input type="text" name="postal_code" value={formData.postal_code} onChange={handleChange} className="block p-2 mt-1 w-full border border-gray-300 rounded-md" />
-            </label>
-          </div>
-          <div className="mb-4 grid grid-cols-1">
-            <label className="block">
-              Street Address:
-              <input type="text" name="street_address" value={formData.street_address} onChange={handleChange} className="block p-2 mt-1 w-full border border-gray-300 rounded-md" />
-            </label>
-
-
-          </div>
-          <button type="submit" className="mr-4 bg-black hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">Submit</button>
-          <button className="mt-4  hover:text-gray-500 text-black font-bold py-2 px-1 rounded" onClick={handleDeleteButtonClick}>Delete</button>
-       </form>  )}
-       <button className="mt-4 bg-black hover:bg-white hover:text-black text-white font-bold py-2 px-4 rounded" onClick={handleAddButtonClick}>Add</button>
-       <ul className="flex space-x-2">
-          <button className="my-text text-2xl text-gray-700 z-50 font-bold mt-4" onClick={handleLogout}>
-        Log Out
-          </button>
-        </ul>
-        </div>
-       
-        
-
-      </div>
+  
     
   );
 };

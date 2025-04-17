@@ -30,8 +30,8 @@ const option2: React.FC = () => {
       <div className="fixed inset-0 bg-black">
         <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover  filter brightness-50" />
       </div>
-      <div className="relative w-full  h-screen sm:h-[300vh]">
-    <img src={bg2} alt='bg' className="absolute inset-0 w-full h-full object-cover filter brightness-75" />
+      <div className="relative w-full  h-screen ">
+    <img src={bg2} alt='bg' className="absolute inset-0 w-full h-full object-cover  object-top filter brightness-75" />
     <div className="absolute inset-x-0 mt-80  flex flex-col justify-center items-center">
     <p className="text-white text-center font-bold got-text text-3xl lg:text-9xl">Getting Out Drippin</p>
 </div></div>

@@ -16,7 +16,7 @@ import FortyGodTerms from './Pages/terms';
 import MyComponent from './Pages/MyComponent';
 import Login from './Pages/Modal';
 import General from './Pages/general';
-
+import ContactUs from './Pages/contact';
 
 
 
@@ -65,6 +65,7 @@ const App: React.FC = () => {
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<FortyGodTerms />} />
           <Route path="/general" element={<General />} />
+          <Route path="/contact" element={<ContactUs />} />
 
           <Route path="/com" element={<MyComponent />} />
 
