@@ -35,7 +35,7 @@ const App: React.FC = () => {
           <Route path="/login" element={<Login />} />
 
           <Route path="/account" element={<Account />} />
-          <Route path="/New" element={<Option1 />} />
+          <Route path="/T-Shirt" element={<Option1 />} />
           <Route
             path="/New/:id"
             element={<ImageDetails addToBag={function (): void {

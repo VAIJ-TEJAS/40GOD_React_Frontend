@@ -73,11 +73,11 @@ const NavBar: React.FC = () => {
       <div className="ml-4">
         <li
           className="my-text text-lg font-medium py-2 cursor-pointer"
-          onClick={() => window.location.href = '/New'}
+          onClick={() => window.location.href = '/T-Shirt'}
         >
-          New
+          T-Shirt
         </li>
-        <li
+        {/* <li
           className="my-text text-lg font-medium py-2 cursor-pointer"
           onClick={() => window.location.href = '/Dripped'}
         >
@@ -88,7 +88,7 @@ const NavBar: React.FC = () => {
           onClick={() => window.location.href = '/All'}
         >
           All
-        </li>
+        </li> */}
       </div>
     )}
 
@@ -106,7 +106,7 @@ const NavBar: React.FC = () => {
                 </div>
 
                 <div className="fixed right-0 space-x-6 z-20 ">
-                {isLoggedIn && (  <NavLink className="my-text hiden font-bold  hover:text-white hidden sm:inline-block text-base sm:text-xl text-gray-700" to="/login">
+                {isLoggedIn && (  <NavLink className="my-text hiden font-bold  hover:text-white hidden sm:inline-block text-base sm:text-xl text-gray-300" to="/login">
                         Login
                     </NavLink>)}
                     <NavLink className="p-4 my-text font-bold  hover:text-white text-base sm:text-xl text-gray-300" to="/Bag">
@@ -127,14 +127,14 @@ const NavBar: React.FC = () => {
                         aria-labelledby="menu-button"
                     >
                         <NavLink
-                            to="/New"
+                            to="/T-Shirt"
                             className="block px-4 py-2 my-text font-bold text-2xl  text-gray-300 hover:text-white transition duration-300"
                             role="menuitem"
                             onClick={toggleDropDown}
                         >
-                            New
+                            T-Shirt
                         </NavLink>
-                        <NavLink
+                        {/* <NavLink
                             to="/Dripped"
                             className="block px-4 py-4 my-text font-bold text-2xl  text-gray-300 hover:text-white transition duration-300"
                             role="menuitem"
@@ -149,7 +149,7 @@ const NavBar: React.FC = () => {
                             onClick={toggleDropDown}
                         >
                             All
-                        </NavLink>
+                        </NavLink> */}
                     </div>
                 </div>
             )}
