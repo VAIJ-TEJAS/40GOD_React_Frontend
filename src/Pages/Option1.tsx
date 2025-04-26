@@ -23,7 +23,7 @@ const Option1: React.FC = () => {
   }, []);
 
   const newData: Product[] = products.filter((product: Product) =>
-    product.tags?.some(tag => tag.text === "New")
+    product.tags?.some(tag => tag.text === "Tshirt")
   );
 
 

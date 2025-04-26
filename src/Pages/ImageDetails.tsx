@@ -113,7 +113,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
     const fetchData = async () => {
       try {
         if (!id) return;
-        const response = await axios.get(`https://api.40god.in/inventory/?product_id=${id}`);
+        const response = await axios.get(`https://api.40god.com/inventory/?product_id=${id}`);
         setProductVariant(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
