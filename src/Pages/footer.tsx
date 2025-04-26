@@ -38,7 +38,7 @@ function Footer() {
 
 
   <p className='my-text text-[10px] z-20 flex items-center justify-center absolute left-0 right-0'>
-  2024 © 40.G.O.D   all  rights  reserved
+  2025 © 40.G.O.D   all  rights  reserved
 </p>
 
 </footer>   
