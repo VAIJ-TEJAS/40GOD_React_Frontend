@@ -35,7 +35,7 @@ const Login = () => {
                 const token = response.data.token;
                 localStorage.setItem('token', token);
                 console.log('Logged in successfully!', response.data);
-                alert('Successfully Logged in')
+                window.location.href = '/';
 
             } else {
                 alert("error in logging")

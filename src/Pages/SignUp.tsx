@@ -34,7 +34,8 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ onClose }) => {
 
     const handleSubmit = async () => {
        
-        alert("dfdsf")
+        alert("Account Created! Login to get Dripped!")
+
         try {
             const response = await axios.post('/signup/', formData);
             const token = response.data.token; 

@@ -61,19 +61,18 @@ const Option1: React.FC = () => {
                       <img
                         src={product.colors[0].image_product[0].image}
                         alt={`Image ${product.colors[0].image_product[0].id}`}
-                        className="object-cover blur w-full rounded-lg"
+                        className="object-cover w-full rounded-lg"
                       />
-                      <p className='drop-shadow-text got-text '>Dropping Soon </p>
+                      {/* <p className='drop-shadow-text got-text '>Dropping Soon </p> */}
 
                     </Link>
-                    <p className={`text-center my-text blur py-2 px-4 ${hoveredId !== product.colors[0].image_product[0].id && 'invisible'}`}>
+                    <p className={`text-center my-text py-2 px-4 ${hoveredId !== product.colors[0].image_product[0].id && 'invisible'}`}>
                       Name: {product.name}
                       <br />
                       Price: {product.price}
                     </p>
                   </div>
                 )}
-                )
               </div>
             )}
           </div>
