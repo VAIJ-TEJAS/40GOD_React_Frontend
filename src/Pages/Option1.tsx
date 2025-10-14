@@ -36,7 +36,7 @@ const Option1: React.FC = () => {
     <div className="relative w-full h-screen " >  {/* sm:h-[300vh] */}
     <img src={bg2} alt='bg' className="absolute inset-0 w-full h-full object-cover filter brightness-75" />
     <div className="absolute inset-x-0 mt-80 flex flex-col justify-center items-center">
-    <p className="text-white  font-bold got-text text-3xl lg:text-9xl ">Gettin ’Out Drippin’</p>
+    <p className="text-white  font-bold got-text text-3xl lg:text-9xl ">Gettin’ Out Drippin’</p>
 </div>
 </div>
 
@@ -67,7 +67,7 @@ const Option1: React.FC = () => {
 
                     </Link>
                     <p className={`text-center my-text py-2 px-4 ${hoveredId !== product.colors[0].image_product[0].id && 'invisible'}`}>
-                      Name: {product.name}
+                      {product.name}
                       <br />
                       Price: {product.price}
                     </p>

@@ -15,11 +15,11 @@
 
   @font-face {
     font-family: 'MyFont';
-    src: local('MyFont'), url('./assets/fonts/font.otf') format('opentype');
+    src: local('MyFont'), url('./assets/fonts/GODOFWAR.TTF') format('opentype');
   }
   
   .my-text {
-    font-family: 'MyFont', Arial, sans-serif;
+    font-family: 'Times New Roman', Times, serif, sans-serif;
   }
   
 

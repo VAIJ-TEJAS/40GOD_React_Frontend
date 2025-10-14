@@ -78,17 +78,17 @@ const ContactUs: React.FC = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <span>support.com</span>
+                <span>contact@40god.com</span>
               </div>
               
-              <div className="flex items-center gap-3">
+              {/* <div className="flex items-center gap-3">
                 <div className="bg-white bg-opacity-10 p-3 rounded-full">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
                 <span>+1 99999999999</span>
-              </div>
+              </div> */}
               
               <div className="flex items-center gap-3">
                 <div className="bg-white bg-opacity-10 p-3 rounded-full">
@@ -97,7 +97,7 @@ const ContactUs: React.FC = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
-                <span>XXXX xxxxx, xxxxxxxx 12345</span>
+                <span>Pune</span>
               </div>
             </div>
             
@@ -126,7 +126,7 @@ const ContactUs: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-white bg-opacity-10 p-6 rounded-lg shadow">
+          {/* <div className="bg-white bg-opacity-10 p-6 rounded-lg shadow">
             {submitted ? (
               <div className="bg-green-500 bg-opacity-20 border border-green-300 text-white p-4 rounded mb-6">
                 Thank you for your message! We'll get back to you shortly.
@@ -226,7 +226,7 @@ const ContactUs: React.FC = () => {
                 Send Message
               </button>
             </form>
-          </div>
+          </div> */}
         </div>
 
         <div className="mt-16">

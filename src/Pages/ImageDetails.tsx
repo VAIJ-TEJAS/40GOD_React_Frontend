@@ -1,11 +1,12 @@
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import './../css/Button.css';
+import "./../css/Button.css";
 import bg from "../assets/background/Backgroud.jpeg";
 import color0 from "../assets/logo.png";
-import { Product } from '../types/productType';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import SizeGuideImage from "../assets/SizeGuide.jpeg";
+import { Product } from "../types/productType";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 interface ProductVariant {
   id: number;
@@ -24,18 +25,24 @@ interface ImageDetailsProps {
   checkoutItems: Product[];
 }
 
-
 const ImageDetails: React.FC<ImageDetailsProps> = () => {
   const [isAdded, setIsAdded] = useState(false);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
-  const [selectedProductVariantId, setSelectedProductVariantId] = useState<number | null>(0);
+  const [selectedProductVariantId, setSelectedProductVariantId] = useState<
+    number | null
+  >(0);
   const [products, setProducts] = useState<Product[]>([]);
   const [productVariant, setProductVariant] = useState<ProductVariant[]>([]);
   const { id } = useParams<{ id?: string }>() ?? {};
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
   const navigate = useNavigate();
+
+  const toggleSizeGuideModal = () => {
+    setIsSizeGuideOpen(!isSizeGuideOpen);
+  };
 
   useEffect(() => {
     if (productVariant.length > 0) {
@@ -43,67 +50,76 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
       const initialColor = productVariant[0].color.hex_code;
       setSelectedSize(initialSize);
       setSelectedColor(initialColor);
-  
-      const variant = productVariant.find(v => v.size.text === initialSize && v.color.hex_code === initialColor);
-  
+
+      const variant = productVariant.find(
+        (v) => v.size.text === initialSize && v.color.hex_code === initialColor
+      );
+
       console.log(variant ? variant.id : null);
-  
+
       setSelectedProductVariantId(variant ? variant.id : null);
-  
+
       if (!variant) {
         console.log("No variant found for the initial size and color.");
       }
     }
   }, [productVariant]);
-  
-
 
   const nextSlide = () => {
     console.log("Next Slide");
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % (product?.colors?.[selectedImage]?.image_product?.length ?? 1));
+    setCurrentSlide(
+      (prevSlide) =>
+        (prevSlide + 1) %
+        (product?.colors?.[selectedImage]?.image_product?.length ?? 1)
+    );
   };
-  
+
   const prevSlide = () => {
     console.log("Prev Slide");
-    setCurrentSlide((prevSlide) => (prevSlide === 0 ? (product?.colors?.[selectedImage]?.image_product?.length ?? 1) - 1 : prevSlide - 1));
+    setCurrentSlide((prevSlide) =>
+      prevSlide === 0
+        ? (product?.colors?.[selectedImage]?.image_product?.length ?? 1) - 1
+        : prevSlide - 1
+    );
   };
-  
+
   const handleThumbnailClick = (index: number) => {
-    setCurrentSlide(index); 
+    setCurrentSlide(index);
   };
 
   const handleSizeClick = (size: string) => {
     setSelectedSize(size);
 
-    
-    const variant = productVariant.find((variant) => variant.size.text === size);
-
+    const variant = productVariant.find(
+      (variant) => variant.size.text === size
+    );
 
     setSelectedProductVariantId(variant ? variant.id : null);
   };
 
-  const handleColorClick = (color: string,Image: number) => {
+  const handleColorClick = (color: string, Image: number) => {
     setSelectedColor(color);
     setSelectedImage(Image);
 
-   
-    const variant = productVariant.find((variant) => variant.size.text === selectedSize && variant.color.hex_code === color);
+    const variant = productVariant.find(
+      (variant) =>
+        variant.size.text === selectedSize && variant.color.hex_code === color
+    );
 
     if (variant) {
-      console.log('Selected Product Variant ID:', variant.id);
+      console.log("Selected Product Variant ID:", variant.id);
     } else {
-      console.log('Product Variant not found for selected color and size');
+      console.log("Product Variant not found for selected color and size");
     }
   };
- 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('/product/');
+        const response = await axios.get("/product/");
         setProducts(response.data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
     fetchData();
@@ -113,10 +129,12 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
     const fetchData = async () => {
       try {
         if (!id) return;
-        const response = await axios.get(`https://api.40god.com/inventory/?product_id=${id}`);
+        const response = await axios.get(
+          `https://api.40god.com/inventory/?product_id=${id}`
+        );
         setProductVariant(response.data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -127,7 +145,6 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
     if (productVariant.length > 0) {
       setSelectedSize(productVariant[0].size.text);
       setSelectedColor(productVariant[0].color.hex_code);
-      
     }
   }, [productVariant]);
 
@@ -142,131 +159,175 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
 
   const handleAddToBag = async () => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
 
       if (!token) {
         console.error("Token not found.");
-        navigate("/login"); 
+        navigate("/login");
         return;
       }
 
       const productWithQuantity = {
-        "product_varient": selectedProductVariantId,
-        "quantity": 1
-    }
+        product_varient: selectedProductVariantId,
+        quantity: 1,
+      };
 
-      const response = await axios.post('/cart-items/', productWithQuantity, {
+      const response = await axios.post("/cart-items/", productWithQuantity, {
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Token ${token}`
-        }
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`,
+        },
       });
 
-      console.log('Added to bag:', response.data);
+      console.log("Added to bag:", response.data);
       setIsAdded(true);
     } catch (error) {
       if (selectedProductVariantId === 0) {
         alert("Please select color and size.");
-        console.error('Error adding item to bag:', error);
-
-    }
-    else{
-      alert("Please login to add to bag.");
-      console.error('Error adding item to bag:', error);
-    }
+        console.error("Error adding item to bag:", error);
+      } else {
+        alert("Please login to add to bag.");
+        console.error("Error adding item to bag:", error);
+      }
     }
   };
   const availableColors = productVariant
-  .filter(variant => variant.size.text === selectedSize)
-  .map(variant => variant.color.hex_code);
-  const uniqueSizes = [...new Set(productVariant.map(variant => variant.size.text))];
-  
-console.log("after",selectedProductVariantId)
-console.log(products)
-console.log(selectedColor)
-console.log(selectedSize)
+    .filter((variant) => variant.size.text === selectedSize)
+    .map((variant) => variant.color.hex_code);
+  const uniqueSizes = [
+    ...new Set(productVariant.map((variant) => variant.size.text)),
+  ];
+
   return (
     <div className="flex flex-col select-none">
       <div className="fixed inset-0 bg-black">
-        <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover filter brightness-75" />
+        <img
+          src={bg}
+          alt="bg"
+          className="absolute inset-0 w-screen h-full object-cover filter brightness-75"
+        />
       </div>
-      
+
       <div className="mt-60 sm:p-8 z-10">
         {product && (
           <div className="grid grid-cols-1  sm:grid-cols-2 p-8 sm:gap-20">
             <div className="flex items-center justify-center">
-            <div>
-            <div className="carousel relative overflow-hidden"  
-            // style={{width: '20rem', height: '28rem'}}
-            >
-  <button className="prev absolute top-1/2 transform -translate-y-1/2 left-0 bg-black bg-opacity-50 text-white px-4 py-2 z-10" onClick={prevSlide}>&lt;</button>
-  <div className="carousel-inner flex transition-transform duration-500 ease-in-out">
-    {product.colors?.[selectedImage]?.image_product?.map((imageData, index) => (
-      <div
-        key={index}
-        className={`carousel-item ${index === currentSlide ? 'active' : ''}`}
-        style={{ display: index === currentSlide ? 'block' : 'none' }}
-      >
-        <img src={imageData.image} alt={product.colors?.[0]?.display_name} className="w-full h-full object-cover" />
-      </div>
-    ))}
-  </div>
-  <button className="next absolute top-1/2 transform -translate-y-1/2 right-0 bg-black bg-opacity-50 text-white px-4 py-2 z-10" onClick={nextSlide}>&gt;</button>
-</div>
-      <div className="carousel-thumbnails">
-        {product.colors?.[selectedImage]?.image_product?.map((imageData, index) => (
-          <img
-            key={index}
-            src={imageData.image}
-            alt={product.colors?.[0]?.display_name}
-            onClick={() => handleThumbnailClick(index)}
-            className={`thumbnail ${index === currentSlide ? 'selected' : ''}`}
-          />
-        ))}
-      </div>
-    </div>
-
-
-
+              <div>
+                <div
+                  className="carousel relative overflow-hidden"
+                  // style={{width: '20rem', height: '28rem'}}
+                >
+                  <button
+                    className="prev absolute top-1/2 transform -translate-y-1/2 left-0 bg-black bg-opacity-50 text-white px-4 py-2 z-10"
+                    onClick={prevSlide}
+                  >
+                    &lt;
+                  </button>
+                  <div className="carousel-inner flex transition-transform duration-500 ease-in-out">
+                    {product.colors?.[selectedImage]?.image_product?.map(
+                      (imageData, index) => (
+                        <div
+                          key={index}
+                          className={`carousel-item ${
+                            index === currentSlide ? "active" : ""
+                          }`}
+                          style={{
+                            display: index === currentSlide ? "block" : "none",
+                          }}
+                        >
+                          <img
+                            src={imageData.image}
+                            alt={product.colors?.[0]?.display_name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      )
+                    )}
+                  </div>
+                  <button
+                    className="next absolute top-1/2 transform -translate-y-1/2 right-0 bg-black bg-opacity-50 text-white px-4 py-2 z-10"
+                    onClick={nextSlide}
+                  >
+                    &gt;
+                  </button>
+                </div>
+                <div className="carousel-thumbnails">
+                  {product.colors?.[selectedImage]?.image_product?.map(
+                    (imageData, index) => (
+                      <img
+                        key={index}
+                        src={imageData.image}
+                        alt={product.colors?.[0]?.display_name}
+                        onClick={() => handleThumbnailClick(index)}
+                        className={`thumbnail ${
+                          index === currentSlide ? "selected" : ""
+                        }`}
+                      />
+                    )
+                  )}
+                </div>
+              </div>
             </div>
             <div className="">
               <div className="font-bold my-text sm:ml-5 mt-12">
                 <h1 className="text-2xl mb-4">{product.name}</h1>
                 <div className="flex gap-2">
-                {uniqueSizes.map((size, index) => (
-                  <div key={index}>
+                  
+                  {uniqueSizes.map((size, index) => (
+                    <div key={index}>
+                      <button
+                        className={`w-10 h-8 text-center rounded-full bg-gray-500 text-white hover:bg-gray-600  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${
+                          size === selectedSize ? "bg-gray-900" : ""
+                        }`}
+                        onClick={() => handleSizeClick(size)}
+                      >
+                        {size}
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4">
                     <button
-                      className={`w-10 h-8 text-center rounded-full bg-gray-500 text-white hover:bg-gray-600  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${size === selectedSize ? 'bg-gray-900' : ''}`}
-                      onClick={() => handleSizeClick(size)}
+                      className="underline focus:outline-none"
+                      onClick={toggleSizeGuideModal}
                     >
-                      {size}
+                      Size Guide
                     </button>
                   </div>
-                ))}
-                </div>
                 <div className="flex gap-2 mt-4 mb-4">
-                {availableColors.map((color, index) => (
+                  {availableColors.map((color, index) => (
                     <button
                       key={index}
-                      style={{ backgroundColor: selectedColor === color ? selectedColor : color }}
-                      className={`w-10 h-10 text-center rounded-full text-white  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${selectedColor === color ? `opacity-50` : ``}`}
-                      onClick={() => handleColorClick(color,index)}
+                      style={{
+                        backgroundColor:
+                          selectedColor === color ? selectedColor : color,
+                      }}
+                      className={`w-10 h-10 text-center rounded-full text-white  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${
+                        selectedColor === color ? `opacity-50` : ``
+                      }`}
+                      onClick={() => handleColorClick(color, index)}
                     >
-                      <img src={color0} alt='image' />
+                      <img src={color0} alt="image" />
                     </button>
                   ))}
-                   
                 </div>
                 <div>
                   <ul className="list-disc">
                     <li>{product.description}.</li>
                   </ul>
-                  <p className='font-semibold my-text mt-4'>{product.price}</p>
+                  <p className="font-semibold my-text mt-4">{product.price}</p>
                   {/* <p className='font-semibold my-text mt-4'>{product.category}</p> */}
                 </div>
                 <div className="sm:inline-block mt-4">
-                  <button className={`bg-black shadow-3xl text-white my-text hover:bg-white hover:text-black p-2 rounded-lg ${isAdded ? 'added' : ''}`} onClick={()=>{!isAdded && handleAddToBag()}}>
-                    {isAdded ? 'Added to Bag' : 'Add to Bag'}
+                  <button
+                    className={`bg-black shadow-3xl text-white my-text hover:bg-white hover:text-black p-2 rounded-lg ${
+                      isAdded ? "added" : ""
+                    }`}
+                    onClick={() => {
+                      !isAdded && handleAddToBag();
+                    }}
+                  >
+                    {isAdded ? "Added to Bag" : "Add to Bag"}
                   </button>
                 </div>
               </div>
@@ -274,8 +335,31 @@ console.log(selectedSize)
           </div>
         )}
       </div>
+      {isSizeGuideOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+          onClick={toggleSizeGuideModal}
+        >
+          <div
+            className="bg-white p-4 rounded-lg shadow-lg max-w-md w-full relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-2 right-2 text-black hover:text-red-500 focus:outline-none"
+              onClick={toggleSizeGuideModal}
+            >
+              &times;
+            </button>
+            <img
+              src={SizeGuideImage}
+              alt="Size Guide"
+              className="w-full h-auto object-contain"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default ImageDetails;
