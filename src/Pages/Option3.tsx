@@ -4,7 +4,8 @@ import bg2 from './../assets/background/b11.jpeg';
 import bg from '../assets/background/Backgroud.jpeg';
 import { Product } from '../types/productType';
 import axios from 'axios'
-const option3: React.FC = () => {
+
+const Option3: React.FC = () => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
 
@@ -32,7 +33,7 @@ const option3: React.FC = () => {
         <img src={bg2} alt='bg'   className="absolute inset-0 w-full h-full object-cover object-top filter brightness-75" 
  />
         <div className="absolute inset-x-0 mt-80  flex flex-col justify-center items-center">
-          <p className="text-white bottom-50 font-bold got-text text-3xl lg:text-9xl">Getting Out Drippin</p>
+          <p className="text-white bottom-50 font-bold god-text text-3xl lg:text-9xl">Getting Out Drippin</p>
         </div></div>
       <div className="mt-40 p-24">
 
@@ -50,13 +51,13 @@ const option3: React.FC = () => {
                       onMouseLeave={() => setHoveredId(null)}
                       style={{ transform: hoveredId === product.colors[0].image_product[0].id ? 'scale(1.05)' : 'scale(1)' }}
                     >
-                      <Link to={`/All/${product.id}`}>
+                      <Link to={`/all/${product.id}`}>
                         <img
                           src={product.colors[0].image_product[0].image}
                           alt={`Image ${product.colors[0].image_product[0].id}`}
                           className="object-cover blur w-full rounded-lg"
                         />
-                        <p className='drop-shadow-text got-text '>Dropping Soon </p>
+                        <p className='drop-shadow-text god-text '>Dropping Soon </p>
 
                       </Link>
                       <p className={`text-center my-text blur py-2 px-4 ${hoveredId !== product.colors[0].image_product[0].id && 'invisible'}`}>
@@ -77,4 +78,4 @@ const option3: React.FC = () => {
   );
 };
 
-export default option3;
+export default Option3;

@@ -1,79 +1,47 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import NavBar from './Pages/Navbar';
-import { Home } from './Pages/Home';
-import Option1 from './Pages/Option1';
-import Option2 from './Pages/Option2';
-import Option3 from './Pages/Option3';
-import Bag from './Pages/Bag';
-import ImageDetails from './Pages/ImageDetails';
-import Checkout from './Pages/checkout';
-import History from './Pages/history';
-import Account  from './Pages/Account';
-import Footer from './Pages/footer';
-import PrivacyPolicy from './Pages/privacyPolicy';
-import FortyGodTerms from './Pages/terms';
-import MyComponent from './Pages/MyComponent';
-import Login from './Pages/Modal';
-import General from './Pages/general';
-import ContactUs from './Pages/contact';
-
-
-
-
-
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NavBar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Home from "./Pages/Home";
+import Option1 from "./Pages/TshirtPage";
+import Bag from "./Pages/Bag";
+import ImageDetails from "./Pages/ImageDetails";
+import Checkout from "./Pages/checkout";
+import History from "./Pages/history";
+import Account from "./Pages/Account";
+import PrivacyPolicy from "./Pages/PrivacyPolicy";
+import FortyGodTerms from "./Pages/Terms";
+import Login from "./Pages/Login";
+import General from "./Pages/General";
+import ContactUs from "./Pages/Contact";
+import "./App.css";
 
 const App: React.FC = () => {
- 
-
   return (
-    <>
+    <div className="my-text min-h-screen flex flex-col">
       <Router>
         <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/account" element={<Account />} />
 
-          <Route path="/account" element={<Account />} />
-          <Route path="/T-Shirt" element={<Option1 />} />
-          <Route
-            path="/New/:id"
-            element={<ImageDetails addToBag={function (): void {
-              throw new Error('Function not implemented.');
-            } } checkoutItems={[]} />}
-          />
-          <Route path="/Dripped" element={<Option2 />} />
-          <Route
-            path="/Dripped/:id"
-            element={<ImageDetails addToBag={function (): void {
-              throw new Error('Function not implemented.');
-            } } checkoutItems={[]} />}
-          />
-          <Route path="/All" element={<Option3 />} />
-          <Route
-            path="/All/:id"
-            element={<ImageDetails addToBag={function (): void {
-              throw new Error('Function not implemented.');
-            } } checkoutItems={[]}  />}
-          />
-          <Route
-            path="/Bag"
-            element={<Bag  />}
-          />
-        <Route path="/checkout" element={<Checkout />} />
-          <Route path="/history" element={<History/>} />
-          <Route path="/privacy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<FortyGodTerms />} />
-          <Route path="/general" element={<General />} />
-          <Route path="/contact" element={<ContactUs />} />
-
-          <Route path="/com" element={<MyComponent />} />
-
-
-        </Routes>
+            <Route path="/t-shirt" element={<Option1 />} />
+            <Route path="/new/:id" element={<ImageDetails />} />
+            <Route path="/bag" element={<Bag />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/history" element={<History />} />
+            
+            <Route path="/terms" element={<FortyGodTerms />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/general" element={<General />} />
+            <Route path="/contact" element={<ContactUs />} />
+          </Routes>
+        </div>
         <Footer />
       </Router>
-    </>
+    </div>
   );
 };
 

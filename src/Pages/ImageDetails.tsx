@@ -20,10 +20,7 @@ interface ProductVariant {
   quantity: number;
 }
 
-interface ImageDetailsProps {
-  addToBag: (item: Product) => void;
-  checkoutItems: Product[];
-}
+interface ImageDetailsProps {}
 
 const ImageDetails: React.FC<ImageDetailsProps> = () => {
   const [isAdded, setIsAdded] = useState(false);

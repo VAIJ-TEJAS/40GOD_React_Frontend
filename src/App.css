@@ -1,190 +1,181 @@
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
   }
-  .full-height-div {
-    min-height: 91vh; /* This sets the minimum height to 95% of the viewport height */
+  100% {
+    transform: rotate(360deg);
   }
-  .slow-spin {
-    animation: spin 30s linear infinite; 
-  }
+}
 
-  .stop-spin:hover {
-    animation-play-state: paused;
-  }
+.full-height-div {
+  min-height: 91vh; 
+}
 
-  @font-face {
-    font-family: 'MyFont';
-    src: local('MyFont'), url('./assets/fonts/GODOFWAR.TTF') format('opentype');
-  }
-  
-  .my-text {
-    font-family: 'Times New Roman', Times, serif, sans-serif;
-  }
-  
+.slow-spin {
+  animation: spin 30s linear infinite;
+}
 
-  @font-face {
-    font-family: 'Cloister';
-    src: local('Cloister'), url('./assets/fonts/CloisterBlack.ttf') format('truetype');
-  }
+.stop-spin:hover {
+  animation-play-state: paused;
+}
 
-  .got-text {
-    font-family: 'Cloister', sans-serif;
-  }
+.my-text {
+  font-family: "Times New Roman", Times, serif, sans-serif;
+}
 
+@font-face {
+  font-family: "Cloister";
+  src: local("Cloister"),
+    url("./assets/fonts/CloisterBlack.ttf") format("truetype");
+}
 
+.god-text {
+  font-family: "Cloister", sans-serif;
+}
 
-  html{
-    height: 100%;
+@keyframes pump {
+  0% {
+    transform: scale(1);
   }
-  .body{
-    min-height: 100%;
+  50% {
+    transform: scale(1.2);
   }
+  100% {
+    transform: scale(1);
+  }
+}
 
-  @keyframes pump {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.2);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-  
-  .pump {
-    animation: pump 4s infinite;
-  }
-  
-  .dropdown-animation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+.pump {
+  animation: pump 4s infinite;
+}
+
+.dropdown-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  overflow: hidden;
+  animation: dropdown 0.5s ease-in-out forwards;
+}
+
+.dropdown-content {
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+@keyframes dropdown {
+  0% {
     height: 0;
-    overflow: hidden;
-    animation: dropdown 0.5s ease-in-out forwards;
+    opacity: 0;
   }
-  
-  .dropdown-content {
-    background-color: white;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding: 20px;
+  100% {
+    height: 100vh;
+    opacity: 1;
   }
-  
-  @keyframes dropdown {
-    0% {
-      height: 0;
-      opacity: 0;
-    }
-    100% {
-      height: 100vh;
-      opacity: 1;
-    }
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease;
+  overflow: hidden;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+/* Define sliding animation */
+@keyframes slide {
+  from {
+    transform: translateX(-100%);
   }
-  .carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
+  to {
+    transform: translateX(0);
   }
-  
-  .carousel-inner {
-    display: flex;
-    transition: transform 0.5s ease;
-    overflow: hidden;
-  }
-  
-  .carousel-item {
-    flex: 0 0 auto;
-    width: 100%;
-  }
-  
-  .prev,
-  .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 1;
-  }
-  
-  .prev {
-    left: 0;
-  }
-  
-  .next {
-    right: 0;
-  }
-  
-  /* Define sliding animation */
-  @keyframes slide {
-    from {
-      transform: translateX(-100%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-  
-  .slide-in {
-    animation: slide 0.5s forwards; /* 0.5s duration, forwards to maintain final state */
-  }
-  
-  .slide-out {
-    animation: slide 0.5s reverse forwards; /* Reverse animation */
-  }
-  
-  .carousel-thumbnails {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .thumbnail {
-    width: 70px;
-    height: 70px;
-    margin: 0 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: transform 0.3s ease;
-  }
-  
-  .thumbnail:hover {
-    transform: scale(1.1); /* Enlarge thumbnail on hover */
-  }
-  
-  .thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 5px;
-  }
-  
-  .thumbnail.selected {
-    border: 4px solid rgb(97, 95, 95); /* Border for selected thumbnail */
-  }
-  .moved-right {
-    transform: translateX(100px); /* Adjust this value according to your requirement */
-    transition: transform 0.5s ease; /* Adjust the transition duration and timing function as needed */
-  }
-  .moved-original {
-    transform: translateX(0px); /* Adjust this value according to your requirement */
-    transition: transform 0.5s ease; /* Adjust the transition duration and timing function as needed */
-  }
-  .dropdownr-animation {
-    position: fixed;
-   
-    overflow: hidden;
-    animation: dropdown 1s ease-in-out forwards;
-  }
-  
+}
+.slide-in {
+  animation: slide 0.5s forwards; 
+}
+.slide-out {
+  animation: slide 0.5s reverse forwards; 
+}
+
+.carousel-thumbnails {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.thumbnail {
+  width: 70px;
+  height: 70px;
+  margin: 0 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+
+.thumbnail:hover {
+  transform: scale(1.1); 
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.thumbnail.selected {
+  border: 4px solid rgb(97, 95, 95); 
+}
+
+.moved-right {
+  transform: translateX(100px); 
+  transition: transform 0.5s ease; 
+}
+
+.moved-original {
+  transform: translateX(0px); 
+  transition: transform 0.5s ease;
+}
+
+.dropdownr-animation {
+  position: fixed;
+  overflow: hidden;
+  animation: dropdown 1s ease-in-out forwards;
+}

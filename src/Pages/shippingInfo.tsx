@@ -27,7 +27,7 @@ interface AddressBookEntry {
     country: string;
 }
 
-const ShippingInfo: React.FC<ShippingInfoProps> = ({ }) => {
+const ShippingInfo: React.FC<ShippingInfoProps> = () => {
     const [addressBook, setAddressBook] = useState<AddressBookEntry[]>([]);
     const [selectedAddressId, setSelectedAddressId] = useState<number | null>(null);
     const navigate = useNavigate();
