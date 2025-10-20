@@ -197,25 +197,22 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
 
   return (
     <div className="flex flex-col select-none">
-      <div className="fixed inset-0 bg-black">
+      <div className="fixed inset-0">
         <img
           src={bg}
-          alt="bg"
-          className="absolute inset-0 w-screen h-full object-cover filter brightness-75"
+          alt="40.G.O.D rose background"
+          className="absolute inset-0 w-screen h-full object-cover filter brightness-50"
         />
       </div>
 
-      <div className="mt-60 sm:p-8 z-10">
+      <div className="mt-32 sm:mt-44 sm:p-8 z-10">
         {product && (
-          <div className="grid grid-cols-1  sm:grid-cols-2 p-8 sm:gap-20">
-            <div className="flex items-center justify-center">
-              <div>
-                <div
-                  className="carousel relative overflow-hidden"
-                  // style={{width: '20rem', height: '28rem'}}
-                >
+          <div className="grid grid-cols-1 sm:grid-cols-2 p-2 gap-4">
+
+            <div className="">
+                <div className="carousel relative overflow-hidden">
                   <button
-                    className="prev absolute top-1/2 transform -translate-y-1/2 left-0 bg-black bg-opacity-50 text-white px-4 py-2 z-10"
+                    className="prev absolute top-1/2 transform -translate-y-1/2 left-0 bg-black bg-opacity-50 hover:bg-gray-400 text-white px-4 z-10 rounded-full ml-2"
                     onClick={prevSlide}
                   >
                     &lt;
@@ -235,20 +232,20 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
                           <img
                             src={imageData.image}
                             alt={product.colors?.[0]?.display_name}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover rounded-xl"
                           />
                         </div>
                       )
                     )}
                   </div>
                   <button
-                    className="next absolute top-1/2 transform -translate-y-1/2 right-0 bg-black bg-opacity-50 text-white px-4 py-2 z-10"
+                    className="next absolute top-1/2 transform -translate-y-1/2 right-0 bg-black bg-opacity-50 hover:bg-gray-400 text-white px-4 z-10 rounded-full mr-2"
                     onClick={nextSlide}
                   >
                     &gt;
                   </button>
                 </div>
-                <div className="carousel-thumbnails">
+                <div className="carousel-thumbnails p-2">
                   {product.colors?.[selectedImage]?.image_product?.map(
                     (imageData, index) => (
                       <img
@@ -263,17 +260,16 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
                     )
                   )}
                 </div>
-              </div>
             </div>
+
             <div className="">
-              <div className="font-bold my-text sm:ml-5 mt-12">
-                <h1 className="text-2xl mb-4">{product.name}</h1>
+              <div className="p-4 flex flex-col gap-2">
+                <h1 className="font-semibold text-xl">{product.name}</h1>
                 <div className="flex gap-2">
-                  
                   {uniqueSizes.map((size, index) => (
                     <div key={index}>
                       <button
-                        className={`w-10 h-8 text-center rounded-full bg-gray-500 text-white hover:bg-gray-600  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${
+                        className={`w-10 h-10 text-center rounded-full bg-gray-500 text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${
                           size === selectedSize ? "bg-gray-900" : ""
                         }`}
                         onClick={() => handleSizeClick(size)}
@@ -283,15 +279,15 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
                     </div>
                   ))}
                 </div>
-                <div className="mt-4">
-                    <button
-                      className="underline focus:outline-none"
-                      onClick={toggleSizeGuideModal}
-                    >
-                      Size Guide
-                    </button>
-                  </div>
-                <div className="flex gap-2 mt-4 mb-4">
+                <div className="">
+                  <button
+                    className="underline focus:outline-none"
+                    onClick={toggleSizeGuideModal}
+                  >
+                    SIZE GUIDE
+                  </button>
+                </div>
+                <div className="flex items-center gap-2">
                   {availableColors.map((color, index) => (
                     <button
                       key={index}
@@ -304,27 +300,22 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
                       }`}
                       onClick={() => handleColorClick(color, index)}
                     >
-                      <img src={color0} alt="image" />
+                      {/* <img src={color0} alt="Color" /> */}
                     </button>
                   ))}
                 </div>
-                <div>
-                  <ul className="list-disc">
-                    <li>{product.description}.</li>
-                  </ul>
-                  <p className="font-semibold my-text mt-4">{product.price}</p>
-                  {/* <p className='font-semibold my-text mt-4'>{product.category}</p> */}
-                </div>
-                <div className="sm:inline-block mt-4">
+                <div>{product.description}</div>
+                <div className="font-semibold text-xl">{product.price}</div>
+                <div className="sm:inline-block w-full">
                   <button
-                    className={`bg-black shadow-3xl text-white my-text hover:bg-white hover:text-black p-2 rounded-lg ${
+                    className={`bg-black shadow-3xl text-white hover:bg-white hover:text-black p-2 rounded-lg w-full sm:w-fit ${
                       isAdded ? "added" : ""
                     }`}
                     onClick={() => {
                       !isAdded && handleAddToBag();
                     }}
                   >
-                    {isAdded ? "Added to Bag" : "Add to Bag"}
+                    {isAdded ? "ADDED TO BAD" : "ADD TO BAG"}
                   </button>
                 </div>
               </div>
@@ -332,6 +323,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
           </div>
         )}
       </div>
+
       {isSizeGuideOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"

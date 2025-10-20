@@ -67,7 +67,7 @@ const History: React.FC = () => {
   return (
     <div className="flex flex-col relative min-h-screen">
     <div className="fixed inset-0 bg-black">
-      <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover filter brightness-75" />
+      <img src={bg} alt='bg' className="absolute inset-0 w-screen h-full object-cover filter brightness-50" />
     </div>  
   
     <div className="mb-8 mt-60 z-20  ml-5">

@@ -38,7 +38,7 @@ const Logo = () => {
   return (
     <NavLink
       to="/"
-      className="flex justify-center items-center select-none hover:cursor-pointer"
+      className="flex justify-center items-center select-none hover:cursor-pointer z-20"
       style={{
         transform: isMobile
           ? "scale(0.4) translateY(-80%)"

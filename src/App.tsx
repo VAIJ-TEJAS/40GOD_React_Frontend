@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 import Home from "./Pages/Home";
 import Option1 from "./Pages/TshirtPage";
 import Bag from "./Pages/Bag";
-import ImageDetails from "./Pages/ImageDetails";
+import ImageDetails from "./Pages/TshirtDetails";
 import Checkout from "./Pages/checkout";
 import History from "./Pages/history";
 import Account from "./Pages/Account";

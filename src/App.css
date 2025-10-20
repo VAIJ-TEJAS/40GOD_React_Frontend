@@ -137,15 +137,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .thumbnail {
-  width: 70px;
   height: 70px;
-  margin: 0 10px;
+  margin: 0 5px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 12px;
   transition: transform 0.3s ease;
 }
 
@@ -157,11 +155,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 12px;
 }
 
 .thumbnail.selected {
-  border: 4px solid rgb(97, 95, 95); 
+  border: 2px solid rgb(97, 95, 95); 
 }
 
 .moved-right {

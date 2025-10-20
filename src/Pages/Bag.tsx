@@ -168,7 +168,7 @@ function Bag() {
   return (
 <div className="flex flex-col h-[90vh] text-xl text-gray-300 font-semibold">
 <div className="fixed inset-0 bg-black">
-    <img src={bg} alt="bg" className="absolute inset-0 w-full h-full object-cover filter brightness-50" />
+    <img src={bg} alt="bg" className="absolute inset-0 w-full h-full object-cover brightness-50" />
   </div>
 
   <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center z-10 mt-60 px-4">

@@ -34,7 +34,7 @@ const NavBar: React.FC = () => {
   }, []);
 
   return (
-    <div className="z-50">
+    <div className="z-40">
         {/* Center Logo */}
         <div className="absolute w-full justify-center">
           <Logo />
@@ -90,51 +90,64 @@ const NavBar: React.FC = () => {
       </nav>
 
       {/* Dropdown Mobile Menu */}
-      <div className="relative">
+      <div className="relative z-40">
         {isOpen && (
           <div className="sm:hidden dropdown-animation">
-            <div className="dropdown-content flex flex-col items-center text-center px-4 py-6">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-8 my-text"></h2>
-              <ul className="w-full max-w-md">
+            <div className="dropdown-content flex flex-col items-center text-center">
+              <ul className="w-full max-w-md text-xl font-semibold mt-8 border-b">
                 {!isLoggedIn && (
-                  <li className="my-text text-xl font-semibold py-3 border-gray-300 cursor-pointer">
-                    <NavLink to="/login">Login</NavLink>
+                  <li 
+                    className="py-3 border-gray-300 cursor-pointer"
+                    onClick={() => {
+                      window.location.href = "/login"
+                      toggleDropDown();
+                    }}
+                  >
+                    Login
                   </li>
                 )}
                 {isLoggedIn && (
                   <li
-                    className="my-text text-xl font-semibold py-3 border-gray-300 cursor-pointer"
+                    className="py-3 border-gray-300 cursor-pointer"
                     onClick={handleLogout}
                   >
                     Logout
                   </li>
                 )}
+                {isLoggedIn && (
                 <li
-                  className="my-text text-xl font-semibold py-3 border-gray-300 cursor-pointer"
-                  onClick={() => (window.location.href = "/account")}
+                  className="py-3 border-gray-300 cursor-pointer"
+                  onClick={() => {
+                    window.location.href = "/account"
+                    toggleDropDown();
+                  }}
                 >
                   Account
                 </li>
+                )}
                 <li
-                  className="my-text text-xl font-semibold py-3 border-gray-300 cursor-pointer"
+                  className="py-3 border-gray-300 cursor-pointer"
                   onClick={toggleShopDropDown}
                 >
                   Shop
                 </li>
-
                 {isShopOpen && (
-                  <div className="ml-4">
-                    <li
-                      className="my-text text-lg font-medium py-2 cursor-pointer"
-                      onClick={() => (window.location.href = "/t-shirt")}
+                    <div
+                      className="text-lg font-medium py-2 cursor-pointer"
+                      onClick={() => {
+                        window.location.href = "/t-shirt"
+                        toggleDropDown();
+                      }}
                     >
                       T-Shirt
-                    </li>
-                  </div>
+                    </div>
                 )}
                 <li
-                  className="my-text text-xl font-semibold py-3 border-b border-gray-300 cursor-pointer"
-                  onClick={() => (window.location.href = "/bag")}
+                  className="py-3 border-gray-300 cursor-pointer"
+                  onClick={() => {
+                    window.location.href = "/bag"
+                    toggleDropDown();
+                  }}
                 >
                   Bag
                 </li>

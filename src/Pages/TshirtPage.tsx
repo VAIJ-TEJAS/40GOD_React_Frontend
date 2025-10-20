@@ -41,7 +41,7 @@ const Option1: React.FC = () => {
         <img
           src={bg2}
           alt="40.G.O.D goth background"
-          className="absolute inset-0 w-full h-full object-cover filter brightness-75"
+          className="absolute inset-0 w-full h-full object-cover filter brightness-50"
         />
         <div className="absolute w-full h-full flex flex-col justify-center items-center">
           <p className="text-white font-bold god-text text-3xl lg:text-9xl ">
