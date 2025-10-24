@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./../css/Button.css";
 import bg from "../assets/background/Backgroud.jpeg";
-import color0 from "../assets/logo.png";
 import SizeGuideImage from "../assets/SizeGuide.jpeg";
 import { Product } from "../types/productType";
 import React, { useState, useEffect } from "react";

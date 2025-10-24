@@ -38,6 +38,9 @@ interface Order {
   date: string;
   id: number;
   order_items: OrderItem[];
+  total_price: string;
+  shipment: any;
+  payment: any;
 }
 
 const History: React.FC = () => {
