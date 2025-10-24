@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import bg2 from "./../assets/background/b9.jpeg";
 import bg from "../assets/background/Backgroud.jpeg";
 import { Product } from "../types/productType";
 import axios from "axios";
 import "../css/blur.css";
+import { CurrencyContext } from "../context/CurrencyContext";
+import { convertPrice } from "../utils/convertPrice";
 
-const Option1: React.FC = () => {
+const TshirtPage: React.FC = () => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
+  const { currency, rate } = useContext(CurrencyContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,7 +52,6 @@ const Option1: React.FC = () => {
           </p>
         </div>
       </div>
-
       <div className="py-12 px-4 md:px-12 ">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-20">
           {tshirts.map((product) => (
@@ -85,7 +87,9 @@ const Option1: React.FC = () => {
                         >
                           {product.name}
                           <br />
-                          Price: {product.price}
+                          <span className="font-bold">
+                            {convertPrice(product.price, rate, currency)}
+                          </span>
                         </div>
                       </div>
                     )}
@@ -100,4 +104,4 @@ const Option1: React.FC = () => {
   );
 };
 
-export default Option1;
+export default TshirtPage;

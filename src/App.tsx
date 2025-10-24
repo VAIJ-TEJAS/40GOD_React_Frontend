@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./Pages/Home";
-import Option1 from "./Pages/TshirtPage";
+import TshirtPage from "./Pages/TshirtPage";
 import Bag from "./Pages/Bag";
 import ImageDetails from "./Pages/TshirtDetails";
 import Checkout from "./Pages/Checkout";
@@ -27,7 +27,7 @@ const App: React.FC = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/account" element={<Account />} />
 
-            <Route path="/t-shirt" element={<Option1 />} />
+            <Route path="/t-shirt" element={<TshirtPage />} />
             <Route path="/new/:id" element={<ImageDetails />} />
             <Route path="/bag" element={<Bag />} />
             <Route path="/checkout" element={<Checkout />} />

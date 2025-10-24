@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "../App.css";
 import axios from "axios";
 import bg from "../assets/background/Backgroud.jpeg";
+import { CurrencyContext } from "../context/CurrencyContext";
+
 interface Color {
   product: any;
   color_name: string;
@@ -47,6 +49,8 @@ const History: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const BASE_URL = "";
   const token: string | null = localStorage.getItem("token");
+
+  const { currency, rate } = useContext(CurrencyContext);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -146,7 +150,7 @@ const History: React.FC = () => {
                           Method: {order.payment.method}
                         </p>
                         <p className="text-sm text-gray-300">
-                          Amount: ₹{order.payment.amount}
+                          Amount: {currency} {(parseFloat(order.payment.amount) * rate).toFixed(2)}
                         </p>
                         <p className="text-sm text-gray-400 mt-1">
                           Paid on{" "}
@@ -206,11 +210,7 @@ const History: React.FC = () => {
                         {/* Price */}
                         <div className="mt-3 sm:mt-0 sm:ml-auto text-right">
                           <p className="text-lg font-bold">
-                            ₹
-                            {(
-                              parseFloat(item.cart_item.color.product.price) *
-                              item.quantity
-                            ).toFixed(2)}
+                          {currency} {(parseFloat(item.cart_item.color.product.price) * item.quantity * rate).toFixed(2)}
                           </p>
                         </div>
                       </div>
@@ -222,7 +222,7 @@ const History: React.FC = () => {
                 <div className="border-t border-white/20 mt-4 pt-4 flex justify-between items-center">
                   <p className="text-sm text-gray-300">Total</p>
                   <p className="text-2xl font-bold text-yellow-400">
-                    ₹{order.total_price}
+                  {currency} {(parseFloat(order.total_price) * rate).toFixed(2)} 
                   </p>
                 </div>
               </div>

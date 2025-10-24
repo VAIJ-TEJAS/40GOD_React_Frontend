@@ -4,8 +4,10 @@ import "./../css/Button.css";
 import bg from "../assets/background/Backgroud.jpeg";
 import SizeGuideImage from "../assets/SizeGuide.jpeg";
 import { Product } from "../types/productType";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { CurrencyContext } from "../context/CurrencyContext";
+import { convertPrice } from "../utils/convertPrice";
 
 interface ProductVariant {
   id: number;
@@ -22,12 +24,11 @@ interface ProductVariant {
 interface ImageDetailsProps {}
 
 const ImageDetails: React.FC<ImageDetailsProps> = () => {
+  const { currency, rate } = useContext(CurrencyContext); // <-- Use currency context
   const [isAdded, setIsAdded] = useState(false);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
-  const [selectedProductVariantId, setSelectedProductVariantId] = useState<
-    number | null
-  >(0);
+  const [selectedProductVariantId, setSelectedProductVariantId] = useState<number | null>(0);
   const [products, setProducts] = useState<Product[]>([]);
   const [productVariant, setProductVariant] = useState<ProductVariant[]>([]);
   const { id } = useParams<{ id?: string }>() ?? {};
@@ -305,7 +306,9 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
                   ))}
                 </div>
                 <div>{product.description}</div>
-                <div className="font-semibold text-xl">{product.price}</div>
+                <div className="font-semibold text-xl">
+                  {convertPrice(product.price, rate, currency)}
+                </div>
                 <div className="sm:inline-block w-full">
                   <button
                     className={`bg-black shadow-3xl text-white hover:bg-white hover:text-black p-2 rounded-lg w-full sm:w-fit ${

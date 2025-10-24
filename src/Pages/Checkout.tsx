@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ShippingInfo from "../components/ShippingInfo";
 import bg from "../assets/background/Backgroud.jpeg";
 import axios, { AxiosResponse } from "axios";
 import { RazorpayOptions } from "../types/razorpay";
+import { CurrencyContext } from "../context/CurrencyContext";
+import { convertPrice } from "../utils/convertPrice";
 
 interface ColorData {
   product: any;
@@ -44,9 +46,8 @@ interface AddressBookEntry {
 }
 
 const Checkout: React.FC = () => {
-  const [selectedAddressId, setSelectedAddressId] = useState<number | null>(
-    null
-  );
+  const { currency, rate } = useContext(CurrencyContext);
+  const [selectedAddressId, setSelectedAddressId] = useState<number | null>(null);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   useEffect(() => {
@@ -116,7 +117,7 @@ const Checkout: React.FC = () => {
 
       // Performing the POST request using Axios
       const orderResponse = await axios.get(
-        `${BASE_URL}/order/calculate_order/`,
+        `${BASE_URL}/order/calculate_order/?currency=${currency}`,
         {
           headers: {
             Authorization: `Token ${token}`,
@@ -128,7 +129,7 @@ const Checkout: React.FC = () => {
 
       const options: RazorpayOptions = {
         key: razorpay_key_id,
-        currency: "INR",
+        currency: currency,
         name: "40.G.O.D",
         description: "",
         image: "logo1.png",
@@ -203,7 +204,7 @@ const Checkout: React.FC = () => {
           <div>
             <div className="text-white">
               <h2 className="text-lg font-semibold">
-                TOTAL AMOUNT TO PAY : {totalSum}
+                TOTAL AMOUNT TO PAY : {convertPrice(totalSum, rate, currency)}
               </h2>
             </div>
           </div>

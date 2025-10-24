@@ -1,8 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
 import bg from "../assets/background/Backgroud.jpeg";
 import "../App.css";
+import { CurrencyContext } from "../context/CurrencyContext";
+import { convertPrice } from "../utils/convertPrice";
+
 interface productData {
   id: number;
   sku: string;
@@ -39,6 +42,7 @@ interface CartItem {
 }
 
 function Bag() {
+  const { currency, rate } = useContext(CurrencyContext);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   useEffect(() => {
@@ -263,9 +267,11 @@ function Bag() {
                     </div>
                     <div className="text-center">
                       <p>
-                      <span className="text-base font-normal">Price:</span>:{" "}
-                        {item.product_varient?.color?.product?.price *
-                          item.quantity}
+                        {convertPrice(
+                          item.product_varient?.color?.product?.price || 0,
+                          rate,
+                          currency
+                        )}{" "}
                       </p>
                     </div>
                   </div>
@@ -275,7 +281,7 @@ function Bag() {
 
             <div className="border-t border-gray-700 p-4">
               <h1 className="text-center sm:text-2xl text-xl font-bold my-text">
-                TOTAL AMOUNT: {totalSum}
+                TOTAL AMOUNT: {convertPrice(totalSum, rate, currency)}
               </h1>
               <div className="flex justify-center mt-4">
                 <Link to="/checkout">
