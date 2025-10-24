@@ -140,8 +140,10 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
 
   useEffect(() => {
     if (productVariant.length > 0) {
-      setSelectedSize(productVariant[0].size.text);
-      setSelectedColor(productVariant[0].color.hex_code);
+      const firstVariant = productVariant[0];
+      setSelectedSize(firstVariant.size.text);
+      setSelectedColor(firstVariant.color.hex_code);
+      setSelectedProductVariantId(firstVariant.id);
     }
   }, [productVariant]);
 
@@ -205,7 +207,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
         />
       </div>
 
-      <div className="mt-32 sm:mt-44 sm:p-8 z-10">
+      <div className="mt-48 sm:mt-56 sm:p-8 z-10">
         {product && (
           <div className="grid grid-cols-1 sm:grid-cols-2 p-2 gap-4">
 
@@ -290,18 +292,17 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
                 <div className="flex items-center gap-2">
                   {availableColors.map((color, index) => (
                     <button
-                      key={index}
-                      style={{
-                        backgroundColor:
-                          selectedColor === color ? selectedColor : color,
-                      }}
-                      className={`w-10 h-10 text-center rounded-full text-white  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex justify-center items-center ${
-                        selectedColor === color ? `opacity-50` : ``
+                    key={index}
+                    onClick={() => handleColorClick(color, index)}
+                    style={{ backgroundColor: color }}
+                    className={`w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-200
+                      ${selectedColor === color 
+                        ? "border-black scale-110 ring-2 ring-offset-2 ring-black" 
+                        : "border-gray-400 hover:scale-105"
                       }`}
-                      onClick={() => handleColorClick(color, index)}
-                    >
-                      {/* <img src={color0} alt="Color" /> */}
-                    </button>
+                    title={`Color: ${color}`}
+                  ></button>
+                  
                   ))}
                 </div>
                 <div>{product.description}</div>
@@ -315,7 +316,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
                       !isAdded && handleAddToBag();
                     }}
                   >
-                    {isAdded ? "ADDED TO BAD" : "ADD TO BAG"}
+                    {isAdded ? "ADDED TO BAG" : "ADD TO BAG"}
                   </button>
                 </div>
               </div>

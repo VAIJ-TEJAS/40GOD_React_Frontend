@@ -47,7 +47,7 @@ const Logo = () => {
     >
       <div className="slow-spin">
         <img
-          className="z-10  w-68"
+          className="z-10 w-68"
           src={ring}
           alt="Ring"
           style={{ filter: "drop-shadow(0px 0px 30px rgba(0, 0, 0, 1))" }}
