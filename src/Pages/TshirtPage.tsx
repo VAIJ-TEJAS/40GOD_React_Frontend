@@ -88,7 +88,7 @@ const TshirtPage: React.FC = () => {
                           {product.name}
                           <br />
                           <span className="font-bold">
-                            {convertPrice(product.price, rate, currency)}
+                            {convertPrice(parseFloat(product.price), rate, currency)}
                           </span>
                         </div>
                       </div>

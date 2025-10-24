@@ -307,7 +307,7 @@ const ImageDetails: React.FC<ImageDetailsProps> = () => {
                 </div>
                 <div>{product.description}</div>
                 <div className="font-semibold text-xl">
-                  {convertPrice(product.price, rate, currency)}
+                  {convertPrice(parseFloat(product.price), rate, currency)}
                 </div>
                 <div className="sm:inline-block w-full">
                   <button
