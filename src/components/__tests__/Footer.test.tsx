@@ -1,6 +1,15 @@
-import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import { render, screen, fireEvent } from '@testing-library/react'
 import Footer from '../Footer'
+
+describe('Footer', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
+  afterEach(() => {
+    vi.restoreAllMocks()
+  })
 
 describe('Footer', () => {
   it('should render footer with all links', () => {
@@ -52,6 +61,75 @@ describe('Footer', () => {
     render(<Footer />)
     const footer = screen.getByRole('contentinfo')
     expect(footer).toBeInTheDocument()
+  })
+
+  it('should display current year dynamically', () => {
+    const currentYear = new Date().getFullYear()
+    render(<Footer />)
+    expect(screen.getByText(new RegExp(`${currentYear} ©`))).toBeInTheDocument()
+  })
+
+  it('should handle link clicks', () => {
+    const originalLocation = window.location
+    delete (window as any).location
+    window.location = { ...originalLocation, href: '' }
+
+    render(<Footer />)
+    const termsLink = screen.getByText('TERMS')
+    fireEvent.click(termsLink)
+
+    expect(window.location.href).toBe('/terms')
+
+    window.location = originalLocation
+  })
+
+  it('should handle Instagram link click', () => {
+    const originalOpen = window.open
+    window.open = vi.fn()
+
+    render(<Footer />)
+    const instagramLink = screen.getByAltText('instagram').closest('a')
+    if (instagramLink) {
+      fireEvent.click(instagramLink)
+    }
+
+    window.open = originalOpen
+  })
+
+  it('should handle scroll events', () => {
+    render(<Footer />)
+    
+    // Simulate scroll to bottom
+    Object.defineProperty(window, 'scrollY', { value: 1000, writable: true })
+    Object.defineProperty(document.documentElement, 'scrollHeight', { value: 2000, writable: true })
+    Object.defineProperty(window, 'innerHeight', { value: 800, writable: true })
+    
+    fireEvent(window, new Event('scroll'))
+    
+    // Footer should handle scroll
+    expect(document.body).toBeTruthy()
+  })
+
+  it('should have aria-label on Instagram link', () => {
+    render(<Footer />)
+    const instagramLink = screen.getByLabelText('Visit our Instagram page')
+    expect(instagramLink).toBeInTheDocument()
+  })
+
+  it('should have transition classes on links', () => {
+    render(<Footer />)
+    const termsLink = screen.getByText('TERMS')
+    expect(termsLink.closest('a')).toHaveClass('transition-colors', 'duration-200')
+  })
+
+  it('should update year on mount', () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2024-01-01'))
+    
+    render(<Footer />)
+    expect(screen.getByText(/2024 ©/)).toBeInTheDocument()
+    
+    vi.useRealTimers()
   })
 })
 

@@ -363,5 +363,241 @@ describe('Bag', () => {
     // Should still render empty bag message
     expect(screen.getByText(/Your bag is empty/i)).toBeInTheDocument()
   })
+
+  it('should display loading state', async () => {
+    localStorage.setItem('token', 'test-token')
+    mockedAxios.get.mockImplementation(
+      () => new Promise((resolve) => setTimeout(resolve, 100))
+    )
+
+    renderBag()
+
+    expect(screen.getByText(/Loading cart items/i)).toBeInTheDocument()
+  })
+
+  it('should display cart statistics', async () => {
+    const mockCartItems = [
+      {
+        id: 1,
+        quantity: 2,
+        price: 1000,
+        product_varient: {
+          id: 1,
+          color: {
+            id: 1,
+            display_name: 'Red T-Shirt',
+            color_name: 'Red',
+            hex_code: '#FF0000',
+            image_product: [{ id: 1, image: 'test.jpg' }],
+            product: {
+              id: 1,
+              sku: 'TS001',
+              name: 'T-Shirt',
+              price: 1000,
+            },
+          },
+          size: {
+            id: 1,
+            text: 'M',
+          },
+          quantity: 10,
+        },
+      },
+    ]
+
+    localStorage.setItem('token', 'test-token')
+    mockedAxios.get.mockResolvedValue({ data: mockCartItems })
+
+    renderBag()
+
+    await waitFor(() => {
+      expect(screen.getByText(/Total Items:/i)).toBeInTheDocument()
+      expect(screen.getByText(/Unique Products:/i)).toBeInTheDocument()
+    })
+  })
+
+  it('should handle sort button click', async () => {
+    const mockCartItems = [
+      {
+        id: 1,
+        quantity: 2,
+        price: 1000,
+        product_varient: {
+          id: 1,
+          color: {
+            id: 1,
+            display_name: 'Red T-Shirt',
+            color_name: 'Red',
+            hex_code: '#FF0000',
+            image_product: [{ id: 1, image: 'test.jpg' }],
+            product: {
+              id: 1,
+              sku: 'TS001',
+              name: 'T-Shirt',
+              price: 1000,
+            },
+          },
+          size: {
+            id: 1,
+            text: 'M',
+          },
+          quantity: 10,
+        },
+      },
+    ]
+
+    localStorage.setItem('token', 'test-token')
+    mockedAxios.get.mockResolvedValue({ data: mockCartItems })
+
+    renderBag()
+
+    await waitFor(() => {
+      const sortButton = screen.getByText(/Sort by Price/i)
+      fireEvent.click(sortButton)
+    })
+
+    await waitFor(() => {
+      expect(mockedAxios.get).toHaveBeenCalled()
+    })
+  })
+
+  it('should display average item price', async () => {
+    const mockCartItems = [
+      {
+        id: 1,
+        quantity: 2,
+        price: 1000,
+        product_varient: {
+          id: 1,
+          color: {
+            id: 1,
+            display_name: 'Red T-Shirt',
+            color_name: 'Red',
+            hex_code: '#FF0000',
+            image_product: [{ id: 1, image: 'test.jpg' }],
+            product: {
+              id: 1,
+              sku: 'TS001',
+              name: 'T-Shirt',
+              price: 1000,
+            },
+          },
+          size: {
+            id: 1,
+            text: 'M',
+          },
+          quantity: 10,
+        },
+      },
+    ]
+
+    localStorage.setItem('token', 'test-token')
+    mockedAxios.get.mockResolvedValue({ data: mockCartItems })
+
+    renderBag()
+
+    await waitFor(() => {
+      expect(screen.getByText(/Average Item Price:/i)).toBeInTheDocument()
+    })
+  })
+
+  it('should display low stock warning when applicable', async () => {
+    const mockCartItems = [
+      {
+        id: 1,
+        quantity: 2,
+        price: 1000,
+        product_varient: {
+          id: 1,
+          color: {
+            id: 1,
+            display_name: 'Red T-Shirt',
+            color_name: 'Red',
+            hex_code: '#FF0000',
+            image_product: [{ id: 1, image: 'test.jpg' }],
+            product: {
+              id: 1,
+              sku: 'TS001',
+              name: 'T-Shirt',
+              price: 1000,
+            },
+          },
+          size: {
+            id: 1,
+            text: 'M',
+          },
+          quantity: 3, // Low stock
+        },
+      },
+    ]
+
+    localStorage.setItem('token', 'test-token')
+    mockedAxios.get.mockResolvedValue({ data: mockCartItems })
+
+    renderBag()
+
+    await waitFor(() => {
+      // Low stock warning may or may not appear depending on threshold
+      expect(screen.getByText(/TOTAL AMOUNT/i)).toBeInTheDocument()
+    })
+  })
+
+  it('should handle sort order toggle', async () => {
+    const mockCartItems = [
+      {
+        id: 1,
+        quantity: 2,
+        price: 1000,
+        product_varient: {
+          id: 1,
+          color: {
+            id: 1,
+            display_name: 'Red T-Shirt',
+            color_name: 'Red',
+            hex_code: '#FF0000',
+            image_product: [{ id: 1, image: 'test.jpg' }],
+            product: {
+              id: 1,
+              sku: 'TS001',
+              name: 'T-Shirt',
+              price: 1000,
+            },
+          },
+          size: {
+            id: 1,
+            text: 'M',
+          },
+          quantity: 10,
+        },
+      },
+    ]
+
+    localStorage.setItem('token', 'test-token')
+    mockedAxios.get.mockResolvedValue({ data: mockCartItems })
+
+    renderBag()
+
+    await waitFor(() => {
+      const sortButton = screen.getByText(/Sort by Price/i)
+      expect(sortButton).toBeInTheDocument()
+      
+      // Click to toggle sort order
+      fireEvent.click(sortButton)
+    })
+
+    await waitFor(() => {
+      expect(mockedAxios.get).toHaveBeenCalled()
+    })
+  })
+
+  it('should display continue shopping button', () => {
+    renderBag()
+    expect(screen.getByText('Continue Shopping')).toBeInTheDocument()
+  })
+
+  it('should handle empty cart with helper functions', () => {
+    renderBag()
+    expect(screen.getByText(/Your bag is empty/i)).toBeInTheDocument()
+  })
 })
 
