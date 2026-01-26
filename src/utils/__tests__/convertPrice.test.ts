@@ -1,5 +1,17 @@
 import { describe, it, expect } from 'vitest'
-import { convertPrice } from '../convertPrice'
+import {
+  convertPrice,
+  formatPriceWithSymbol,
+  calculateDiscount,
+  calculateTax,
+  calculatePriceWithTax,
+  formatNumberWithCommas,
+  parsePrice,
+  isValidPrice,
+  roundPrice,
+  calculateTotal,
+  calculateAveragePrice,
+} from '../convertPrice'
 
 describe('convertPrice', () => {
   it('should convert INR price to USD correctly', () => {
@@ -80,6 +92,135 @@ describe('convertPrice', () => {
     const currency = 'USD'
     const result = convertPrice(priceInINR, rate, currency)
     expect(result).toBe('USD 1.23')
+  })
+})
+
+describe('formatPriceWithSymbol', () => {
+  it('should format USD price with $ symbol', () => {
+    const result = formatPriceWithSymbol(100, 'USD')
+    expect(result).toBe('$100.00')
+  })
+
+  it('should format EUR price with € symbol', () => {
+    const result = formatPriceWithSymbol(100, 'EUR')
+    expect(result).toBe('€100.00')
+  })
+
+  it('should format GBP price with £ symbol', () => {
+    const result = formatPriceWithSymbol(100, 'GBP')
+    expect(result).toBe('£100.00')
+  })
+
+  it('should format INR price with ₹ symbol', () => {
+    const result = formatPriceWithSymbol(100, 'INR')
+    expect(result).toBe('₹100.00')
+  })
+
+  it('should use currency code for unknown currencies', () => {
+    const result = formatPriceWithSymbol(100, 'XYZ')
+    expect(result).toBe('XYZ100.00')
+  })
+})
+
+describe('calculateDiscount', () => {
+  it('should calculate discount percentage correctly', () => {
+    expect(calculateDiscount(1000, 800)).toBe(20)
+  })
+
+  it('should return 0 for zero original price', () => {
+    expect(calculateDiscount(0, 800)).toBe(0)
+  })
+
+  it('should handle negative prices', () => {
+    expect(calculateDiscount(-100, 50)).toBeGreaterThan(0)
+  })
+})
+
+describe('calculateTax', () => {
+  it('should calculate tax correctly', () => {
+    expect(calculateTax(100, 10)).toBe(10)
+  })
+
+  it('should handle zero tax rate', () => {
+    expect(calculateTax(100, 0)).toBe(0)
+  })
+})
+
+describe('calculatePriceWithTax', () => {
+  it('should calculate price with tax correctly', () => {
+    expect(calculatePriceWithTax(100, 10)).toBe(110)
+  })
+
+  it('should handle zero tax', () => {
+    expect(calculatePriceWithTax(100, 0)).toBe(100)
+  })
+})
+
+describe('formatNumberWithCommas', () => {
+  it('should format large numbers with commas', () => {
+    expect(formatNumberWithCommas(1000000)).toBe('1,000,000')
+  })
+
+  it('should format small numbers', () => {
+    expect(formatNumberWithCommas(100)).toBe('100')
+  })
+})
+
+describe('parsePrice', () => {
+  it('should parse price string correctly', () => {
+    expect(parsePrice('$100.50')).toBe(100.5)
+  })
+
+  it('should handle invalid strings', () => {
+    expect(parsePrice('invalid')).toBe(0)
+  })
+})
+
+describe('isValidPrice', () => {
+  it('should validate positive prices', () => {
+    expect(isValidPrice(100)).toBe(true)
+  })
+
+  it('should validate zero price', () => {
+    expect(isValidPrice(0)).toBe(true)
+  })
+
+  it('should reject negative prices', () => {
+    expect(isValidPrice(-100)).toBe(false)
+  })
+
+  it('should reject infinite values', () => {
+    expect(isValidPrice(Infinity)).toBe(false)
+  })
+})
+
+describe('roundPrice', () => {
+  it('should round to 2 decimal places by default', () => {
+    expect(roundPrice(100.456)).toBe(100.46)
+  })
+
+  it('should round to specified decimal places', () => {
+    expect(roundPrice(100.456, 1)).toBe(100.5)
+  })
+})
+
+describe('calculateTotal', () => {
+  it('should calculate total from array', () => {
+    expect(calculateTotal([100, 200, 300])).toBe(600)
+  })
+
+  it('should return 0 for empty array', () => {
+    expect(calculateTotal([])).toBe(0)
+  })
+})
+
+describe('calculateAveragePrice', () => {
+  it('should calculate average correctly', () => {
+    expect(calculateAveragePrice([100, 200, 300])).toBe(200)
+  })
+
+  it('should return 0 for empty array', () => {
+    expect(calculateAveragePrice([])).toBe(0)
   })
 })
 

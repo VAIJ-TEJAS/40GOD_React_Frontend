@@ -3,6 +3,15 @@ import "../App.css";
 import axios from "axios";
 import bg from "../assets/background/Backgroud.jpeg";
 import { CurrencyContext } from "../context/CurrencyContext";
+import {
+  getOrderStatusText,
+  getOrderStatusColor,
+  formatOrderDate,
+  hasShipmentInfo,
+  hasPaymentInfo,
+  sortOrdersByDate,
+  getOrderStatistics,
+} from "../utils/orderHelpers";
 
 interface Color {
   product: any;
@@ -61,15 +70,23 @@ const History: React.FC = () => {
             Authorization: `Token ${token}`,
           },
         });
-        setOrders(response.data);
+        // Sort orders by date (newest first) using helper function
+        const sortedOrders = sortOrdersByDate(response.data, false);
+        setOrders(sortedOrders);
+        
+        // Calculate and log statistics
+        const stats = getOrderStatistics(sortedOrders);
+        console.log("Order Statistics:", stats);
         console.log("response", JSON.stringify(response.data));
       } catch (error) {
         console.error("Error:", error);
       }
     };
 
-    fetchOrders();
-  }, []);
+    if (token) {
+      fetchOrders();
+    }
+  }, [token]);
 
   return (
     <div className="flex flex-col relative min-h-screen">
@@ -98,26 +115,20 @@ const History: React.FC = () => {
                   <div>
                     <h2 className="text-xl font-bold">Order #{order.id}</h2>
                     <p className="text-sm text-gray-300">
-                      Placed on {new Date(order.date).toLocaleString()}
+                      Placed on {formatOrderDate(order.date)}
                     </p>
                   </div>
                   <div className="mt-2 sm:mt-0">
                     <span
-                      className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                        order.status === "PL"
-                          ? "bg-yellow-500 text-black"
-                          : order.status === "CM"
-                          ? "bg-green-500 text-black"
-                          : "bg-gray-500"
-                      }`}
+                      className={`px-3 py-1 rounded-full text-sm font-semibold ${getOrderStatusColor(order.status)}`}
                     >
-                      {order.status === "PL" ? "Placed" : order.status}
+                      {getOrderStatusText(order.status)}
                     </span>
                   </div>
                 </div>
 
                 {/* Shipment & Payment */}
-                {order.shipment && (
+                {hasShipmentInfo(order) && (
                   <div className="mb-4 grid sm:grid-cols-2 gap-4">
                     <div>
                       <h3 className="font-semibold mb-1 text-yellow-400">
@@ -141,7 +152,7 @@ const History: React.FC = () => {
                         📞 {order.shipment.address_details.phone_number}
                       </p>
                     </div>
-                    {order.payment && (
+                    {hasPaymentInfo(order) && (
                       <div>
                         <h3 className="font-semibold mb-1 text-yellow-400">
                           Payment Info

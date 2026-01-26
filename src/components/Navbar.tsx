@@ -11,7 +11,7 @@ const NavBar: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const toggleDropDown = () => {
-    setIsOpen(!isOpen);
+    handleMenuToggle();
   };
 
   const toggleShopDropDown = () => {
@@ -19,18 +19,48 @@ const NavBar: React.FC = () => {
   };
 
   const handleLogout = () => {
+    // Clear all user-related data
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setIsLoggedIn(false);
-    window.location.href = "/";
+    
+    // Clear any axios default headers
+    if (typeof window !== 'undefined' && window.location) {
+      window.location.href = "/";
+    }
   };
 
-  useEffect(() => {
+  const handleLoginCheck = () => {
     const token = localStorage.getItem("token");
     if (token) {
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
     }
+  };
+
+  const handleMenuToggle = () => {
+    setIsOpen(!isOpen);
+    if (isOpen) {
+      setIsShopOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    handleLoginCheck();
+    
+    // Listen for storage changes (e.g., login from another tab)
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'token') {
+        handleLoginCheck();
+      }
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
   }, []);
 
   return (
