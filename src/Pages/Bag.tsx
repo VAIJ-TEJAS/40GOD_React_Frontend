@@ -5,6 +5,14 @@ import bg from "../assets/background/Backgroud.jpeg";
 import "../App.css";
 import { CurrencyContext } from "../context/CurrencyContext";
 import { convertPrice } from "../utils/convertPrice";
+import {
+  calculateCartTotal,
+  calculateTotalItems,
+  getCartSummary,
+  isCartEmpty,
+  getCartStatistics,
+  sortCartItemsByPrice,
+} from "../utils/cartHelpers";
 
 interface productData {
   id: number;
@@ -44,11 +52,14 @@ interface CartItem {
 function Bag() {
   const { currency, rate } = useContext(CurrencyContext);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const token: string | null = localStorage.getItem("token");
 
     if (token) {
+      setIsLoading(true);
       axios
         .get<CartItem[]>("/cart-items/", {
           headers: {
@@ -58,13 +69,17 @@ function Bag() {
         })
         .then((response) => {
           console.log("Cart Items:", response.data);
-          setCartItems(response.data);
+          const sortedItems = sortCartItemsByPrice(response.data, rate, sortOrder === "asc");
+          setCartItems(sortedItems);
         })
         .catch((error) => {
           console.error("Error fetching cart items:", error);
+        })
+        .finally(() => {
+          setIsLoading(false);
         });
     }
-  }, []);
+  }, [rate, sortOrder]);
 
   const handleDelete = (itemId: number) => {
     const token: string | null = localStorage.getItem("token");
@@ -161,17 +176,14 @@ function Bag() {
         });
     }
   };
-  const totalSum = cartItems.reduce((accumulator, item) => {
-    if (
-      item.product_varient &&
-      item.product_varient.color &&
-      item.product_varient.color.product
-    ) {
-      const price = item.product_varient.color.product.price * item.quantity;
-      return accumulator + price;
-    }
-    return accumulator;
-  }, 0);
+  const totalSum = calculateCartTotal(cartItems, rate);
+  const totalItemsCount = calculateTotalItems(cartItems);
+  const cartSummary = getCartSummary(cartItems, rate);
+  const cartStats = getCartStatistics(cartItems, rate);
+
+  const handleSortChange = () => {
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+  };
   
   return (
     <div className="flex flex-col gap-2 text-xl text-gray-300 font-semibold">
@@ -184,7 +196,9 @@ function Bag() {
       </div>
 
       <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center z-10 mt-60 p-4">
-        {cartItems.length === 0 ? (
+        {isLoading ? (
+          <p className="my-text text-center">Loading cart items...</p>
+        ) : isCartEmpty(cartItems) ? (
           <p className="my-text text-center">Your bag is empty.</p>
         ) : (
           <div className="w-full ">
@@ -247,8 +261,20 @@ function Bag() {
           </div>
         )}
 
-        {cartItems.length > 0 && (
+        {!isCartEmpty(cartItems) && (
           <div className="w-full bg-gray-600 bg-opacity-50 rounded-lg">
+            <div className="p-4 flex justify-between items-center border-b border-gray-700">
+              <div className="text-sm">
+                <p>Total Items: {totalItemsCount}</p>
+                <p>Unique Products: {cartSummary.uniqueProducts}</p>
+              </div>
+              <button
+                onClick={handleSortChange}
+                className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm"
+              >
+                Sort by Price ({sortOrder === "asc" ? "Low to High" : "High to Low"})
+              </button>
+            </div>
             <div className="p-6 text-center">
               {cartItems.map((item) => (
                 <div
@@ -280,6 +306,12 @@ function Bag() {
             </div>
 
             <div className="border-t border-gray-700 p-4">
+              <div className="mb-2 text-sm text-gray-300">
+                <p>Average Item Price: {convertPrice(cartStats.averagePrice, 1, currency)}</p>
+                {cartStats.lowStockCount > 0 && (
+                  <p className="text-yellow-400">⚠️ {cartStats.lowStockCount} item(s) with low stock</p>
+                )}
+              </div>
               <h1 className="text-center sm:text-2xl text-xl font-bold my-text">
                 TOTAL AMOUNT: {convertPrice(totalSum, rate, currency)}
               </h1>

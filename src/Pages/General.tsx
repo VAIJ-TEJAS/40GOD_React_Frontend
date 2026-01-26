@@ -1,6 +1,31 @@
 import bg from "../assets/background/Backgroud.jpeg";
+import { useState, useEffect } from "react";
 
 function General() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      setActiveSection(sectionId);
+    }
+  };
+
+  const getSectionId = (text: string): string => {
+    return text.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+  };
+
   return (
     <div className={"flex flex-col relative my-text sm:p-20 text-white"}>
       <div className="fixed inset-0">
@@ -15,6 +40,30 @@ function General() {
         <p className="text-lg font-bold mb-4 ">
           Shipping and Delivery - Delivery Zones
         </p>
+        
+        {isScrolled && (
+          <div className="fixed top-20 right-4 bg-black bg-opacity-70 p-4 rounded-lg z-50">
+            <p className="text-sm mb-2 font-semibold">Quick Navigation</p>
+            <button
+              onClick={() => scrollToSection("who-may-use")}
+              className="block text-xs mb-1 hover:text-yellow-400"
+            >
+              Who May Use
+            </button>
+            <button
+              onClick={() => scrollToSection("user-accounts")}
+              className="block text-xs mb-1 hover:text-yellow-400"
+            >
+              User Accounts
+            </button>
+            <button
+              onClick={() => scrollToSection("orders")}
+              className="block text-xs mb-1 hover:text-yellow-400"
+            >
+              Orders
+            </button>
+          </div>
+        )}
         <div className="text-sm ">
           <p>
             These Terms and Conditions (these “Terms”) apply to use access and
@@ -54,7 +103,7 @@ function General() {
 
           <h2 className="font-bold mt-4">TABLE OF CONTENTS</h2>
 
-          <section className="mb-8">
+          <section id="who-may-use" className="mb-8">
             <h2 className="text-xl font-semibold mb-2">
               1. WHO MAY USE THE SERVICES
             </h2>
@@ -70,7 +119,7 @@ function General() {
             </p>
           </section>
 
-          <section className="mb-8">
+          <section id="user-accounts" className="mb-8">
             <h2 className="text-xl font-semibold mb-2">
               2. USER ACCOUNTS, SUBSCRIPTIONS AND FREE TRIALS
             </h2>
@@ -92,7 +141,7 @@ function General() {
               unauthorized use of your Account.
             </p>
           </section>
-          <section className="mb-8">
+          <section id="orders" className="mb-8">
             <h2 className="text-xl font-semibold mb-2">
               3. ORDERS FOR PRODUCTS AND/OR SERVICES
             </h2>
