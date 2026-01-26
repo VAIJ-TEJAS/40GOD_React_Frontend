@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
+import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import god from "../assets/logo1.png";
 import A2 from "/logo/Asset 2-8.png";
 import A4 from "/logo/Asset 4-8.png";
@@ -14,7 +14,12 @@ import ring from "../assets/ring.png";
 
 const Logo = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [rotationSpeed, setRotationSpeed] = useState(1);
+  const [clickCount, setClickCount] = useState(0);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleResize = () => {
@@ -30,27 +35,91 @@ const Logo = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // Hide logo on scroll down, show on scroll up
+    let lastScrollY = window.scrollY;
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setIsVisible(currentScrollY < lastScrollY || currentScrollY < 100);
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    // Reset click count after 2 seconds
+    if (clickCount > 0) {
+      const timer = setTimeout(() => setClickCount(0), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [clickCount]);
+
   const isMobile = window.innerWidth <= 600;
-  const handleClick = () => {
+  
+  const handleClick = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    setClickCount(prev => prev + 1);
+    
+    // Easter egg: 5 clicks triggers special animation
+    if (clickCount === 4) {
+      setRotationSpeed(5);
+      setTimeout(() => setRotationSpeed(1), 2000);
+    }
+    
     navigate("/");
+  }, [navigate, clickCount]);
+
+  const handleMouseEnter = useCallback(() => {
+    setIsHovered(true);
+    setRotationSpeed(1.5);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setIsHovered(false);
+    setRotationSpeed(1);
+  }, []);
+
+  const getLogoStyle = () => {
+    const baseScale = isMobile ? 0.4 : 0.6;
+    const baseTranslateY = isMobile ? -80 : -30;
+    const hoverScale = isHovered ? baseScale * 1.1 : baseScale;
+    
+    return {
+      transform: `scale(${hoverScale}) translateY(${baseTranslateY}%)`,
+      transition: 'transform 0.3s ease-in-out',
+      opacity: isVisible ? 1 : 0.7,
+    };
   };
+
+  const getRingStyle = () => {
+    return {
+      filter: "drop-shadow(0px 0px 30px rgba(0, 0, 0, 1))",
+      animation: `spin ${20 / rotationSpeed}s linear infinite`,
+    };
+  };
+
+  if (!isVisible && location.pathname !== '/') {
+    return null;
+  }
 
   return (
     <NavLink
       to="/"
       className="flex justify-center items-center select-none hover:cursor-pointer z-20"
-      style={{
-        transform: isMobile
-          ? "scale(0.4) translateY(-80%)"
-          : "scale(0.6) translateY(-30%)",
-      }}
+      style={getLogoStyle()}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
+      aria-label="40.G.O.D Home"
     >
-      <div className="slow-spin">
+      <div className="slow-spin" style={getRingStyle()}>
         <img
           className="z-10 w-68"
           src={ring}
           alt="Ring"
-          style={{ filter: "drop-shadow(0px 0px 30px rgba(0, 0, 0, 1))" }}
+          style={getRingStyle()}
         />
 
         <img
@@ -155,12 +224,23 @@ const Logo = () => {
         />
       </div>
       <img
-        className="w-32 absolute"
+        className="w-32 absolute transition-all duration-300"
         src={god}
         alt="40.G.O.D"
-        style={{ filter: "drop-shadow(0px 0px 10px rgba(0, 0, 0, 1))" }}
-        onClick={handleClick}
+        style={{
+          filter: isHovered
+            ? "drop-shadow(0px 0px 20px rgba(255, 255, 255, 0.5))"
+            : "drop-shadow(0px 0px 10px rgba(0, 0, 0, 1))",
+          transform: isHovered ? "scale(1.1)" : "scale(1)",
+        }}
       />
+      {clickCount >= 5 && (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <span className="text-white text-xs font-bold animate-pulse">
+            EASTER EGG!
+          </span>
+        </div>
+      )}
     </NavLink>
   );
 };
