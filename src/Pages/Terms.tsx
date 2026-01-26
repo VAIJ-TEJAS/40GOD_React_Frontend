@@ -1,8 +1,109 @@
+import { useState, useEffect, useRef } from "react";
 import bg from "../assets/background/Backgroud.jpeg";
+import { trackPageView, trackEvent } from "../utils/analyticsHelpers";
+
+interface Section {
+  id: string;
+  title: string;
+  element: HTMLElement | null;
+}
 
 function FortyGodTerms() {
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [searchResults, setSearchResults] = useState<Array<{ text: string; section: string }>>([]);
+  const [isSearchActive, setIsSearchActive] = useState<boolean>(false);
+  const [activeSection, setActiveSection] = useState<string>("");
+  const [showTOC, setShowTOC] = useState<boolean>(true);
+  const [isPrintMode, setIsPrintMode] = useState<boolean>(false);
+  const [fontSize, setFontSize] = useState<number>(16);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
+  const sectionsRef = useRef<Section[]>([]);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    trackPageView(window.location.pathname, "Terms and Conditions", document.referrer);
+    
+    // Initialize sections for navigation
+    const sectionElements = document.querySelectorAll('section, h2, h3');
+    sectionsRef.current = Array.from(sectionElements).map((el, index) => ({
+      id: `section-${index}`,
+      title: el.textContent || "",
+      element: el as HTMLElement,
+    }));
+
+    // Track scroll to determine active section
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 200;
+      for (let i = sectionsRef.current.length - 1; i >= 0; i--) {
+        const section = sectionsRef.current[i];
+        if (section.element && section.element.offsetTop <= scrollPosition) {
+          setActiveSection(section.id);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    if (!query.trim()) {
+      setSearchResults([]);
+      setIsSearchActive(false);
+      return;
+    }
+
+    setIsSearchActive(true);
+    const searchLower = query.toLowerCase();
+    const results: Array<{ text: string; section: string }> = [];
+    
+    const content = contentRef.current;
+    if (content) {
+      const textNodes = content.querySelectorAll('p, li, h2, h3');
+      textNodes.forEach((node) => {
+        const text = node.textContent || "";
+        if (text.toLowerCase().includes(searchLower)) {
+          const section = node.closest('section')?.querySelector('h2, h3')?.textContent || "General";
+          results.push({ text: text.substring(0, 150), section });
+        }
+      });
+    }
+
+    setSearchResults(results.slice(0, 10));
+    trackEvent("search", "terms", "search_performed", { query, resultsCount: results.length });
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const section = sectionsRef.current.find((s) => s.id === sectionId);
+    if (section?.element) {
+      section.element.scrollIntoView({ behavior: "smooth", block: "start" });
+      trackEvent("navigation", "terms", "section_clicked", { sectionId });
+    }
+  };
+
+  const handlePrint = () => {
+    setIsPrintMode(true);
+    trackEvent("action", "terms", "print_clicked");
+    setTimeout(() => {
+      window.print();
+      setIsPrintMode(false);
+    }, 100);
+  };
+
+  const handleFontSizeChange = (size: number) => {
+    setFontSize(size);
+    trackEvent("preference", "terms", "font_size_changed", { size });
+  };
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    trackEvent("preference", "terms", "dark_mode_toggled", { enabled: !isDarkMode });
+  };
+
   return (
-    <div className={"flex flex-col relative my-text  sm:p-20 text-white"}>
+    <div className={`flex flex-col relative my-text sm:p-20 text-white ${isPrintMode ? 'print-mode' : ''}`}>
       <div className="fixed inset-0">
         <img
           src={bg}
@@ -10,7 +111,103 @@ function FortyGodTerms() {
           className="absolute inset-0 w-screen h-full object-cover brightness-50"
         />
       </div>
-      <div className="mt-60 sm:p-8 z-10">
+      
+      {/* Toolbar */}
+      <div className="fixed top-20 right-4 z-50 flex flex-col gap-2 bg-black bg-opacity-70 p-4 rounded-lg">
+        <button
+          onClick={() => setShowTOC(!showTOC)}
+          className="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-3 py-2 rounded text-sm"
+          aria-label="Toggle table of contents"
+        >
+          {showTOC ? "Hide" : "Show"} TOC
+        </button>
+        <button
+          onClick={handlePrint}
+          className="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-3 py-2 rounded text-sm"
+          aria-label="Print terms"
+        >
+          Print
+        </button>
+        <div className="flex items-center gap-2">
+          <label className="text-sm">Font:</label>
+          <button
+            onClick={() => handleFontSizeChange(Math.max(12, fontSize - 2))}
+            className="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-2 py-1 rounded text-xs"
+          >
+            -
+          </button>
+          <span className="text-xs w-8 text-center">{fontSize}px</span>
+          <button
+            onClick={() => handleFontSizeChange(Math.min(24, fontSize + 2))}
+            className="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-2 py-1 rounded text-xs"
+          >
+            +
+          </button>
+        </div>
+        <button
+          onClick={toggleDarkMode}
+          className="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-3 py-2 rounded text-sm"
+        >
+          {isDarkMode ? "Light" : "Dark"} Mode
+        </button>
+      </div>
+
+      {/* Search Bar */}
+      <div className="fixed top-20 left-4 z-50 w-80">
+        <div className="bg-black bg-opacity-70 p-4 rounded-lg">
+          <input
+            type="text"
+            placeholder="Search terms..."
+            value={searchQuery}
+            onChange={(e) => handleSearch(e.target.value)}
+            className="w-full bg-white bg-opacity-10 border border-white border-opacity-20 rounded px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-opacity-40"
+          />
+          {isSearchActive && searchResults.length > 0 && (
+            <div className="mt-2 max-h-60 overflow-y-auto bg-black bg-opacity-90 rounded">
+              {searchResults.map((result, index) => (
+                <div
+                  key={index}
+                  className="p-2 border-b border-white border-opacity-10 hover:bg-white hover:bg-opacity-10 cursor-pointer text-sm"
+                  onClick={() => {
+                    setIsSearchActive(false);
+                    setSearchQuery("");
+                  }}
+                >
+                  <div className="text-xs text-gray-400">{result.section}</div>
+                  <div className="text-white">{result.text}...</div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Table of Contents Sidebar */}
+      {showTOC && (
+        <div className="fixed left-4 top-60 z-40 w-64 bg-black bg-opacity-70 p-4 rounded-lg max-h-[60vh] overflow-y-auto">
+          <h3 className="font-bold mb-3 text-sm">Table of Contents</h3>
+          <ul className="space-y-2 text-sm">
+            {sectionsRef.current.map((section) => (
+              <li key={section.id}>
+                <button
+                  onClick={() => scrollToSection(section.id)}
+                  className={`text-left w-full hover:text-yellow-300 transition ${
+                    activeSection === section.id ? "text-yellow-400 font-bold" : "text-gray-300"
+                  }`}
+                >
+                  {section.title.substring(0, 50)}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div 
+        ref={contentRef}
+        className="mt-60 sm:p-8 z-10"
+        style={{ fontSize: `${fontSize}px` }}
+      >
         <h1 className="text-2xl font-bold mb-4 p-2">Terms and Conditions</h1>
         <p className="text-lg font-bold mb-4 p-2">
           Last Revised on March 1 ,2024
