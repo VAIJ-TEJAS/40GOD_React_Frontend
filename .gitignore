@@ -26,3 +26,6 @@ dist-ssr
 .env
 40god
 40god.pub
+
+coverage
+.coverage
