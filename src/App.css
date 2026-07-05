@@ -20,13 +20,19 @@
 }
 
 .my-text {
-  font-family: "Times New Roman", Times, serif, sans-serif;
+  font-family: "IndieFlower-Regular", Times, serif, sans-serif;
 }
 
 @font-face {
   font-family: "Cloister";
   src: local("Cloister"),
     url("./assets/fonts/CloisterBlack.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "IndieFlower-Regular";
+    src: local("IndieFlower-Regular"),
+    url("./assets/fonts/IndieFlower-Regular.ttf") format("truetype");
 }
 
 .god-text {
