@@ -133,7 +133,7 @@ const Login = () => {
         className="sm:w-1/3"
         style={{ margin: "10rem auto 0 auto" }}
       >
-        <div className="relative flex flex-col gap-4 w-full p-8 top-12">
+        <div className="relative flex flex-col gap-4 w-full p-8 top-32">
             
           <div className="grid grid-cols-2">
             <button
