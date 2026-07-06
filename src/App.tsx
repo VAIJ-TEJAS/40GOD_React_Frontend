@@ -14,34 +14,37 @@ import FortyGodTerms from "./Pages/Terms";
 import Login from "./Pages/Login";
 import General from "./Pages/General";
 import ContactUs from "./Pages/Contact";
+import PasswordProtection from "./components/PasswordProtection";
 import "./App.css";
 
 const App: React.FC = () => {
   return (
-    <div className="my-text min-h-screen flex flex-col">
-      <Router>
-        <NavBar />
-        <div className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/account" element={<Account />} />
+    <PasswordProtection>
+      <div className="my-text min-h-screen flex flex-col">
+        <Router>
+          <NavBar />
+          <div className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/account" element={<Account />} />
 
-            <Route path="/t-shirt" element={<TshirtPage />} />
-            <Route path="/new/:id" element={<ImageDetails />} />
-            <Route path="/bag" element={<Bag />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/history" element={<History />} />
-            
-            <Route path="/terms" element={<FortyGodTerms />} />
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-            <Route path="/general" element={<General />} />
-            <Route path="/contact" element={<ContactUs />} />
-          </Routes>
-        </div>
-        <Footer />
-      </Router>
-    </div>
+              <Route path="/t-shirt" element={<TshirtPage />} />
+              <Route path="/new/:id" element={<ImageDetails />} />
+              <Route path="/bag" element={<Bag />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/history" element={<History />} />
+              
+              <Route path="/terms" element={<FortyGodTerms />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/general" element={<General />} />
+              <Route path="/contact" element={<ContactUs />} />
+            </Routes>
+          </div>
+          <Footer />
+        </Router>
+      </div>
+    </PasswordProtection>
   );
 };
 
